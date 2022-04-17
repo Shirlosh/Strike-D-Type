@@ -37,7 +37,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
       curve: Curves.bounceOut,
       trigger: AnimationTrigger.onPageLoad,
       duration: 600,
-      delay: 0,
+      delay: 700,
       fadeIn: true,
       initialState: AnimationState(
         offset: Offset(100, 0),

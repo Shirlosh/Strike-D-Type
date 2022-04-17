@@ -76,9 +76,9 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                     Text(
                       'GAME ID: @',
                       style: FlutterFlowTheme.of(context).title1.override(
-                        fontFamily: 'Roboto',
-                        fontSize: 30,
-                      ),
+                            fontFamily: 'Roboto',
+                            fontSize: 30,
+                          ),
                     ),
                   ],
                 ),
@@ -92,9 +92,9 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                     Text(
                       'Waiting:',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
-                        fontFamily: 'Poppins',
-                        fontSize: 18,
-                      ),
+                            fontFamily: 'Poppins',
+                            fontSize: 18,
+                          ),
                     ),
                   ],
                 ),
@@ -131,23 +131,23 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           'User',
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle1
                                               .override(
-                                            fontFamily: 'Lexend Deca',
-                                            color: Color(0xFF151B1E),
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF151B1E),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                         ),
                                       ],
                                     ),
@@ -198,7 +198,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                           children: [
                             Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
+                                  EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   await Navigator.push(
@@ -216,8 +216,8 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                   textStyle: FlutterFlowTheme.of(context)
                                       .subtitle1
                                       .override(
-                                    fontFamily: 'Roboto',
-                                  ),
+                                        fontFamily: 'Roboto',
+                                      ),
                                   elevation: 3,
                                   borderSide: BorderSide(
                                     color: Color(0x7CFFFFFF),
