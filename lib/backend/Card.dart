@@ -1,4 +1,5 @@
 class Card{
   var symbols = <Symbol>[];
-  Card(this.symbols);
+  var symbolsInt = <int>[];
+//  Card(this.symbols);
 }
