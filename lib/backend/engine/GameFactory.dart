@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:strike_d_type/backend/Card.dart';
-import 'package:strike_d_type/backend/Symbol.dart';
+import 'package:strike_d_type/backend/engine/Card.dart';
+
 
 class GameFactory {
 
