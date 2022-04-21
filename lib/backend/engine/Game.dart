@@ -1,25 +1,90 @@
 import 'dart:math';
+import 'Player.dart';
+import 'Card.dart';
 
 class Game {
   //The number of symbols on a card has to be a prime number + 1
-  int primeNumber;
+  late int primeNumber;
   int numberOfSymbolsOnCard =
   4; //(3+1)//we will give the user an list of numbers to choose from.
   num numberOfCards = 0;
-
-  List<List<int>> cardsOfCards;
-
+  late List<List<int>> cardsOfCards;
   bool shuffleSymbolsOnCard = false;
   var symbols = <String>[];
 
-  Game(this.symbols, this.numberOfSymbolsOnCard, this.shuffleSymbolsOnCard) {
+  late Player _player1;
+  Player? _player2;
+
+  Game(this.symbols, this.numberOfSymbolsOnCard, this.shuffleSymbolsOnCard,
+      String name1, String name2) {
     //Word out the prime number
     primeNumber = numberOfSymbolsOnCard - 1;
 
     //Total number of cards that can be generated following the Dobble rules.
     numberOfCards = pow(primeNumber, 2) + primeNumber + 1;
     cardsOfCards = List.generate(0, (it) => []);
+
+    _player1 = new Player(name1);
+    if (name2.isNotEmpty) {
+      _player2 = new Player(name2);
+    }
     initGame();
+  }
+
+  void StartGame() {
+    List<int> card1;
+    List<int> card2;
+    final random = new Random();
+    int n1 = 1, n2 = 1;
+    // generate a random index based on the list length
+    while (n1 == n2) {
+      n1 = random.nextInt(cardsOfCards.length);
+      n2 = random.nextInt(cardsOfCards.length);
+    }
+
+    var card1Str = StringBuffer("Card1: ");
+    var card2Str = StringBuffer("Card2: ");
+
+    List<List<int>> chosenCards = List.generate(0, (it) => []);
+    chosenCards.add(cardsOfCards[n1]);
+    chosenCards.add(cardsOfCards[n2]);
+
+    final sameSymbolIdx = chosenCards.fold<Set>(
+        chosenCards.first.toSet(), (a, b) => a.intersection(b.toSet()));
+
+    if(sameSymbolIdx.length>1)
+    {
+      throw Exception("There is bug in this game!!");
+    }
+    printCard(card1Str, chosenCards[0]);
+    printCard(card2Str, chosenCards[1]);
+
+    print(card1Str);
+    print(card2Str);
+
+    print("sameSymbol is \"${symbols[sameSymbolIdx.single-1]}\".");
+  }
+
+  printCard(StringBuffer sb, List<int> card) {
+    for (var number in card) {
+      sb.write("${symbols[number - 1]}, ");
+    }
+  }
+
+  String? getPlayer1Name() {
+    return _player1.name;
+  }
+
+  String? getPlayer2Name() {
+    return _player2?.name;
+  }
+
+  int? getPlayer1Score() {
+    return _player1.score;
+  }
+
+  int? getPlayer2Score() {
+    return _player2?.score;
   }
 
   void initGame() {
@@ -65,7 +130,8 @@ class Game {
     output.write("primeNumber = $primeNumber\n"
         "numberOfSymbolsOnCard = $numberOfSymbolsOnCard\n"
         "numberOfUniqueCards = $numberOfCards\n"
-        "shuffleSymbolsOnCard=$shuffleSymbolsOnCard\n");
+        "shuffleSymbolsOnCard=$shuffleSymbolsOnCard\n"
+        "Players: \n $_player1 \n $_player2.");
 
     //Output all cards
     int i = 0;
@@ -73,7 +139,7 @@ class Game {
       i += 1;
       cardsOutput.write("$i -[");
       for (var number in card) {
-        cardsOutput.write("${symbols[number - 1]} ,");
+        cardsOutput.write("${symbols[number - 1]}, ");
       }
       cardsOutput.write(']\n');
     }
