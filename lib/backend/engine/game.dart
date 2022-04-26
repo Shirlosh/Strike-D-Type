@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'Player.dart';
+import 'player.dart';
 
 
 class Game {
@@ -31,7 +31,7 @@ class Game {
     initGame();
   }
 
-  void StartGame() {
+  void startGame() {
     List<int> card1;
     List<int> card2;
     final random = new Random();

@@ -1,3 +1,6 @@
+import 'package:strike_d_type/game_page/components/game_board.dart';
+import 'package:strike_d_type/game_page/components/playing_card.dart';
+
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -86,15 +89,15 @@ class _GamePageWidgetState extends State<GamePageWidget>
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child: Text(
-                'APP',
+              child: GameBoard()/*Text(
+                'here the gameshould be',
                 style: FlutterFlowTheme.of(context).title1.override(
                       fontFamily: 'Lexend Deca',
                       color: Colors.white,
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
-              ).animated([animationsMap['textOnPageLoadAnimation']]),
+              ).animated([animationsMap['textOnPageLoadAnimation']]),*/
             ),
           ],
         ).animated([animationsMap['columnOnPageLoadAnimation']]),
