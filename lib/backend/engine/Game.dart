@@ -1,19 +1,19 @@
 import 'dart:math';
 import 'Player.dart';
-import 'Card.dart';
+
 
 class Game {
   //The number of symbols on a card has to be a prime number + 1
-  late int primeNumber;
+  /*late*/ int primeNumber;
   int numberOfSymbolsOnCard =
   4; //(3+1)//we will give the user an list of numbers to choose from.
   num numberOfCards = 0;
-  late List<List<int>> cardsOfCards;
+  /*late*/ List<List<int>> cardsOfCards;
   bool shuffleSymbolsOnCard = false;
   var symbols = <String>[];
 
-  late Player _player1;
-  Player? _player2;
+  /*late*/ Player _player1;
+  Player _player2;
 
   Game(this.symbols, this.numberOfSymbolsOnCard, this.shuffleSymbolsOnCard,
       String name1, String name2) {
@@ -71,19 +71,19 @@ class Game {
     }
   }
 
-  String? getPlayer1Name() {
+  String getPlayer1Name() {
     return _player1.name;
   }
 
-  String? getPlayer2Name() {
+  String getPlayer2Name() {
     return _player2?.name;
   }
 
-  int? getPlayer1Score() {
+  int getPlayer1Score() {
     return _player1.score;
   }
 
-  int? getPlayer2Score() {
+  int getPlayer2Score() {
     return _player2?.score;
   }
 
