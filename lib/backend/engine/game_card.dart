@@ -27,16 +27,16 @@ class _GameCardState extends State<GameCard> {
           ),
           children: <Widget>[
             Container(
-              //mainAxisAlignment: MainAxisAlignment.spaceAround,
+              height: 64,
+              width: 32,
+              color: Colors.grey,
               child: Icon(
-                Icons.favorite,
-                color: Colors.pink,
-                size: 24.0,
+                  Icons.favorite,
+                  color: Colors.pink,
+                  size: 24.0,
+                )
               ),
-            ),
-            TableCell(
-              verticalAlignment: TableCellVerticalAlignment.top,
-              child: Container(
+              Container(
                 height: 64,
                 width: 32,
                 color: Colors.yellow,
@@ -46,7 +46,6 @@ class _GameCardState extends State<GameCard> {
                   size: 24.0,
                 ),
               ),
-            ),
             Container(
               height: 64,
               width: 32,
@@ -84,8 +83,7 @@ class _GameCardState extends State<GameCard> {
                 size: 24.0,
               ),
             ),
-            Center(
-              child: Container(
+            Container(
                 height: 64,
                 width: 32,
                 color: Colors.amber,
@@ -95,7 +93,6 @@ class _GameCardState extends State<GameCard> {
                   size: 24.0,
                 ),
               ),
-            ),
           ],
         ),
       ],
