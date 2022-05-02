@@ -15,7 +15,7 @@ class PlayingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: GameCard(cardSymbols: [],),
+      child: GameCard(cardSymbols: []),
     );
   }
 }

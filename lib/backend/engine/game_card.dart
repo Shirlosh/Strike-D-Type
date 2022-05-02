@@ -26,36 +26,7 @@ class _GameCardState extends State<GameCard> {
             color: Colors.grey,
           ),
           children: <Widget>[
-            Container(
-              height: 64,
-              width: 32,
-              color: Colors.grey,
-              child: Icon(
-                  Icons.favorite,
-                  color: Colors.pink,
-                  size: 24.0,
-                )
-              ),
-              Container(
-                height: 64,
-                width: 32,
-                color: Colors.yellow,
-                child: Icon(
-                  Icons.icecream_sharp,
-                  color: Colors.blue,
-                  size: 24.0,
-                ),
-              ),
-            Container(
-              height: 64,
-              width: 32,
-              color: Colors.black,
-              child: Icon(
-                Icons.shuffle,
-                color: Colors.pinkAccent,
-                size: 24.0,
-              ),
-            ),
+             Cell(Icons.icecream_sharp,Colors.yellow),Cell(Icons.shuffle,Colors.black),Cell(Icons.score,Colors.indigo)
           ],
         ),
         TableRow(
@@ -63,39 +34,41 @@ class _GameCardState extends State<GameCard> {
             color: Colors.grey,
           ),
           children: <Widget>[
-            Container(
-              height: 64,
-              width: 32,
-              color: Colors.deepOrange,
-              child: Icon(
-                Icons.accessibility_new_sharp,
-                color: Colors.green,
-                size: 24.0,
-              ),
-            ),
-            Container(
-              height: 64,
-              width: 32,
-              color: Colors.blue,
-              child: Icon(
-                Icons.score,
-                color: Colors.redAccent,
-                size: 24.0,
-              ),
-            ),
-            Container(
-                height: 64,
-                width: 32,
-                color: Colors.amber,
-                child: Icon(
-                  Icons.ac_unit_sharp,
-                  color: Colors.black12,
-                  size: 24.0,
-                ),
-              ),
+            Cell(Icons.accessibility_new_sharp,Colors.green),Cell(Icons.ac_unit_sharp,Colors.deepOrange),Cell(Icons.access_alarm,Colors.brown)
+
           ],
         ),
       ],
     );
   }
+}
+
+
+class Cell extends StatefulWidget {
+  final icon;
+  final color;
+  const Cell(this.icon,this.color);
+
+  @override
+  State<Cell> createState() => _CellState();
+}
+
+
+class _CellState extends State<Cell>
+{
+  @override
+  Widget build(BuildContext context) {
+
+    return Container(
+      height: 64,
+      width: 32,
+      color: Colors.white,
+      child: Icon(
+        widget.icon,
+        color: widget.color,
+        size: 24.0,
+      ),
+    );
+  }
+
 }
