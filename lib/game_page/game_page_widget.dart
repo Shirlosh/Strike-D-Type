@@ -1,11 +1,7 @@
-import 'package:strike_d_type/game_page/components/game_board.dart';
-import 'package:strike_d_type/game_page/components/playing_card.dart';
-
+import 'package:strike_d_type/game_page/components/Board.dart';
+import 'package:strike_d_type/game_page/components/GameCards.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GamePageWidget extends StatefulWidget {
   const GamePageWidget({Key key}) : super(key: key);
@@ -89,7 +85,7 @@ class _GamePageWidgetState extends State<GamePageWidget>
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child: GameBoard()/*Text(
+              child: Board()/*Text(
                 'here the gameshould be',
                 style: FlutterFlowTheme.of(context).title1.override(
                       fontFamily: 'Lexend Deca',
