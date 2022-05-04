@@ -33,7 +33,7 @@ class _GameCardState extends State<GameCard> {
               color: Colors.grey,
             ),
             children: <Widget>[
-             for(int j = 0 ; j < widget.cols ; j++ , index++)
+             for(int j = 0 ; j < widget.cols ; j++, index++)
                 Cell(widget.cardSymbols[index])
           ],
         ),

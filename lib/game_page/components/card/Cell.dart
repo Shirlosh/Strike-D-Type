@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/card/themes/classic.dart';
 
@@ -25,12 +27,16 @@ class _CellState extends State<Cell>
       height: 64,
       width: 32,
       color: Colors.white,
-      child: Icon(
-        widget.icon,
+      child: IconButton(
+        icon: Icon(widget.icon),
         color: widget.color,
-        size: 24.0,
+        onPressed: iconClicked,
       ),
     );
+  }
+
+  iconClicked() {
+    print(widget.icon.toString() + " button clicked");
   }
 
 }

@@ -16,7 +16,7 @@ List<List<int>> getCards(String gameID, int cardsAmount) {
   //Game game = getGame(id);
   //List<List<int>> card = game.startGame();
 
-  List<List<int>> cards =  [[1,2,3,4,5,6],[1,2,3,4,5,6]];
+  List<List<int>> cards =  [[1,2,3,4,5,6],[7,8,3,9,10,11]];
   return cards;
 }
 
