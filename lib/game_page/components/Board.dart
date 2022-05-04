@@ -1,12 +1,18 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/GameCards.dart';
-import 'package:strike_d_type/game_page/components/card/GameCard.dart';
+import '../../backend/handle-req.dart';
 
 class Board extends StatelessWidget {
-  const Board({Key key}) : super(key: key);
+  Board()
+  {
+    this.gameID = jsonDecode(getGameID());
+  }
+  final cards = 2;
+  int gameID;
 
   @override
   Widget build(BuildContext context) {
-    return GameCards(2);
+    return GameCards(cards);
   }
 }

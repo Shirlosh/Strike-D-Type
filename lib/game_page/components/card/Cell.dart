@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:strike_d_type/game_page/components/card/themes/classic.dart';
 
 class Cell extends StatefulWidget {
-  final icon;
-  final color;
-  const Cell(this.icon,this.color);
+  IconData icon;
+  Color color;
+  final index;
+  Cell(this.index)
+  {
+    icon = ClassicTheme.getIcon(index);
+    color = ClassicTheme.getColor(index);
+  }
 
   @override
   State<Cell> createState() => _CellState();

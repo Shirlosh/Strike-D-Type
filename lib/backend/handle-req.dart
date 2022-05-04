@@ -1,20 +1,23 @@
+import 'dart:convert';
+
 import 'package:strike_d_type/backend/engine/game.dart';
 
 Game game;
 
-void createGame(req, res) {
-  int symbolsAmount = 4;
-
+String getGameID() {
+  int symbolsAmount = 6;
   game = new Game([], symbolsAmount, true);
-  //res.game.getid();
+
+  return jsonEncode(1);
 }
 
-List<List<int>> getTwoCards(req, res) {
-  //int id = req.getid();
+List<List<int>> getCards(String gameID, int cardsAmount) {
+  int id = jsonDecode(gameID);
   //Game game = getGame(id);
-
   //List<List<int>> card = game.startGame();
-  //return card;
+
+  List<List<int>> cards =  [[1,2,3,4,5,6],[1,2,3,4,5,6]];
+  return cards;
 }
 
 checkIfValid() {

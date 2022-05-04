@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:strike_d_type/backend/engine/Game.dart';
-
 import 'Cell.dart';
 
 class GameCard extends StatefulWidget {
-  GameCard({Key key, this.cardSymbols}) : super(key: key);
+  GameCard(this.cardSymbols)
+  {
+    rows = 2;
+    cols = 3; //toDo: calc the size dynamicly
+  }
   final List<int> cardSymbols;
+  int rows;
+  int cols;
 
   @override
   State<GameCard> createState() => _GameCardState();
@@ -23,23 +27,17 @@ class _GameCardState extends State<GameCard> {
       },
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: <TableRow>[
-        TableRow(
-          decoration: const BoxDecoration(
-            color: Colors.grey,
-          ),
-          children: <Widget>[
-             Cell(Icons.icecream_sharp,Colors.yellow),Cell(Icons.shuffle,Colors.black),Cell(Icons.score,Colors.indigo)
+        for(int i = 0, index = 0 ; i < widget.rows ; i++)
+          TableRow(
+            decoration: const BoxDecoration(
+              color: Colors.grey,
+            ),
+            children: <Widget>[
+             for(int j = 0 ; j < widget.cols ; j++ , index++)
+                Cell(widget.cardSymbols[index])
           ],
         ),
-        TableRow(
-          decoration: const BoxDecoration(
-            color: Colors.grey,
-          ),
-          children: <Widget>[
-            Cell(Icons.accessibility_new_sharp,Colors.green),Cell(Icons.ac_unit_sharp,Colors.deepOrange),Cell(Icons.access_alarm,Colors.brown)
 
-          ],
-        ),
       ],
     );
   }
