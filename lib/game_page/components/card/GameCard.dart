@@ -4,12 +4,11 @@ import 'Cell.dart';
 class GameCard extends StatefulWidget {
   GameCard(this.cardSymbols)
   {
-    rows = 2;
-    cols = 3; //toDo: calc the size dynamicly
+    rows = cardSymbols.length ~/ cols;
   }
   final List<int> cardSymbols;
   int rows;
-  int cols;
+  final cols = 3;
 
   @override
   State<GameCard> createState() => _GameCardState();
@@ -19,7 +18,7 @@ class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(),
+      border: TableBorder.all(color:Colors.white),
       columnWidths: const <int, TableColumnWidth>{
         0: IntrinsicColumnWidth(),
         1: IntrinsicColumnWidth(),

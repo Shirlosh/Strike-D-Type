@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/card/GameCard.dart';
 
