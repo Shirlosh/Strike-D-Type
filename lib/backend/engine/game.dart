@@ -24,7 +24,7 @@ class Game {
     initGame();
   }
 
-  void startGame() {
+  List<List<int>> getTwoCards() {
     List<int> card1;
     List<int> card2;
     final random = new Random();
