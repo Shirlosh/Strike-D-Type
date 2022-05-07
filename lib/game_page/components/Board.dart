@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/GameCards.dart';
-import '../../backend/handle-req.dart';
+import '../../backend/handle_requests.dart';
 
 class Board extends StatelessWidget {
   Board()

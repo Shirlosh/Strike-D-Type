@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/card/GameCard.dart';
 
-import '../../backend/handle-req.dart';
+import '../../backend/handle_requests.dart';
 
 class GameCards extends StatelessWidget {
   final size;
