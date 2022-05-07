@@ -85,7 +85,7 @@ class _GamePageWidgetState extends State<GamePageWidget>
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child: Board()/*Text(
+              child: Board(3)/*Text(
                 'here the gameshould be',
                 style: FlutterFlowTheme.of(context).title1.override(
                       fontFamily: 'Lexend Deca',

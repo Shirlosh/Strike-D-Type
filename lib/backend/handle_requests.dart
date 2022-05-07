@@ -13,11 +13,8 @@ String getNewGame(int symbolsAmount) {
 }
 
 ///Gets game id, and returns two cards and the same symbol they have.
-String getTurnData(String gameID, int cardsAmount) {
-  int id = jsonDecode(gameID);
-  Game game = runningGames[id];
+String getTurnData(String gameID) {
+  Game game = runningGames[jsonDecode(gameID)];
   TwoCardsDTO turnData = game.getTwoCards();
   return jsonEncode(turnData);
 }
-
-
