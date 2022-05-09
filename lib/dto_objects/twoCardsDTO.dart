@@ -1,10 +1,10 @@
 class TwoCardsDTO {
-  List<List<int>> _cards;
-  int _sameSymbol;
+  List<List<int>> cards;
+  int sameSymbol;
 
-  TwoCardsDTO(this._cards, this._sameSymbol);
+  TwoCardsDTO(this.cards, this.sameSymbol);
 
-  List<int> getFirstCard() {
+  /*List<int> getFirstCard() {
     return _cards[0];
   }
 
@@ -15,8 +15,8 @@ class TwoCardsDTO {
   List<List<int>> getCards() {
     return this._cards;
   }
-
+*/
   int getSameSymbolID() {
-    return _sameSymbol;
+    return sameSymbol;
   }
 }

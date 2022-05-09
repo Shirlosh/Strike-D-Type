@@ -1,26 +1,19 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:strike_d_type/dto_objects/twoCardsDTO.dart';
-import 'package:strike_d_type/game_page/components/GameCards.dart';
-import '../../backend/handle_requests.dart';
+
 
 class Board extends StatelessWidget {
   int symbolsAmount;
-  final cards = 2;
-  int gameID;
+  //final cards = 2;
+  //int gameID;
 
   Board(this.symbolsAmount) {
-    this.gameID = jsonDecode(getNewGame(symbolsAmount));
+    //this.gameID = int.parse(jsonDecode(getNewGame(symbolsAmount)));
+    int x = 1;
   }
-
-  String getGameTurn(int gameId) {
-    String data = jsonDecode(getTurnData(jsonEncode(gameID)));
-    return data;
-  }
-
 
   @override
   Widget build(BuildContext context) {
-    return GameCards(key: key, size: 2, gameTurn:getGameTurn(gameID));
+    return Text("hi");//GameCards(2, gameID);
   }
 }

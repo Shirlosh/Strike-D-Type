@@ -4,10 +4,9 @@ import '../dto_objects/twoCardsDTO.dart';
 
 Map<int, Game> runningGames;
 
-//get amount of symbol requested on card, and returns a new GamdID.
+///get amount of symbol requested on card, and returns a new GamdID.
 String getNewGame(int symbolsAmount) {
   Game pGame = new Game(symbolsAmount, true);
-  pGame.initGame();
   runningGames[pGame.getGameID()] = pGame;
   return jsonEncode(pGame.getGameID());
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/dto_objects/twoCardsDTO.dart';
 import 'package:strike_d_type/game_page/components/card/GameCard.dart';
@@ -6,14 +8,19 @@ import '../../backend/handle_requests.dart';
 
 class GameCards extends StatelessWidget {
   final int size;
-  final String gameTurn;
+  Map<String, dynamic> gameTurn;
+  final int gameID;
+  List<List<int>> cards;
 
-  const GameCards({Key key, this.size = 2, this.gameTurn}) : super(key: key);
+  GameCards(this.size, this.gameID) {
+    gameTurn = jsonDecode(getTurnData(gameID.toString()));
+    cards = gameTurn["cards"] as List<List<int>>;
+    int x=3;
+  }
 
   @override
   Widget build(BuildContext context) {
     //needs to be something like that
-     List<List<int>> cards = gameTurn["_cards"] as List<List<int>>;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
