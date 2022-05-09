@@ -4,10 +4,14 @@ import 'package:strike_d_type/game_page/components/GameCards.dart';
 import '../../backend/handle-req.dart';
 
 class Board extends StatelessWidget {
-  Board()
+  Board(this.symbolsAmount)
   {
-    this.gameID = jsonDecode(getGameID());
+    //this.gameID = jsonDecode(getGameID());
+    dynamic x = jsonDecode(getNewGame(symbolsAmount));
+    //this.gameID = x; EXCEPTION
+    //int x =1;
   }
+  final symbolsAmount;
   final cards = 2;
   int gameID;
 

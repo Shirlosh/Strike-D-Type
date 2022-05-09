@@ -1,19 +1,22 @@
 import 'dart:math';
+import '../../dto_objects/TwoCardsDTO.dart';
 import 'player.dart';
 
 class Game {
+  static int gameIdGenerator = 0;
+  int _id;
+
   //The number of symbols on a card has to be a prime number + 1
-  /*late*/ int primeNumber;
+  int primeNumber;
   int numberOfSymbolsOnCard =
-      4; //(3+1)//we will give the user an list of numbers to choose from.
+  4; //(3+1)//we will give the user an list of numbers to choose from.
   num numberOfCards = 0;
 
-  /*late*/
   List<List<int>> cardsOfCards;
   bool shuffleSymbolsOnCard = false;
   var symbols = <String>[];
 
-  Game(this.symbols, this.numberOfSymbolsOnCard, this.shuffleSymbolsOnCard) {
+  Game(this.numberOfSymbolsOnCard, this.shuffleSymbolsOnCard) {
     //Word out the prime number
     primeNumber = numberOfSymbolsOnCard - 1;
 
@@ -21,12 +24,15 @@ class Game {
     numberOfCards = pow(primeNumber, 2) + primeNumber + 1;
     cardsOfCards = List.generate(0, (it) => []);
 
+    _id = ++gameIdGenerator;
     initGame();
   }
 
-  void startGame() {
-    List<int> card1;
-    List<int> card2;
+  int getGameID() {
+    return _id;
+  }
+
+  TwoCardsDTO getTwoCards() {
     final random = new Random();
     int n1 = 1, n2 = 1;
     // generate a random index based on the list length
@@ -34,9 +40,6 @@ class Game {
       n1 = random.nextInt(cardsOfCards.length);
       n2 = random.nextInt(cardsOfCards.length);
     }
-
-    var card1Str = StringBuffer("Card1: ");
-    var card2Str = StringBuffer("Card2: ");
 
     List<List<int>> chosenCards = List.generate(0, (it) => []);
     chosenCards.add(cardsOfCards[n1]);
@@ -48,16 +51,12 @@ class Game {
     if (sameSymbolIdx.length > 1) {
       throw Exception("There is bug in this game!!");
     }
-    printCard(card1Str, chosenCards[0]);
-    printCard(card2Str, chosenCards[1]);
+    TwoCardsDTO gameData = new TwoCardsDTO(chosenCards, sameSymbolIdx.single);
 
-    print(card1Str);
-    print(card2Str);
-
-    print("sameSymbol is \"${symbols[sameSymbolIdx.single - 1]}\".");
+    return gameData;
   }
 
-  printCard(StringBuffer sb, List<int> card) {
+  setSymbols(StringBuffer sb, List<int> card) {
     for (var number in card) {
       sb.write("${symbols[number - 1]}, ");
     }
