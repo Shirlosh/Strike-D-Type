@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'Cell.dart';
-//todo delete
 class GameCard extends StatefulWidget {
   GameCard(this.cardSymbols)
   {
