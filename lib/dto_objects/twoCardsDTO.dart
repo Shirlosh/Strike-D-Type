@@ -1,22 +1,31 @@
+import 'dart:convert';
+
 class TwoCardsDTO {
-  List<List<int>> cards;
+  //now it works.. but we need it to be List<List<int>>...
+  List<dynamic> cards;
   int sameSymbol;
 
   TwoCardsDTO(this.cards, this.sameSymbol);
 
-  /*List<int> getFirstCard() {
-    return _cards[0];
+  TwoCardsDTO.fromJson(Map<String, dynamic> json)
+      : cards = json['cards'],
+        sameSymbol = json['sameSymbol'];
+
+  Map<String, dynamic> toJson() {
+    return {
+      'cards': cards,
+      'sameSymbol': sameSymbol,
+    };
   }
 
-  List<int> getSecondCard() {
-    return _cards[1];
-  }
+  @override
+  String toString() {
+    var output = StringBuffer();
 
-  List<List<int>> getCards() {
-    return this._cards;
-  }
-*/
-  int getSameSymbolID() {
-    return sameSymbol;
+
+    output.write("cards = $cards\n"
+        "sameSymbol = $sameSymbol\n");
+
+    return output.toString();
   }
 }

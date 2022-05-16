@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:strike_d_type/backend/engine/game.dart';
 import '../dto_objects/twoCardsDTO.dart';
 
-Map<int, Game> runningGames;
+Map<int, Game> runningGames = new Map();
 
 ///get amount of symbol requested on card, and returns a new GamdID.
 String getNewGame(int symbolsAmount) {
@@ -15,5 +15,11 @@ String getNewGame(int symbolsAmount) {
 String getTurnData(String gameID) {
   Game game = runningGames[jsonDecode(gameID)];
   TwoCardsDTO turnData = game.getTwoCards();
-  return jsonEncode(turnData);
+  String item = jsonEncode(turnData);
+
+  /*Map<String, dynamic> usermap = jsonDecode(item);
+  print (usermap);
+  var user = TwoCardsDTO.fromJson(usermap);
+*/
+  return item;
 }

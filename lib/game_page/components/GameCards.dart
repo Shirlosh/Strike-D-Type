@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:strike_d_type/dto_objects/twoCardsDTO.dart';
 import 'package:strike_d_type/game_page/components/card/GameCard.dart';
 
@@ -8,14 +9,17 @@ import '../../backend/handle_requests.dart';
 
 class GameCards extends StatelessWidget {
   final int size;
-  Map<String, dynamic> gameTurn;
+  String gameTurn;
   final int gameID;
   List<List<int>> cards;
+  int sameSymbol;
 
   GameCards(this.size, this.gameID) {
-    gameTurn = jsonDecode(getTurnData(gameID.toString()));
-    cards = gameTurn["cards"] as List<List<int>>;
-    int x=3;
+    Map<String, dynamic> cardsMap = jsonDecode(getTurnData(gameID.toString()));
+    var gameTurn = TwoCardsDTO.fromJson(cardsMap);
+
+    print(gameTurn);
+
   }
 
   @override
