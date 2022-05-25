@@ -13,7 +13,7 @@ class Board extends StatelessWidget {
   Board(this.symbolsAmount) {
     String id = getNewGame(symbolsAmount);
     this.gameID =jsonDecode(id);
-    int x = 1;
+    print(gameID);
   }
 
   @override

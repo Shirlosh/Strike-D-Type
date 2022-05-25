@@ -17,8 +17,17 @@ class GameCards extends StatelessWidget {
   GameCards(this.size, this.gameID) {
     Map<String, dynamic> cardsMap = jsonDecode(getTurnData(gameID.toString()));
     var gameTurn = TwoCardsDTO.fromJson(cardsMap);
+    final List<String> strs = gameTurn.cards.map((e) => e.toString()).toList();
+    cards = List.generate(0, (it) => []);
 
-    print(gameTurn);
+
+    var listInt = List<int>.from(json.decode(strs.first).map((x) => x));
+    var listInt2 = List<int>.from(json.decode(strs.last).map((x) => x));
+
+    cards.add(listInt);
+    cards.add(listInt2);
+
+
 
   }
 
