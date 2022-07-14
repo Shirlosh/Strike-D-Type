@@ -23,7 +23,7 @@ class _CellState extends State<Cell>
 
     return Container(
       height: 64,
-      width: 32,
+      width: 64,
       color: Colors.white,
       child: IconButton(
         icon: Icon(widget.icon),

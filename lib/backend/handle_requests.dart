@@ -17,9 +17,6 @@ String getTurnData(String gameID) {
   TwoCardsDTO turnData = game.getTwoCards();
   String item = jsonEncode(turnData);
 
-  /*Map<String, dynamic> usermap = jsonDecode(item);
-  print (usermap);
-  var user = TwoCardsDTO.fromJson(usermap);
-*/
+
   return item;
 }

@@ -37,6 +37,7 @@ class GameCards extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisSize: MainAxisSize.max,
       children: <GameCard>[for (var i = 0; i < size; i++) GameCard(cards[i])],
     );
   }

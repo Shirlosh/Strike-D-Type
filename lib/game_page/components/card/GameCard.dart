@@ -6,8 +6,8 @@ class GameCard extends StatefulWidget {
     rows = cardSymbols.length ~/ cols;
   }
   final List<int> cardSymbols;
-  int rows;
-  final cols = 3;
+  int rows =2;
+  final cols = 4;
 
   @override
   State<GameCard> createState() => _GameCardState();
@@ -22,6 +22,8 @@ class _GameCardState extends State<GameCard> {
         0: IntrinsicColumnWidth(),
         1: IntrinsicColumnWidth(),
         2: IntrinsicColumnWidth(),
+        3: IntrinsicColumnWidth(),
+
       },
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: <TableRow>[

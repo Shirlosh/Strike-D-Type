@@ -79,25 +79,19 @@ class _GamePageWidgetState extends State<GamePageWidget>
             end: AlignmentDirectional(-1, 1),
           ),
         ),
-        child: Column(
+        child: SingleChildScrollView(
+         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child:Board(4),/*Text(
-                'here the gameshould be',
-                style: FlutterFlowTheme.of(context).title1.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ).animated([animationsMap['textOnPageLoadAnimation']]),*/
+              child:Board(4),
             ),
           ],
-        ).animated([animationsMap['columnOnPageLoadAnimation']]),
+         )
+         ).animated([animationsMap['columnOnPageLoadAnimation']]),
       ).animated([animationsMap['containerOnPageLoadAnimation']]),
-    );
+      );
   }
 }
