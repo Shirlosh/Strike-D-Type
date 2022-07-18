@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/card/themes/classic.dart';
 
+import '../../../backend/handle-req.dart';
+
 class Cell extends StatefulWidget {
   IconData icon;
   Color color;
@@ -16,15 +18,12 @@ class Cell extends StatefulWidget {
 }
 
 
-class _CellState extends State<Cell>
-{
+class _CellState extends State<Cell> {
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: 64,
       width: 32,
-      color: Colors.white,
       child: IconButton(
         icon: Icon(widget.icon),
         color: widget.color,
@@ -33,8 +32,12 @@ class _CellState extends State<Cell>
     );
   }
 
+  //todo: update score board(failed -1 success +1), regenerate cards,
   iconClicked() {
-    print(widget.icon.toString() + " button clicked");
-  }
+    if (isCorrectSymbol(widget.index))
+      print(widget.icon.toString() + " is Correct!");
 
+    else
+      print(widget.icon.toString() + " inCorrect");
+  }
 }

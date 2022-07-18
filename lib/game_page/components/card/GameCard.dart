@@ -4,7 +4,7 @@ import 'Cell.dart';
 class GameCard extends StatefulWidget {
   GameCard(this.cardSymbols)
   {
-    rows = cardSymbols.length ~/ cols;
+    rows = (cardSymbols.length / cols).ceil();
   }
   final List<int> cardSymbols;
   int rows;
@@ -13,31 +13,37 @@ class GameCard extends StatefulWidget {
   @override
   State<GameCard> createState() => _GameCardState();
 }
-
+// todo: fit table to picture
 class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
-    return Table(
-      border: TableBorder.all(color:Colors.white),
+    return Container(
+        width: 350,
+        height: 350,
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: Image.asset('assets/images/GameCard.png',).image
+          ),
+      ),
+        child: Table(
+
       columnWidths: const <int, TableColumnWidth>{
         0: IntrinsicColumnWidth(),
         1: IntrinsicColumnWidth(),
         2: IntrinsicColumnWidth(),
       },
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      //defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: <TableRow>[
         for(int i = 0, index = 0 ; i < widget.rows ; i++)
           TableRow(
-            decoration: const BoxDecoration(
-              color: Colors.grey,
-            ),
-            children: <Widget>[
-             for(int j = 0 ; j < widget.cols ; j++, index++)
-                Cell(widget.cardSymbols[index])
-          ],
-        ),
-
+            children: <Widget>[ for(int j = 0 ; j < widget.cols ; j++, index++) Cell(widget.cardSymbols[index])]
+                // todo: rotate icons
+          ),
       ],
-    );
+    ));
+
   }
 }
