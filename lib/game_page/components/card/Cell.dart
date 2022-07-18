@@ -24,7 +24,6 @@ class _CellState extends State<Cell> {
     return Container(
       height: 64,
       width: 32,
-      color: Colors.white,
       child: IconButton(
         icon: Icon(widget.icon),
         color: widget.color,
@@ -33,6 +32,7 @@ class _CellState extends State<Cell> {
     );
   }
 
+  //todo: update score board(failed -1 success +1), regenerate cards,
   iconClicked() {
     if (isCorrectSymbol(widget.index))
       print(widget.icon.toString() + " is Correct!");

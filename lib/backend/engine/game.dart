@@ -1,6 +1,4 @@
 import 'dart:math';
-import '../../dto_objects/TwoCardsDTO.dart';
-import 'player.dart';
 
 class Game {
   static int gameIdGenerator = 0;

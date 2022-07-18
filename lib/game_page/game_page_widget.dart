@@ -85,19 +85,11 @@ class _GamePageWidgetState extends State<GamePageWidget>
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child: Board(6)/*Text(
-                'here the gameshould be',
-                style: FlutterFlowTheme.of(context).title1.override(
-                      fontFamily: 'Lexend Deca',
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ).animated([animationsMap['textOnPageLoadAnimation']]),*/
+              child: Board(6)
             ),
           ],
-        ).animated([animationsMap['columnOnPageLoadAnimation']]),
-      ).animated([animationsMap['containerOnPageLoadAnimation']]),
+        )
+      )
     );
   }
 }
