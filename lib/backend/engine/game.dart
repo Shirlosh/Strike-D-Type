@@ -32,7 +32,7 @@ class Game {
     return _id;
   }
 
-  TwoCardsDTO getTwoCards() {
+  List<List<int>> getTwoCards() {
     final random = new Random();
     int n1 = 1, n2 = 1;
     // generate a random index based on the list length
@@ -51,9 +51,9 @@ class Game {
     if (sameSymbolIdx.length > 1) {
       throw Exception("There is bug in this game!!");
     }
-    TwoCardsDTO gameData = new TwoCardsDTO(chosenCards, sameSymbolIdx.single);
+    //TwoCardsDTO gameData = new TwoCardsDTO(chosenCards, sameSymbolIdx.single);
 
-    return gameData;
+    return chosenCards;
   }
 
   setSymbols(StringBuffer sb, List<int> card) {

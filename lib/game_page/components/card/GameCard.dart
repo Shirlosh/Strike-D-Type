@@ -4,10 +4,10 @@ import 'Cell.dart';
 class GameCard extends StatefulWidget {
   GameCard(this.cardSymbols)
   {
-    rows = cardSymbols.length ~/ cols;
+    rows = (cardSymbols.length / cols).ceil();
   }
   final List<int> cardSymbols;
-  int rows;
+  int rows = 2;
   final cols = 3;
 
   @override

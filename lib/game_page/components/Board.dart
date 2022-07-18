@@ -6,10 +6,7 @@ import '../../backend/handle-req.dart';
 class Board extends StatelessWidget {
   Board(this.symbolsAmount)
   {
-    //this.gameID = jsonDecode(getGameID());
-    dynamic x = jsonDecode(getNewGame(symbolsAmount));
-    //this.gameID = x; EXCEPTION
-    //int x =1;
+    this.gameID = createGame(symbolsAmount);
   }
   final symbolsAmount;
   final cards = 2;

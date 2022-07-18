@@ -4,41 +4,17 @@ import 'package:strike_d_type/backend/engine/game.dart';
 
 import '../dto_objects/TwoCardsDTO.dart';
 
-Map<int, Game> runningGames = new Map();
+// Map<int, Game> runningGames = new Map();
 Game game;
 
-String getGameID() {
-  int symbolsAmount = 6;
+int createGame(symbolsAmount) {
   game = new Game(symbolsAmount, true);
-
-  return jsonEncode(1);
+  return 1; // uuid#
 }
 
 List<List<int>> getCards(String gameID, int cardsAmount) {
-  int id = jsonDecode(gameID);
-  //Game game = getGame(id);
-  //List<List<int>> card = game.startGame();
-
-  List<List<int>> cards =  [[1,2,3,4,5,6],[7,8,3,9,10,11]];
-  return cards;
-}
-
-checkIfValid() {
-  //return
-}
-
-//get amount of symbol requested on card, and returns a new GamdID.
-String getNewGame(int symbolsAmount) {
-  Game pGame = new Game(symbolsAmount, true);
-  pGame.initGame();
-  int id = pGame.getGameID();
-  runningGames[id] = pGame;
-  return jsonEncode(pGame.getGameID());
-}
-
-///Gets game id, and returns two cards and the same symbol they have.
-String getTurnData(String gameID) {
-  Game game = runningGames[jsonDecode(gameID)];
-  TwoCardsDTO turnData = game.getTwoCards();
-  return jsonEncode(turnData);
+  List<List<int>> cards =  game.getTwoCards();
+  print(cards);
+  //List<List<int>> cards = [[1,2,3,4,5,6],[1,2,3,4,5,6]];
+  return cards; // return mutual
 }
