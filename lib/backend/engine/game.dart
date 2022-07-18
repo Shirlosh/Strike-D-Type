@@ -5,6 +5,7 @@ import 'player.dart';
 class Game {
   static int gameIdGenerator = 0;
   int _id;
+  int sameSymbolIdx;
 
   //The number of symbols on a card has to be a prime number + 1
   int primeNumber;
@@ -32,6 +33,11 @@ class Game {
     return _id;
   }
 
+  int getSameSymbol()
+  {
+    return sameSymbolIdx;
+  }
+
   List<List<int>> getTwoCards() {
     final random = new Random();
     int n1 = 1, n2 = 1;
@@ -45,12 +51,13 @@ class Game {
     chosenCards.add(cardsOfCards[n1]);
     chosenCards.add(cardsOfCards[n2]);
 
-    final sameSymbolIdx = chosenCards.fold<Set>(
+    final sameSymbolSet = chosenCards.fold<Set>(
         chosenCards.first.toSet(), (a, b) => a.intersection(b.toSet()));
 
-    if (sameSymbolIdx.length > 1) {
+    if (sameSymbolSet.length > 1) {
       throw Exception("There is bug in this game!!");
     }
+    sameSymbolIdx = sameSymbolSet.single;
     //TwoCardsDTO gameData = new TwoCardsDTO(chosenCards, sameSymbolIdx.single);
 
     return chosenCards;
