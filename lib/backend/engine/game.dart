@@ -1,15 +1,14 @@
 import 'dart:math';
-import 'player.dart';
-import '../../dto_objects/twoCardsDTO.dart';
 
 class Game {
   static int gameIdGenerator = 0;
   int _id;
+  int sameSymbolIdx;
 
   //The number of symbols on a card has to be a prime number + 1
   int primeNumber;
   int numberOfSymbolsOnCard =
-      4; //(3+1)//we will give the user an list of numbers to choose from.
+  4; //(3+1)//we will give the user an list of numbers to choose from.
   num numberOfCards = 0;
 
   List<List<int>> cardsOfCards;
@@ -32,7 +31,12 @@ class Game {
     return _id;
   }
 
-  TwoCardsDTO getTwoCards() {
+  int getSameSymbol()
+  {
+    return sameSymbolIdx;
+  }
+
+  List<List<int>> getTwoCards() {
     final random = new Random();
     int n1 = 1, n2 = 1;
     // generate a random index based on the list length
@@ -45,15 +49,16 @@ class Game {
     chosenCards.add(cardsOfCards[n1]);
     chosenCards.add(cardsOfCards[n2]);
 
-    final sameSymbolIdx = chosenCards.fold<Set>(
+    final sameSymbolSet = chosenCards.fold<Set>(
         chosenCards.first.toSet(), (a, b) => a.intersection(b.toSet()));
 
-    if (sameSymbolIdx.length > 1) {
+    if (sameSymbolSet.length > 1) {
       throw Exception("There is bug in this game!!");
     }
-    TwoCardsDTO gameData = new TwoCardsDTO(chosenCards, sameSymbolIdx.single);
+    sameSymbolIdx = sameSymbolSet.single;
+    //TwoCardsDTO gameData = new TwoCardsDTO(chosenCards, sameSymbolIdx.single);
 
-    return gameData;
+    return chosenCards;
   }
 
   setSymbols(StringBuffer sb, List<int> card) {

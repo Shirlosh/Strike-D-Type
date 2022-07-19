@@ -79,19 +79,17 @@ class _GamePageWidgetState extends State<GamePageWidget>
             end: AlignmentDirectional(-1, 1),
           ),
         ),
-        child: SingleChildScrollView(
-         child: Column(
+        child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child:Board(4),
+              child: Board(6)
             ),
           ],
-         )
-         ).animated([animationsMap['columnOnPageLoadAnimation']]),
-      ).animated([animationsMap['containerOnPageLoadAnimation']]),
-      );
+        )
+      )
+    );
   }
 }
