@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'Cell.dart';
-
 class GameCard extends StatefulWidget {
   GameCard(this.cardSymbols)
   {
     rows = (cardSymbols.length / cols).ceil();
   }
   final List<int> cardSymbols;
-  int rows;
-  final cols = 3;
+  int rows =2;
+  final cols = 4;
 
   @override
   State<GameCard> createState() => _GameCardState();
@@ -34,6 +33,8 @@ class _GameCardState extends State<GameCard> {
         0: IntrinsicColumnWidth(),
         1: IntrinsicColumnWidth(),
         2: IntrinsicColumnWidth(),
+        3: IntrinsicColumnWidth(),
+
       },
       children: <TableRow>[
         for(int i = 0, index = 0 ; i < widget.rows ; i++)
