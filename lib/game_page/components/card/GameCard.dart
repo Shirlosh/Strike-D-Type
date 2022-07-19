@@ -36,7 +36,6 @@ class _GameCardState extends State<GameCard> {
         3: IntrinsicColumnWidth(),
 
       },
-      //defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: <TableRow>[
         for(int i = 0, index = 0 ; i < widget.rows ; i++)
           TableRow(
