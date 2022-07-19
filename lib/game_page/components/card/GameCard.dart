@@ -25,9 +25,10 @@ class _GameCardState extends State<GameCard> {
     return Container(
         width: 350,
         height: 350,
+      color: Colors.blue[600],
         margin: EdgeInsets.all(20),
         padding: EdgeInsets.all(5),
-        decoration: BoxDecoration(
+    /*    decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fitHeight,
               image: Image
@@ -35,7 +36,7 @@ class _GameCardState extends State<GameCard> {
                 'assets/images/GameCard.png',
               )
                   .image),
-        ),
+        ),*/
         child: Table(
             columnWidths: const <int, TableColumnWidth>{
               0: IntrinsicColumnWidth(),
