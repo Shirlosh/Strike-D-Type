@@ -17,7 +17,7 @@ class Board extends StatelessWidget {
 
     return Column(
       children:[
-        ScoreBoard(),
+        StatusBoard(),
         GameCards(cards),
       ]
     );

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:strike_d_type/game_page/components/card/GameCard.dart';
-
 import '../../../flutter_flow/flutter_flow_theme.dart';
 
-class PvPText extends StatelessWidget {
-  int player1Score = 0;
-  int player2Score = 0;
 
-  PvPText();
+class PvPText extends StatefulWidget {
+  @override
+  _PvPText createState() => _PvPText();
+
+}
+
+class _PvPText extends State<PvPText> {
+  int player1Score = 1;
+  int player2Score = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class PvPText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('0 : 0', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
+        Text('$player1Score : $player2Score', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
           fontSize: 80,
           color: Colors.orange.shade50,
@@ -30,4 +32,5 @@ class PvPText extends StatelessWidget {
       ],
     );
   }
+
 }
