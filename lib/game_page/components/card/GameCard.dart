@@ -25,7 +25,7 @@ class _GameCardState extends State<GameCard> {
     return Container(
         width: 350,
         height: 350,
-        margin: EdgeInsets.all(10),
+        margin: EdgeInsets.all(20),
         padding: EdgeInsets.all(5),
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -43,18 +43,18 @@ class _GameCardState extends State<GameCard> {
               2: IntrinsicColumnWidth(),
             },
             children: <TableRow>[
-        for (int i = 0, index = 0; i < widget.rows; i++)
+        for (int i = 0, index = 0; i < widget.cols; i++)
         TableRow(children: <Widget>[
-    for (int j = 0; j < widget.cols; j++, index++)
-    RotatedBox(
-        quarterTurns: widget.random.nextInt(100),
+    for (int j = 0; j < widget.rows; j++, index++)
+    Transform(
+        transform: Matrix4.rotationZ(widget.random.nextInt(1000)/100),
             child: Transform.scale(scale:widget.random.nextInt(2).toDouble()+1,
                 child: Cell(widget.cardSymbols[index]))),
 
 
         ]
     )],
-    )
-    );
+    ),);
+
   }
 }
