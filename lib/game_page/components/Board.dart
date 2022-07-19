@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/GameCards.dart';
+import 'package:strike_d_type/game_page/components/statusBoard/statusBoard.dart';
 import '../../backend/handle-req.dart';
 
 class Board extends StatelessWidget {
@@ -9,11 +10,17 @@ class Board extends StatelessWidget {
   }
   final symbolsAmount;
   final cards = 2;
-  int gameID;
+  String gameID;
 
   @override
   Widget build(BuildContext context) {
-    //todo: create scoreBoard and return it
-    return GameCards(cards);
+
+    return Column(
+      children:[
+        ScoreBoard(),
+        GameCards(cards),
+      ]
+    );
+
   }
 }

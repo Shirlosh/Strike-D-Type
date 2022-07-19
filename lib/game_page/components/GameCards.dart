@@ -17,7 +17,9 @@ class GameCards extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children:
       <GameCard>[
         for (var i = 0; i < size; i++) GameCard(cards[i])
