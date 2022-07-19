@@ -13,7 +13,7 @@ class Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo: create scoreBoard and return it
+    //todo: create scoreBoar,d and return it
     return GameCards(cards);
   }
 }
