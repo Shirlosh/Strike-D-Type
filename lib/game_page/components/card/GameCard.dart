@@ -23,34 +23,45 @@ class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 350,
-        height: 350,
-      color: Colors.blue[600],
+        width: 500,
+        height: 500,
+     // color: Colors.blue[600],
+
+
         margin: EdgeInsets.all(20),
         padding: EdgeInsets.all(5),
-    /*    decoration: BoxDecoration(
+        decoration:
+        BoxDecoration(
+
+
           image: DecorationImage(
-              fit: BoxFit.fitHeight,
-              image: Image
+              fit: BoxFit.fill,
+              image:
+              Image
                   .asset(
                 'assets/images/GameCard.png',
               )
                   .image),
-        ),*/
+
+        ),
+      alignment:Alignment.center,
         child: Table(
             columnWidths: const <int, TableColumnWidth>{
               0: IntrinsicColumnWidth(),
               1: IntrinsicColumnWidth(),
               2: IntrinsicColumnWidth(),
             },
+
             children: <TableRow>[
-        for (int i = 0, index = 0; i < widget.cols; i++)
+
+              for (int i = 0, index = 0; i < widget.cols; i++)
         TableRow(children: <Widget>[
-    for (int j = 0; j < widget.rows; j++, index++)
+          for (int j = 0; j < widget.rows; j++, index++)
     Transform(
         transform: Matrix4.rotationZ(widget.random.nextInt(1000)/100),
             child: Transform.scale(scale:widget.random.nextInt(2).toDouble()+1,
                 child: Cell(widget.cardSymbols[index]))),
+
 
 
         ]
