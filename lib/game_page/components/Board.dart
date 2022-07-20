@@ -4,13 +4,13 @@ import 'package:strike_d_type/game_page/components/statusBoard/statusBoard.dart'
 import '../../backend/handle-req.dart';
 
 class Board extends StatelessWidget {
-  Board(this.symbolsAmount)
+  Board(this.gameID)
   {
-    this.gameID = createGame(symbolsAmount);
+    prepareGameBeforeStart(gameID);
   }
-  final symbolsAmount;
+
   final cards = 2;
-  String gameID;
+  final gameID;
 
   @override
   Widget build(BuildContext context) {

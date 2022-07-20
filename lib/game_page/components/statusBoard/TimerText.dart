@@ -11,6 +11,7 @@ class TimerText extends StatefulWidget {
 class _TimerText extends State<TimerText> {
 
   int _start = 60;
+  int _score = 0;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -37,11 +38,18 @@ class _TimerText extends State<TimerText> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Text("$_score", textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
+          fontFamily: 'Poppins',
+          fontSize: 85,
+          color: Colors.orange.shade50,
+        )),
         Text("$_start", textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
-          fontSize: 80,
+          fontSize: 25,
           color: Colors.orange.shade50,
-        )),],
+        )),
+      ],
+
     );
   }
 

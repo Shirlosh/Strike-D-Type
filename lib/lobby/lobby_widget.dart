@@ -1,3 +1,4 @@
+import '../backend/handle-req.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -16,6 +17,7 @@ class LobbyWidget extends StatefulWidget {
 
 class _LobbyWidgetState extends State<LobbyWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final gameID = createGame(6);
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      'GAME ID: @',
+                      'GAME ID: $gameID',
                       style: FlutterFlowTheme.of(context).title1.override(
                             fontFamily: 'Roboto',
                             fontSize: 30,
@@ -204,7 +206,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => GamePageWidget(),
+                                      builder: (context) => GamePageWidget(gameID),
                                     ),
                                   );
                                 },

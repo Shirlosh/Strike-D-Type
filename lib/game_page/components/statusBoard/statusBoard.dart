@@ -23,7 +23,7 @@ class StatusBoard extends StatelessWidget {
             ),
           ),
           alignment: AlignmentDirectional(0, 0),
-          child: PvPText()
+          child: TimerText()
         ),
       ],
     );

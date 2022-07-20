@@ -7,6 +7,11 @@ String createGame(symbolsAmount) {
   return game.getGameID();
 }
 
+void prepareGameBeforeStart(String gameID)
+{
+  game.initGame();
+}
+
 List<List<int>> getCards(String gameID, int cardsAmount) {
   List<List<int>> cards =  game.getTwoCards();
   print(cards);
