@@ -35,20 +35,29 @@ class ClassicTheme
     Icons.vpn_lock,
     Icons.alarm_on_rounded,
     Icons.airline_seat_recline_normal_sharp,
-
+    Icons.circle,
+    Icons.square,
+    Icons.scale,
+    Icons.print,
+    Icons.print,
+    Icons.add_alert_sharp,
   ];
   static List<Color> colors = [Colors.red,
     Colors.yellow,
     Colors.black,
+    Colors.greenAccent,
     Colors.indigo,
     Colors.green,
     Colors.orange,
+    Colors.deepOrange,
+    Colors.deepPurple,
+    Colors.redAccent,
     Colors.brown];
 
   static IconData getIcon(int i)
   {
     if(i > icons.length)
-      print("ERROR !!! not enough symbols");
+      print("LOG: ERROR !!! not enough symbols");
 
     return icons[i%icons.length];
   }
