@@ -35,25 +35,20 @@ class _GameCardState extends State<GameCard> {
             ).image),
       ),
       alignment: Alignment.center,
-      child: Table(
-        columnWidths: const <int, TableColumnWidth>{
-          0: IntrinsicColumnWidth(),
-          1: IntrinsicColumnWidth(),
-          2: IntrinsicColumnWidth(),
-        },
-        children: <TableRow>[
-          for (int i = 0, index = 0; i < widget.cols; i++)
-            TableRow(children: <Widget>[
-              for (int j = 0; j < widget.rows; j++, index++)
-                Transform(
-                    transform:
-                        Matrix4.rotationZ(widget.random.nextInt(1000) / 100),
-                    child: Transform.scale(
-                        scale: widget.random.nextInt(2).toDouble() + 1,
-                        child: Cell(widget.cardSymbols[index]))),
-            ])
-        ],
-      ),
-    );
+      child: GridView.count(
+        childAspectRatio: 1.2,
+        physics: NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(20),
+        crossAxisCount: 2,
+        children: <Transform>[
+          for (int i = 0, index = 0; i < widget.rows; i++)
+            for (int j = 0; j < widget.cols; j++, index++)
+              Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationZ(widget.random.nextInt(1000) / 100),
+                  child: Transform.scale(
+                      scale: widget.random.nextInt(3).toDouble() + 1,
+                      child: Cell(widget.cardSymbols[index])))
+        ]));
   }
 }
