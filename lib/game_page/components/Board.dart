@@ -3,6 +3,7 @@ import 'package:strike_d_type/game_page/components/GameCards.dart';
 import 'package:strike_d_type/game_page/components/statusBoard/modes/TimerMode.dart';
 import 'package:strike_d_type/game_page/components/statusBoard/statusBoard.dart';
 import '../../backend/handle-req.dart';
+import 'endGamePopUp/endGamePopup.dart';
 
 class Board extends StatelessWidget {
   Board(this.gameID)

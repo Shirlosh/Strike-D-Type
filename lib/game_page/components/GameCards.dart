@@ -7,7 +7,6 @@ class GameCards extends StatefulWidget {
   final boardOnSuccess;
   final gameID;
 
-  @override
   final _GameCardsState cardState = _GameCardsState();
   _GameCardsState createState() => cardState;
 

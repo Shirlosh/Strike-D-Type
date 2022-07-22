@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:strike_d_type/game_page/components/endGamePopUp/endGamePopup.dart';
 import 'dart:ui';
 import 'dart:async';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
@@ -16,7 +17,7 @@ class TimerMode extends StatefulWidget {
 class _TimerMode extends State<TimerMode> {
 
   int _score = 0;
-  int _counter = 60;
+  int _counter = 5;
 
   initState() { _startTimer();  }
 
@@ -32,6 +33,7 @@ class _TimerMode extends State<TimerMode> {
         _counter--;
         if (_counter == 0)
           timer.cancel();
+          EndGamePopup(_score);
       });
     });
   }
