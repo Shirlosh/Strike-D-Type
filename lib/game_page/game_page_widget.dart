@@ -1,11 +1,12 @@
+import 'package:strike_d_type/backend/handle-req.dart';
 import 'package:strike_d_type/game_page/components/Board.dart';
 import 'package:strike_d_type/game_page/components/GameCards.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import 'package:flutter/material.dart';
 
 class GamePageWidget extends StatefulWidget {
-  const GamePageWidget({Key key}) : super(key: key);
-
+  const GamePageWidget(this.gameID);
+  final gameID;
   @override
   _GamePageWidgetState createState() => _GamePageWidgetState();
 }
@@ -85,7 +86,7 @@ class _GamePageWidgetState extends State<GamePageWidget>
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child: Board(6)
+              child: Board(widget.gameID)
             ),
           ],
         )

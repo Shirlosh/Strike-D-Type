@@ -7,7 +7,9 @@ class Cell extends StatefulWidget {
   IconData icon;
   Color color;
   final index;
-  Cell(this.index)
+  final boardOnSuccess;
+  final changeCards;
+  Cell(this.index, this.boardOnSuccess, this.changeCards)
   {
     icon = ClassicTheme.getIcon(index);
     color = ClassicTheme.getColor(index);
@@ -34,10 +36,16 @@ class _CellState extends State<Cell> {
 
   //todo: update score board(failed -1 success +1), regenerate cards,
   iconClicked() {
-    if (isCorrectSymbol(widget.index))
+    if (isCorrectSymbol(widget.index)) {
       print(widget.icon.toString() + " is Correct!");
+      widget.boardOnSuccess(true);
+    }
+    else{
+        print(widget.icon.toString() + " inCorrect");
+        widget.boardOnSuccess(false);
+    }
 
-    else
-      print(widget.icon.toString() + " inCorrect");
+    widget.changeCards();
+
   }
 }

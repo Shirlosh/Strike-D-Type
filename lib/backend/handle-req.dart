@@ -2,9 +2,14 @@ import 'package:strike_d_type/backend/engine/game.dart';
 
 Game game;
 
-int createGame(symbolsAmount) {
+String createGame(symbolsAmount) {
   game = new Game(symbolsAmount, true);
-  return 1; // todo:uuid#
+  return game.getGameID();
+}
+
+void prepareGameBeforeStart(String gameID)
+{
+  game.initGame();
 }
 
 List<List<int>> getCards(String gameID, int cardsAmount) {

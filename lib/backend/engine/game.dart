@@ -1,8 +1,9 @@
 import 'dart:math';
+import 'package:uuid/uuid.dart';
 
 class Game {
   static int gameIdGenerator = 0;
-  int _id;
+  var _id;
   int sameSymbolIdx;
 
   //The number of symbols on a card has to be a prime number + 1
@@ -23,11 +24,10 @@ class Game {
     numberOfCards = pow(primeNumber, 2) + primeNumber + 1;
     cardsOfCards = List.generate(0, (it) => []);
 
-    _id = ++gameIdGenerator;
-    initGame();
+    _id = Uuid().v4();
   }
 
-  int getGameID() {
+  String getGameID() {
     return _id;
   }
 

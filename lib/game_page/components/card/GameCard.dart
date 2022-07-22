@@ -3,36 +3,36 @@ import 'Cell.dart';
 import 'dart:math';
 
 class GameCard extends StatefulWidget {
-  GameCard(this.cardSymbols) {
+
+  GameCard(this.cardSymbols, this.boardOnSuccess, this.changeCards)
+  {
     rows = (cardSymbols.length / cols).ceil();
   }
-
   final List<int> cardSymbols;
-
   int rows;
   final cols = 3;
+  final boardOnSuccess;
+  final changeCards;
   Random random = new Random();
   List<int> randomNumbers = [];
 
   @override
   State<GameCard> createState() => _GameCardState();
 }
-
 // todo: fit table to picture
 class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 500,
-      height: 500,
-      margin: EdgeInsets.all(20),
-      padding: EdgeInsets.all(5),
+        width: 350, //500
+        height: 350, //500
+        margin: EdgeInsets.all(10), //20
+        padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        image: DecorationImage(
-            fit: BoxFit.fill,
-            image: Image.asset(
-              'assets/images/GameCard.png',
-            ).image),
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: Image.asset('assets/images/GameCard.png',).image
+          ),
       ),
       alignment: Alignment.center,
       child: GridView.count(
@@ -48,7 +48,7 @@ class _GameCardState extends State<GameCard> {
                   transform: Matrix4.rotationZ(widget.random.nextInt(1000) / 100),
                   child: Transform.scale(
                       scale: widget.random.nextInt(3).toDouble() + 1,
-                      child: Cell(widget.cardSymbols[index])))
+                      child: Cell(widget.cardSymbols[index],widget.boardOnSuccess, widget.changeCards),))
         ]));
   }
 }

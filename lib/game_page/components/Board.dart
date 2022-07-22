@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/GameCards.dart';
+import 'package:strike_d_type/game_page/components/statusBoard/modes/TimerMode.dart';
+import 'package:strike_d_type/game_page/components/statusBoard/statusBoard.dart';
 import '../../backend/handle-req.dart';
+import 'endGamePopUp/endGamePopup.dart';
 
 class Board extends StatelessWidget {
-  Board(this.symbolsAmount)
+  Board(this.gameID)
   {
-    this.gameID = createGame(symbolsAmount);
+    prepareGameBeforeStart(gameID);
   }
-  final symbolsAmount;
+
   final cards = 2;
-  int gameID;
+  final gameID;
+  var mode = TimerMode();
 
   @override
   Widget build(BuildContext context) {
-    //todo: create scoreBoar,d and return it
-    return GameCards(cards);
+
+    return Column(
+      children:[
+        StatusBoard(mode),
+        GameCards(cards, mode.onIconClicked, gameID),
+      ]
+    );
+
   }
+
+
 }
