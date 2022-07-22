@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:strike_d_type/game_page/components/statusBoard/PvPText.dart';
-import 'package:strike_d_type/game_page/components/statusBoard/TimerText.dart';
 
 class StatusBoard extends StatelessWidget {
 
-  StatusBoard();
+  StatusBoard(this.gameMode);
+  final gameMode;
+
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class StatusBoard extends StatelessWidget {
             ),
           ),
           alignment: AlignmentDirectional(0, 0),
-          child: TimerText()
+          child: gameMode
         ),
       ],
     );

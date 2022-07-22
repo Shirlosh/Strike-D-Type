@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../../flutter_flow/flutter_flow_theme.dart';
 
 
-class PvPText extends StatefulWidget {
+class PvPMode extends StatefulWidget {
   @override
   _PvPText createState() => _PvPText();
 
 }
 
-class _PvPText extends State<PvPText> {
+class _PvPText extends State<PvPMode> {
   int player1Score = 1;
   int player2Score = 2;
 

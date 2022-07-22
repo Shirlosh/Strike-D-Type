@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'Cell.dart';
 
 class GameCard extends StatefulWidget {
-  GameCard(this.cardSymbols)
+
+  GameCard(this.cardSymbols, this.boardOnSuccess, this.changeCards)
   {
     rows = (cardSymbols.length / cols).ceil();
   }
   final List<int> cardSymbols;
   int rows;
   final cols = 3;
+  final boardOnSuccess;
+  final changeCards;
 
   @override
   State<GameCard> createState() => _GameCardState();
 }
 // todo: fit table to picture
 class _GameCardState extends State<GameCard> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +42,7 @@ class _GameCardState extends State<GameCard> {
       children: <TableRow>[
         for(int i = 0, index = 0 ; i < widget.rows ; i++)
           TableRow(
-            children: <Widget>[ for(int j = 0 ; j < widget.cols ; j++, index++) Cell(widget.cardSymbols[index])]
+            children: <Widget>[ for(int j = 0 ; j < widget.cols ; j++, index++) Cell(widget.cardSymbols[index], widget.boardOnSuccess, widget.changeCards)]
                 // todo: rotate icons
           ),
       ],
