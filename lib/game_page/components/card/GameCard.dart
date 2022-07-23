@@ -24,8 +24,8 @@ class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 350, //500
-        height: 350, //500
+        width: 350  , //500
+        height: 450, //500
         margin: EdgeInsets.all(10), //20
         padding: EdgeInsets.all(5),
       decoration: BoxDecoration(

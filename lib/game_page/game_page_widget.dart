@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:strike_d_type/backend/handle-req.dart';
 import 'package:strike_d_type/game_page/components/Board.dart';
 import 'package:strike_d_type/game_page/components/GameCards.dart';
@@ -57,6 +58,7 @@ class _GamePageWidgetState extends State<GamePageWidget>
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight,]);
     startPageLoadAnimations(
       animationsMap.values
           .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
@@ -65,7 +67,17 @@ class _GamePageWidgetState extends State<GamePageWidget>
   }
 
   @override
+  dispose(){
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight,]);
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFF1E2429),

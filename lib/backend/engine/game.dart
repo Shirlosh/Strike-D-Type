@@ -24,7 +24,7 @@ class Game {
     numberOfCards = pow(primeNumber, 2) + primeNumber + 1;
     cardsOfCards = List.generate(0, (it) => []);
 
-    _id = Uuid().v4();
+    _id = Uuid().v4().substring(0,7);
   }
 
   String getGameID() {
