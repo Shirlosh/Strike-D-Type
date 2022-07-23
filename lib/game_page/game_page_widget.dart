@@ -77,7 +77,7 @@ class _GamePageWidgetState extends State<GamePageWidget>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight,]);
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFF1E2429),

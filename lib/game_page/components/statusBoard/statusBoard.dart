@@ -14,8 +14,8 @@ class StatusBoard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          width: 300,
-          height: 200,
+          width: MediaQuery.of(context).size.width * 0.25,
+          height: MediaQuery.of(context).size.height * 0.34,
           decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fill,

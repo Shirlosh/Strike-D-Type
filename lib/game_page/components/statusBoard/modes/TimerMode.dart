@@ -48,12 +48,12 @@ class _TimerMode extends State<TimerMode> {
       children: [
         Text("$_score", textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
-          fontSize: 85,
-          color: Colors.orange.shade50,
+          fontSize: MediaQuery.of(context).size.height * 0.17,
+          color: Colors.orange.shade50,lineHeight: 1.1
         )),
         Text(widget.format(Duration(seconds: _counter)), textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
-          fontSize: 25,
+          fontSize: MediaQuery.of(context).size.height * 0.05,
           color: Colors.orange.shade50,
         )),
       ],
