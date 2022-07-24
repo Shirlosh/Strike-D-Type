@@ -18,12 +18,14 @@ class Board extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
+    return Expanded(
+      flex:2,
+        child: Column(
       children:[
         StatusBoard(mode),
         GameCards(cards, mode.onIconClicked, gameID),
       ]
-    );
+    ));
 
   }
 }

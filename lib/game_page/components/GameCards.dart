@@ -35,9 +35,9 @@ class _GameCardsState extends State<GameCards> {
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: <GameCard>[
+      children: <Flexible>[
         for (var i = 0; i < widget.cardsAmount; i++)
-          GameCard(cards[i], widget.boardOnSuccess, widget.changeCards)
+        Flexible(child: GameCard(cards[i], widget.boardOnSuccess, widget.changeCards))
       ],
     );
   }

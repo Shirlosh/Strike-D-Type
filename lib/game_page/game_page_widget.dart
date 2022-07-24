@@ -92,17 +92,20 @@ class _GamePageWidgetState extends State<GamePageWidget>
             end: AlignmentDirectional(-1, 1),
           ),
         ),
-        child: Column(
+        child: SingleChildScrollView(
+        child:Expanded(
+          //  flex: 73,
+            child:Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-              child: Board(widget.gameID)
+              child: ClipRect(clipBehavior:Clip.antiAlias,child:Board(widget.gameID))
             ),
           ],
         )
       )
-    );
+    )));
   }
 }
