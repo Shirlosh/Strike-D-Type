@@ -17,7 +17,7 @@ class TimerMode extends StatefulWidget {
 class _TimerMode extends State<TimerMode> {
 
   int _score = 0;
-  int _counter = 10;
+  int _counter = 100000;
 
   initState() { _startTimer();  }
 
@@ -48,7 +48,7 @@ class _TimerMode extends State<TimerMode> {
       children: [
         Text("$_score", textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
-          fontSize: 85,
+          fontSize: 35,
           color: Colors.orange.shade50,
         )),
         Text(widget.format(Duration(seconds: _counter)), textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
