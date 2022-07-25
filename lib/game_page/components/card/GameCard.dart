@@ -27,7 +27,7 @@ class _GameCardState extends State<GameCard> {
     double heightC = MediaQuery.of(context).size.height;
     return Container(
         width: widthC,
-        height: heightC,
+        //height: heightC,
         // margin: EdgeInsets.all(10),
         //20
         //color: Colors.blue,

@@ -17,15 +17,12 @@ class Board extends StatelessWidget {
   bool isRunning;
   @override
   Widget build(BuildContext context) {
-
-    return Expanded(
-      flex:2,
-        child: Column(
-      children:[
-        StatusBoard(mode),
-        GameCards(cards, mode.onIconClicked, gameID),
-      ]
-    ));
-
+     return  Column(
+         mainAxisSize: MainAxisSize.max,
+         mainAxisAlignment: MainAxisAlignment.center,
+         crossAxisAlignment: CrossAxisAlignment.center,
+           children:[StatusBoard(mode),
+              GameCards(cards, mode.onIconClicked, gameID),
+            ]);
   }
 }

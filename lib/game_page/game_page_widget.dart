@@ -93,9 +93,7 @@ class _GamePageWidgetState extends State<GamePageWidget>
           ),
         ),
         child: SingleChildScrollView(
-        child:Expanded(
-          //  flex: 73,
-            child:Column(
+        child:Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -104,7 +102,6 @@ class _GamePageWidgetState extends State<GamePageWidget>
               child: ClipRect(clipBehavior:Clip.antiAlias,child:Board(widget.gameID))
             ),
           ],
-        )
       )
     )));
   }

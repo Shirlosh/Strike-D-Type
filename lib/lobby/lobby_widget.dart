@@ -1,3 +1,5 @@
+import 'package:flutter/services.dart';
+
 import '../backend/handle-req.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -20,6 +22,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown,]);
   }
 
 
