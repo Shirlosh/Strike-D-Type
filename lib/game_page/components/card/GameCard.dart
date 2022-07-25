@@ -24,14 +24,14 @@ class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
     double widthC = MediaQuery.of(context).size.width * 0.30;
-    double heightC = MediaQuery.of(context).size.height ;
+    double heightC = MediaQuery.of(context).size.height;
     return Container(
         width: widthC,
-        height: heightC,
-        margin: EdgeInsets.all(10),
+        height: heightC ,
+       // margin: EdgeInsets.all(10),
         //20
     //color: Colors.blue,
-        padding: EdgeInsets.all(25),
+       // padding: EdgeInsets.all(25),
         clipBehavior: Clip.hardEdge,
        decoration: BoxDecoration(
           image: DecorationImage(
@@ -62,7 +62,7 @@ class _GameCardState extends State<GameCard> {
                       transform:
                           Matrix4.rotationZ(widget.random.nextInt(1000) / 100),
                       child: Transform.scale(
-                        scale: widget.random.nextDouble()+widget.random.nextInt(3)+0.0016,
+                        scale: widget.random.nextDouble()+widget.random.nextInt(3)+0.45,
                         child: ClipRect(
                             clipBehavior: Clip.antiAlias,
                             child: Cell(widget.cardSymbols[index],
