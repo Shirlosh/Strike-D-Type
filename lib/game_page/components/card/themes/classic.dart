@@ -33,12 +33,10 @@ class ClassicTheme
     Icons.airport_shuttle,
     Icons.visibility_rounded,
     Icons.vpn_lock,
-    Icons.alarm_on_rounded,
     Icons.airline_seat_recline_normal_sharp,
     Icons.circle,
     Icons.square,
     Icons.scale,
-    Icons.print,
     Icons.print,
     Icons.add_alert_sharp,
   ];
