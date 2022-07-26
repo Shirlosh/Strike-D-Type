@@ -19,12 +19,12 @@ class GameCard extends StatefulWidget {
   State<GameCard> createState() => _GameCardState();
 }
 
-// todo: fit table to picture
+
 class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
     double widthC = MediaQuery.of(context).size.width * 0.30;
-    double heightC = MediaQuery.of(context).size.height * 0.75;
+    double heightC = MediaQuery.of(context).size.height ;
     return Container(
         width: widthC,
         height: heightC,
@@ -38,7 +38,7 @@ class _GameCardState extends State<GameCard> {
         ),
         alignment: Alignment.center,
         child: Container(
-            width: widthC * 0.60,
+            width: widthC * 0.70,
             height: heightC * 0.60,
             margin: const EdgeInsets.only(left: 1.0, right: 2.0),
             alignment: Alignment.center,
