@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:async';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
-import '../../endGamePopup.dart';
+import '../../endGamePopup/endGamePopup.dart';
 
 class TimerMode extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class TimerMode extends StatefulWidget {
 class _TimerMode extends State<TimerMode> {
 
   int _score = 0;
-  int _counter = 10;
+  int _counter = 2;
 
   initState() { _startTimer();  }
 

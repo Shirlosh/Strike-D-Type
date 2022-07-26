@@ -24,32 +24,24 @@ class _GameCardState extends State<GameCard> {
   @override
   Widget build(BuildContext context) {
     double widthC = MediaQuery.of(context).size.width * 0.30;
-    double heightC = MediaQuery.of(context).size.height;
+    double heightC = MediaQuery.of(context).size.height * 0.75;
     return Container(
         width: widthC,
-        //height: heightC,
-        // margin: EdgeInsets.all(10),
-        //20
-        //color: Colors.blue,
-        // padding: EdgeInsets.all(25),
+        height: heightC,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fitWidth,
-              image: Image
-                  .asset(
+              image: Image.asset(
                 'assets/images/GameCard.png',
-              )
-                  .image),
+              ).image),
         ),
         alignment: Alignment.center,
         child: Container(
             width: widthC * 0.60,
-            height: heightC * 0.56,
+            height: heightC * 0.60,
             margin: const EdgeInsets.only(left: 1.0, right: 2.0),
-            //padding:    const EdgeInsets.only(left:1.0, right: 2.0),
             alignment: Alignment.center,
-            // color: Colors.blue,
             child: Center(
                 child: GridView.count(
                     childAspectRatio: 1.2,
@@ -57,33 +49,33 @@ class _GameCardState extends State<GameCard> {
                     padding: const EdgeInsets.all(1),
                     crossAxisCount: 2,
                     children: <Transform>[
-                      for (int i = 0, index = 0; i < widget.rows; i++)
-                        for (int j = 0; j < widget.cols; j++, index++)
-                          Transform(
-                              alignment: Alignment.center,
-                              transform: Matrix4.rotationZ(
-                                  widget.random.nextInt(1000) / 100),
-                              child: Transform.scale(
-                                scale: widget.random.nextDouble() +
-                                    widget.random.nextInt(3) +
-                                    0.45,
-                                child: ClipRect(
-                                    clipBehavior: Clip.antiAlias,
-                                    child: ConstrainedBox(
-                                        constraints: const BoxConstraints(
-                                          minWidth: 10,
-                                          minHeight: 10,
-                                          maxWidth: 100,
-                                          maxHeight: 100,
-                                        ),
-                                        child: Container(
-                                            //width: 10,
-                                            //height: 10,
-                                            child: Cell(
+                  for (int i = 0, index = 0; i < widget.rows; i++)
+                    for (int j = 0; j < widget.cols; j++, index++)
+                      Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.rotationZ(
+                              widget.random.nextInt(1000) / 100),
+                          child: Transform.scale(
+                            scale: widget.random.nextDouble() +
+                                widget.random.nextInt(3) +
+                                0.45,
+                            child: ClipRect(
+                                clipBehavior: Clip.antiAlias,
+                                child: ConstrainedBox(
+                                    constraints: const BoxConstraints(
+                                      minWidth: 10,
+                                      minHeight: 10,
+                                      maxWidth: 100,
+                                      maxHeight: 100,
+                                    ),
+                                    child: Container(
+                                        //width: 10,
+                                        //height: 10,
+                                        child: Cell(
                                             widget.cardSymbols[index],
                                             widget.boardOnSuccess,
                                             widget.changeCards)))),
-                              ))
-                    ]))));
+                          ))
+                ]))));
   }
 }
