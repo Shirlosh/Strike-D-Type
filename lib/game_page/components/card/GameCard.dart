@@ -56,9 +56,7 @@ class _GameCardState extends State<GameCard> {
                           transform: Matrix4.rotationZ(
                               widget.random.nextInt(1000) / 100),
                           child: Transform.scale(
-                            scale: widget.random.nextDouble() +
-                                widget.random.nextInt(3) +
-                                0.45,
+                            scale: widget.random.nextDouble() + widget.random.nextInt(3) + 0.45,
                             child: ClipRect(
                                 clipBehavior: Clip.antiAlias,
                                 child: ConstrainedBox(
