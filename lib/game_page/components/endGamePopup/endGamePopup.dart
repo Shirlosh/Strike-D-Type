@@ -25,22 +25,42 @@ Future<void> tryShowDialog(context, score) async {
               alignment: Alignment.center,
               children: <Widget>[
                 Positioned(
-                    top: MediaQuery.of(context).size.height * 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
+                    top: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 1,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.9,
                     child: Image.asset("assets/images/GreenFlag.png",
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.65)),
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width * 0.4,
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.65)),
                 Container(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    height: MediaQuery.of(context).size.height * 0.7,
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.3,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.7,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
+                   /* decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: Image.asset(
+                          image: Image
+                              .asset(
                             'assets/images/EndGamePopup.png',
-                          ).image,
+                          )
+                              .image,
                           fit: BoxFit.fill),
-                    ),
+                    ),*/
                     padding: EdgeInsets.fromLTRB(20, 20, 20, 100),
                     child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -53,29 +73,56 @@ Future<void> tryShowDialog(context, score) async {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                ElevatedButton(
-                                  child: Image.asset('assets/images/OK.png'),
-                                  onPressed: () async {
+                                InkWell(
+                                  onTap: () async {
                                     await Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => HomePageWidget(),
                                       ),
                                     );
-                                  },
+                                  }, // Handle your callback.
+                                  splashColor: Colors.brown.withOpacity(0.5),
+                                  child: Ink(
+
+                                    height: 300,
+                                    width: 200,
+                                    decoration:   BoxDecoration(
+
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/OK.png'),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                ElevatedButton(
-                                    child:
-                                        Image.asset('assets/images/Retry.png'),
-                                    onPressed: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => LobbyWidget(),
-                                        ),
-                                      );
-                                    },
-                                )])
+
+                                InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => LobbyWidget(),
+                                      ),
+                                    );
+                                  }, // Handle your callback.
+                                  splashColor: Colors.brown.withOpacity(0.5),
+                                  child: Ink(
+                                    height: 250,
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/Retry.png'),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                )
+
+
+                              ])
                         ])),
               ],
             ));
@@ -90,15 +137,23 @@ class _EndGamePopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.5,
-        height: MediaQuery.of(context).size.height * 0.3,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.5,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height * 0.3,
         margin: EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
-              image: Image.asset(
+              image: Image
+                  .asset(
                 'assets/images/EndGamePopup.png',
-              ).image),
+              )
+                  .image),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -136,7 +191,8 @@ class _EndGamePopup extends StatelessWidget {
                       ),
                     );
                   },
-                )],
+                )
+              ],
             ),
           ],
         ));
