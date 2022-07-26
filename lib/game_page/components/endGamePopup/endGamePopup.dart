@@ -53,18 +53,20 @@ Future<void> tryShowDialog(context, score) async {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                RaisedButton(
-                                    onPressed: () async {
-                                      await Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomePageWidget(),
-                                        ),
-                                      );
-                                    },
-                                    child: Text('Home')),
-                                RaisedButton(
+                                ElevatedButton(
+                                  child: Image.asset('assets/images/OK.png'),
+                                  onPressed: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePageWidget(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                ElevatedButton(
+                                    child:
+                                        Image.asset('assets/images/Retry.png'),
                                     onPressed: () async {
                                       await Navigator.push(
                                         context,
@@ -73,8 +75,7 @@ Future<void> tryShowDialog(context, score) async {
                                         ),
                                       );
                                     },
-                                    child: Text('Retry'))
-                              ])
+                                )])
                         ])),
               ],
             ));
@@ -113,27 +114,29 @@ class _EndGamePopup extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                RaisedButton(
-                    onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomePageWidget(),
-                        ),
-                      );
-                    },
-                    child: Text('Home')),
-                RaisedButton(
-                    onPressed: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LobbyWidget(),
-                        ),
-                      );
-                    },
-                    child: Text('Retry'))
-              ],
+                ElevatedButton(
+                  child: Image.asset('assets/images/OK.png'),
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePageWidget(),
+                      ),
+                    );
+                  },
+                ),
+                ElevatedButton(
+                  child:
+                  Image.asset('assets/images/Retry.png'),
+                  onPressed: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LobbyWidget(),
+                      ),
+                    );
+                  },
+                )],
             ),
           ],
         ));
