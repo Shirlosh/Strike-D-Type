@@ -87,7 +87,7 @@ Future<void> tryShowDialog(context, score) async {
                                     Transform(
                                         transform: Matrix4.rotationZ(0),
                                         child: Transform.scale(
-                                            scale: 3,
+                                            scale: 5,
                                             child: InkWell(
                                               onTap: () async {
                                                 await Navigator.push(
