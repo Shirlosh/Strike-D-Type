@@ -10,8 +10,11 @@ class ScoreFlag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 500,
+      width: 1000,
       decoration: BoxDecoration(
         image: DecorationImage(
+
             image: Image.asset(
               "assets/images/GreenFlag.png",
             ).image,
@@ -20,10 +23,10 @@ class ScoreFlag extends StatelessWidget {
       child: Text('your score is $score',
           textAlign: TextAlign.center,
           style: FlutterFlowTheme.of(context).bodyText1.override(
-                fontFamily: 'Poppins',
-                fontSize: MediaQuery.of(context).size.height * 0.05,
-                color: Colors.black26,
-              )),
+              fontFamily: 'Poppins',
+              fontSize: MediaQuery.of(context).size.height * 0.05,
+              color: Colors.orange,//Colors.black26,
+          )),
     );
   }
 }
