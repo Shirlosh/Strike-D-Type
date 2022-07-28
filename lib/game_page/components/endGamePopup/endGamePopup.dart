@@ -16,77 +16,78 @@ Future<void> tryShowDialog(context, score) async {
   showDialog(
       context: context,
       builder: (alertDialogContext) {
-
         return Dialog(
             backgroundColor: Colors.transparent,
             insetPadding: EdgeInsets.all(10),
-            child: Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.center,
-              children: <Widget>[
-                ScoreFlag(score),
-                Positioned(
-                    top: MediaQuery.of(context).size.height * 1,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    child: Image.asset("assets/images/GreenFlag.png",
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.65)),
-                Container(
-                    width: MediaQuery.of(context).size.width * 2,
-                    height: MediaQuery.of(context).size.height * 0.3,
-                       alignment: Alignment.center,
-                       padding:EdgeInsets.fromLTRB(20, 20, 20, 100),
-                    child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Stack>[
-                              Stack(
-                                  clipBehavior: Clip.hardEdge,
-                                  alignment: Alignment.center,
-                                  children: <Widget>[
-                                    Padding(padding: EdgeInsets.all(30.4)),
-                                    Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Transform(
-                                              transform: Matrix4.rotationZ(0),
-                                              child: Transform.scale(
-                                                  scale: 3,
+            child: Container(
+               decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image:
+                            Image.asset('assets/images/EndGamePopup.png').image,
+                        fit: BoxFit.contain)),
+
+                child: Container(
+
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                     ScoreFlag(score),
+
+                      Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.fromLTRB(20, 20, 20, 100),
+                          child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Stack>[
+                                    Stack(
+                                        clipBehavior: Clip.hardEdge,
+                                        alignment: Alignment.center,
+                                        children: <Widget>[
+                                          Padding(padding: EdgeInsets.all(30.4)),
+                                          Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                SizedBox(
+                                                  width: 100,
+                                                  height: 300,
                                                   child: InkWell(
-                                                    onTap: () async {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomePageWidget(),
+                                                      onTap: () async {
+                                                        await Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                HomePageWidget(),
+                                                          ),
+                                                        );
+                                                      }, // Handle your callback.
+                                                      splashColor: Colors.brown
+                                                          .withOpacity(0.5),
+                                                      child: Ink(
+                                                        height: 100,
+                                                        width: 100,
+                                                        decoration: BoxDecoration(
+                                                          image: DecorationImage(
+                                                            image: AssetImage(
+                                                                'assets/images/OK.png'),
+                                                            fit: BoxFit.cover,
+                                                          ),
                                                         ),
-                                                      );
-                                                    }, // Handle your callback.
-                                                    splashColor: Colors.brown
-                                                        .withOpacity(0.5),
-                                                    child: Ink(
-                                                      height: 100,
-                                                      width: 100,
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          image: AssetImage(
-                                                              'assets/images/OK.png'),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ))),
-                                          Transform(
-                                              transform: Matrix4.rotationZ(0),
-                                              child: Transform.scale(
-                                                  scale: 5,
+                                                      )),
+                                                ),
+                                                SizedBox(
+                                                  width: 100,
+                                                  height: 250,
                                                   child: InkWell(
                                                     onTap: () async {
                                                       await Navigator.push(
@@ -100,7 +101,7 @@ Future<void> tryShowDialog(context, score) async {
                                                     splashColor: Colors.brown
                                                         .withOpacity(0.5),
                                                     child: Ink(
-                                                      height: 50,
+                                                      height: 100,
                                                       width: 100,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
@@ -110,18 +111,14 @@ Future<void> tryShowDialog(context, score) async {
                                                         ),
                                                       ),
                                                     ),
-                                                  ))),
-                                        ]),
-                                  ])
-                            ]))),
-               /* Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: Image.asset('assets/images/EndGamePopup.png')
-                                .image,
-                            fit: BoxFit.fill))),*/
-              ],
-            ));
+                                                  ),
+                                                ),
+                                              ]),
+                                        ])
+                                  ]))),
+                    ],
+                  ),
+                )));
       });
 }
 
