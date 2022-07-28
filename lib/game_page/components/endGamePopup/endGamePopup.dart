@@ -51,10 +51,8 @@ Future<void> tryShowDialog(context, score) async {
                           height: screenHeight *0.79,
                           alignment: Alignment.center,
                              //  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-                          child: Align(
-
-                              alignment: Alignment.topCenter,
-                              child: Container(
+                          child:  Container(
+                                alignment: Alignment.bottomCenter,
                                  child: Stack(
                                          fit: StackFit.loose,
                                         clipBehavior: Clip.none,
@@ -137,7 +135,7 @@ Future<void> tryShowDialog(context, score) async {
 
                                               ]),
                                         ])
-                                  ))),
+                                  )),
                     ],
                   ),
                 )));
