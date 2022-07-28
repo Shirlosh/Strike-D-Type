@@ -54,13 +54,10 @@ Future<void> tryShowDialog(context, score) async {
                           child: Align(
 
                               alignment: Alignment.topCenter,
-                              child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Stack>[
-                                    Stack(
-                                        clipBehavior: Clip.hardEdge,
+                              child: Container(
+                                 child: Stack(
+                                         fit: StackFit.loose,
+                                        clipBehavior: Clip.none,
                                         alignment: Alignment.center,
                                         children: <Widget>[
                                           Padding(
@@ -70,7 +67,7 @@ Future<void> tryShowDialog(context, score) async {
                                                   screenWidth * 0.2,
                                                   screenHeight * 0.4,
                                                   screenWidth,
-                                                  screenHeight*0.2)),
+                                                  screenHeight*0.6)),
                                           Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -78,44 +75,41 @@ Future<void> tryShowDialog(context, score) async {
                                               crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                               children: [
-                                                SizedBox(
-                                                  width: 100,
-                                                  height: 300,
+                                                InkWell(
+                                                  onTap: () async {
+                                                        await Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (
+                                                                context) =>
+                                                                HomePageWidget(),
+                                                          ),
+                                                        );
+                                                      },
+                                                  splashColor: Colors
+                                                          .deepOrange
+                                                          .withOpacity(0.5),
                                                   child: Container(
-
-                                                    child: InkWell(
-                                                        onTap: () async {
-                                                          await Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                              builder: (
-                                                                  context) =>
-                                                                  HomePageWidget(),
-                                                            ),
-                                                          );
-                                                        },
-                                                        // Handle your callback.
-                                                        splashColor: Colors
-                                                            .brown
-                                                            .withOpacity(0.5),
-                                                        child: Ink(
+                                                    width: 100,
+                                                    height: 100,
+                                                    child: Ink(
                                                           decoration:
                                                           BoxDecoration(
                                                             image:
                                                             DecorationImage(
+                                                              scale: 0.8,
+                                                              alignment: Alignment.center,
                                                               image: AssetImage(
                                                                   'assets/images/OK.png'),
-                                                              fit: BoxFit.cover,
+                                                              fit: BoxFit.none,
                                                             ),
                                                           ),
-                                                        )),
+                                                        ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width: 100,
-                                                  height: 250,
-                                                  child: InkWell(
-                                                    onTap: () async {
+
+                                                InkWell(
+                                                  onTap: () async {
                                                       await Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
@@ -123,23 +117,27 @@ Future<void> tryShowDialog(context, score) async {
                                                               LobbyWidget(),
                                                         ),
                                                       );
-                                                    }, // Handle your callback.
-                                                    splashColor: Colors.brown
+                                                    },
+                                                  splashColor: Colors.deepOrange
                                                         .withOpacity(0.5),
+                                                  child: Container(
+                                                    width: 100,
+                                                    height: 100,
                                                     child: Ink(
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          image: AssetImage(
-                                                              'assets/images/Retry.png'),
-                                                          fit: BoxFit.cover,
+                                                        decoration: BoxDecoration(
+                                                          image: DecorationImage(
+                                                            image: AssetImage(
+                                                                'assets/images/Retry.png'),
+                                                            fit: BoxFit.none,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
                                                   ),
                                                 ),
+
                                               ]),
                                         ])
-                                  ]))),
+                                  ))),
                     ],
                   ),
                 )));
