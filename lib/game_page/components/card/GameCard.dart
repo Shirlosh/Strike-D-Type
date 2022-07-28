@@ -28,7 +28,7 @@ class _GameCardState extends State<GameCard> {
     return Container(
         width: widthC,
         height: heightC,
-        clipBehavior: Clip.hardEdge,
+      //  clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fitWidth,

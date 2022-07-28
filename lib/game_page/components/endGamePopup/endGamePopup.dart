@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/game_page/components/endGamePopup/ScoreFlag.dart';
 import '../../../home_page/home_page_widget.dart';
@@ -13,32 +14,45 @@ Future<void> endGameDialog(context, score) async {
 }
 
 Future<void> tryShowDialog(context, score) async {
+  double screenWidth = MediaQuery
+      .of(context)
+      .size
+      .width;
+  double screenHeight = MediaQuery
+      .of(context)
+      .size
+      .height;
+
   showDialog(
       context: context,
       builder: (alertDialogContext) {
         return Dialog(
             backgroundColor: Colors.transparent,
-          // insetPadding: EdgeInsets.all(10),
+            //  insetPadding: EdgeInsets.all(10),
             child: Ink(
-                height: 500,
-                width: 400,
+                height: screenHeight,
+                width: screenWidth,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image:
-                            Image.asset('assets/images/EndGamePopup.png').image,
+                        Image
+                            .asset('assets/images/EndGamePopup.png')
+                            .image,
                         fit: BoxFit.contain)),
                 child: Container(
                   child: Stack(
-                    clipBehavior: Clip.none,
+                    fit: StackFit.loose,
+                    clipBehavior: Clip.hardEdge,
                     alignment: Alignment.center,
                     children: <Widget>[
                       ScoreFlag(score),
                       Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height,
+                          width: screenWidth,
+                          height: screenHeight *0.79,
                           alignment: Alignment.center,
-                         padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                             //  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: Align(
+
                               alignment: Alignment.topCenter,
                               child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -50,41 +64,52 @@ Future<void> tryShowDialog(context, score) async {
                                         alignment: Alignment.center,
                                         children: <Widget>[
                                           Padding(
-                                              padding: EdgeInsets.all(240.0)),
+                                            //         240.0
+                                            //padding:EdgeInsets.all(1.0),),
+                                              padding: EdgeInsets.fromLTRB(
+                                                  screenWidth * 0.2,
+                                                  screenHeight * 0.4,
+                                                  screenWidth,
+                                                  screenHeight*0.2)),
                                           Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
+                                              CrossAxisAlignment.end,
                                               children: [
                                                 SizedBox(
                                                   width: 100,
                                                   height: 300,
-                                                  child: InkWell(
-                                                      onTap: () async {
-                                                        await Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomePageWidget(),
+                                                  child: Container(
+
+                                                    child: InkWell(
+                                                        onTap: () async {
+                                                          await Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (
+                                                                  context) =>
+                                                                  HomePageWidget(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        // Handle your callback.
+                                                        splashColor: Colors
+                                                            .brown
+                                                            .withOpacity(0.5),
+                                                        child: Ink(
+                                                          decoration:
+                                                          BoxDecoration(
+                                                            image:
+                                                            DecorationImage(
+                                                              image: AssetImage(
+                                                                  'assets/images/OK.png'),
+                                                              fit: BoxFit.cover,
+                                                            ),
                                                           ),
-                                                        );
-                                                      },
-                                                      // Handle your callback.
-                                                      splashColor: Colors.brown
-                                                          .withOpacity(0.5),
-                                                      child: Ink(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          image:
-                                                              DecorationImage(
-                                                            image: AssetImage(
-                                                                'assets/images/OK.png'),
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      )),
+                                                        )),
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   width: 100,
@@ -129,15 +154,23 @@ class _EndGamePopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: MediaQuery.of(context).size.width * 0.5,
-        height: MediaQuery.of(context).size.height * 0.3,
+        width: MediaQuery
+            .of(context)
+            .size
+            .width * 0.5,
+        height: MediaQuery
+            .of(context)
+            .size
+            .height * 0.3,
         margin: EdgeInsets.only(right: 20),
         decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.fill,
-              image: Image.asset(
+              image: Image
+                  .asset(
                 'assets/images/EndGamePopup.png',
-              ).image),
+              )
+                  .image),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
