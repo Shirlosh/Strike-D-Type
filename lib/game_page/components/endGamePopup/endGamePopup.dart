@@ -18,27 +18,26 @@ Future<void> tryShowDialog(context, score) async {
       builder: (alertDialogContext) {
         return Dialog(
             backgroundColor: Colors.transparent,
-            insetPadding: EdgeInsets.all(10),
-            child: Container(
-               decoration: BoxDecoration(
+          // insetPadding: EdgeInsets.all(10),
+            child: Ink(
+                height: 500,
+                width: 400,
+                decoration: BoxDecoration(
                     image: DecorationImage(
                         image:
                             Image.asset('assets/images/EndGamePopup.png').image,
                         fit: BoxFit.contain)),
-
                 child: Container(
-
                   child: Stack(
                     clipBehavior: Clip.none,
                     alignment: Alignment.center,
                     children: <Widget>[
-                     ScoreFlag(score),
-
+                      ScoreFlag(score),
                       Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
                           alignment: Alignment.center,
-                          padding: EdgeInsets.fromLTRB(20, 20, 20, 100),
+                         padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: Align(
                               alignment: Alignment.topCenter,
                               child: Column(
@@ -50,9 +49,10 @@ Future<void> tryShowDialog(context, score) async {
                                         clipBehavior: Clip.hardEdge,
                                         alignment: Alignment.center,
                                         children: <Widget>[
-                                          Padding(padding: EdgeInsets.all(30.4)),
+                                          Padding(
+                                              padding: EdgeInsets.all(240.0)),
                                           Row(
-                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               crossAxisAlignment:
@@ -70,14 +70,15 @@ Future<void> tryShowDialog(context, score) async {
                                                                 HomePageWidget(),
                                                           ),
                                                         );
-                                                      }, // Handle your callback.
+                                                      },
+                                                      // Handle your callback.
                                                       splashColor: Colors.brown
                                                           .withOpacity(0.5),
                                                       child: Ink(
-                                                        height: 100,
-                                                        width: 100,
-                                                        decoration: BoxDecoration(
-                                                          image: DecorationImage(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
                                                             image: AssetImage(
                                                                 'assets/images/OK.png'),
                                                             fit: BoxFit.cover,
@@ -101,8 +102,6 @@ Future<void> tryShowDialog(context, score) async {
                                                     splashColor: Colors.brown
                                                         .withOpacity(0.5),
                                                     child: Ink(
-                                                      height: 100,
-                                                      width: 100,
                                                       decoration: BoxDecoration(
                                                         image: DecorationImage(
                                                           image: AssetImage(
