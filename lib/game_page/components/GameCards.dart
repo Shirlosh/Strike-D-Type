@@ -31,14 +31,21 @@ class _GameCardsState extends State<GameCards> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        for (var i = 0; i < widget.cardsAmount; i++)
-            GameCard(cards[i], widget.boardOnSuccess, widget.changeCards)
-      ],
+    return SizedBox(
+      height: MediaQuery.of(context).size.height *0.65,
+      width: MediaQuery.of(context).size.width *0.6,
+      child: Container(
+        color: Colors.redAccent,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            for (var i = 0; i < widget.cardsAmount; i++)
+                GameCard(cards[i], widget.boardOnSuccess, widget.changeCards)
+          ],
+        ),
+      ),
     );
   }
 }
