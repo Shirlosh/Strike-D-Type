@@ -35,7 +35,6 @@ class _GameCardsState extends State<GameCards> {
       height: MediaQuery.of(context).size.height *0.65,
       width: MediaQuery.of(context).size.width *0.6,
       child: Container(
-        color: Colors.redAccent,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
