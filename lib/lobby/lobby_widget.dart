@@ -162,6 +162,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                       //crossAxisAlignment:
                                       //  CrossAxisAlignment.start,
                                       child: Flexible(
+                                        //todo:need to do something with this input https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
                                           child: TextField(
                                               decoration: InputDecoration(
                                         hintTextDirection: TextDirection.ltr,
