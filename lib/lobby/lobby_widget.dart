@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-
 import '../backend/handle-req.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -19,16 +18,26 @@ class _LobbyWidgetState extends State<LobbyWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final gameID = createGame(6);
 
+  // This function is triggered when the copy icon is pressed
+  Future<void> _copyToClipboard() async {
+    await Clipboard.setData(ClipboardData(text: gameID));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Copied to clipboard'),
+    ));
+  }
+
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown,]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
-
 
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+    return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFFFDC00),
       body: Container(
@@ -79,7 +88,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 50),
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
@@ -89,6 +98,12 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                             fontSize: 30,
                           ),
                     ),
+                    Container(
+                      child: IconButton(
+                        icon: const Icon(Icons.copy),
+                        onPressed: _copyToClipboard,
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -142,23 +157,24 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'User',
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle1
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF151B1E),
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w500,
-                                              ),
-                                        ),
-                                      ],
+                                    Container(
+                                      // mainAxisSize: MainAxisSize.max,
+                                      //crossAxisAlignment:
+                                      //  CrossAxisAlignment.start,
+                                      child: Flexible(
+                                          child: TextField(
+                                              decoration: InputDecoration(
+                                        hintTextDirection: TextDirection.ltr,
+                                        hintText: "Username",
+                                        hintStyle: FlutterFlowTheme.of(context)
+                                            .subtitle1
+                                            .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: Color(0xFF151B1E),
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                      ))),
                                     ),
                                     Card(
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -213,11 +229,12 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => GamePageWidget(gameID),
+                                      builder: (context) =>
+                                          GamePageWidget(gameID),
                                     ),
                                   );
                                 },
-                                text: 'Start',
+                                text: 'Start!',
                                 options: FFButtonOptions(
                                   width: 200,
                                   height: 50,

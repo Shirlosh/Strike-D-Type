@@ -75,7 +75,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown,]);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     startPageLoadAnimations(
       animationsMap.values
           .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
@@ -183,8 +186,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               builder: (alertDialogContext) {
                                                 return AlertDialog(
                                                   title: Text('Arena code'),
-                                                  content: Text(
-                                                      'please enter arena code'),
+                                                  content: TextField(
+                                                    decoration: InputDecoration(
+                                                        hintText:
+                                                            "Text Field in Dialog"),
+                                                  ),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>
