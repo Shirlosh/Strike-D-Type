@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/Globals.dart';
+import 'package:strike_d_type/application/modes/PvP.dart';
 import 'package:strike_d_type/application/modes/Timer.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -11,7 +12,7 @@ import 'package:flutter/material.dart';
 class LobbyWidget extends StatefulWidget {
   LobbyWidget({Key key}) : super(key: key)
   {
-    GameMode = Timer();
+    GameMode = PvP();
   }
 
   @override
@@ -20,7 +21,7 @@ class LobbyWidget extends StatefulWidget {
 
 class _LobbyWidgetState extends State<LobbyWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  String gameID;
+  String gameID = '';
 
   _LobbyWidgetState()
   {

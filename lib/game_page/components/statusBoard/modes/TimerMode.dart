@@ -5,7 +5,6 @@ import '../../../../flutter_flow/flutter_flow_theme.dart';
 import '../../endGamePopup/endGamePopup.dart';
 
 class TimerMode extends StatefulWidget {
-  @override
   final _TimerMode modeState = _TimerMode();
   _TimerMode createState() => modeState;
 

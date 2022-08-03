@@ -3,8 +3,9 @@ import '../../../../flutter_flow/flutter_flow_theme.dart';
 
 
 class PvPMode extends StatefulWidget {
-  @override
+  final _PvPText modeState = _PvPText();
   _PvPText createState() => _PvPText();
+  onIconClicked(bool success) => modeState._onIconClicked(success);
 
 }
 
@@ -12,7 +13,10 @@ class _PvPText extends State<PvPMode> {
   int player1Score = 1;
   int player2Score = 2;
 
-  @override
+  void _onIconClicked(bool success) {
+    print('OK');
+  }
+    @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.max,
