@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-
-import '../backend/handle-req.dart';
+import 'package:strike_d_type/application/Globals.dart';
+import 'package:strike_d_type/application/modes/Timer.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -9,7 +9,10 @@ import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class LobbyWidget extends StatefulWidget {
-  const LobbyWidget({Key key}) : super(key: key);
+  LobbyWidget({Key key}) : super(key: key)
+  {
+    GameMode = Timer();
+  }
 
   @override
   _LobbyWidgetState createState() => _LobbyWidgetState();
@@ -17,7 +20,15 @@ class LobbyWidget extends StatefulWidget {
 
 class _LobbyWidgetState extends State<LobbyWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final gameID = createGame(6);
+  String gameID;
+
+  _LobbyWidgetState()
+  {
+    GameMode.getRequest().createGame(6).then((value) =>  setState(() {
+      gameID=value;
+      GameID = value;
+      }));
+  }
 
   @override
   void initState() {
@@ -213,7 +224,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => GamePageWidget(gameID),
+                                      builder: (context) => GamePageWidget(),
                                     ),
                                   );
                                 },

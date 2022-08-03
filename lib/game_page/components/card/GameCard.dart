@@ -8,7 +8,7 @@ class GameCard extends StatefulWidget {
   }
 
   final List<int> cardSymbols;
-  int rows;
+  var rows;
   final cols = 3;
   final boardOnSuccess;
   final changeCards;
@@ -71,10 +71,8 @@ class _GameCardState extends State<GameCard> {
                                     child: Container(
                                         //width: 10,
                                         //height: 10,
-                                        child: Cell(
-                                            widget.cardSymbols[index],
-                                            widget.boardOnSuccess,
-                                            widget.changeCards)))),
+                                        child: Cell(widget.cardSymbols[index],widget.boardOnSuccess,widget.changeCards)
+                                    ))),
                           ))
                 ]))));
   }

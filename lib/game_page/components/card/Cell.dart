@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:strike_d_type/application/Globals.dart';
 import 'package:strike_d_type/game_page/components/card/themes/classic.dart';
 
-import '../../../backend/handle-req.dart';
 
 class Cell extends StatefulWidget {
   IconData icon;
@@ -34,18 +34,21 @@ class _CellState extends State<Cell> {
     );
   }
 
-  //todo: update score board(failed -1 success +1), regenerate cards,
+
   iconClicked() {
-    if (isCorrectSymbol(widget.index)) {
-      print(widget.icon.toString() + " is Correct!");
-      widget.boardOnSuccess(true);
+    GameMode.getRequest().isCorrectSymbol(widget.index, GameID).then((value) =>
+    {
+    if (value) {
+        //print(widget.icon.toString() + " is Correct!")
+    widget.boardOnSuccess(true)
     }
-    else{
-        print(widget.icon.toString() + " inCorrect");
-        widget.boardOnSuccess(false);
+    else
+    {
+      //print(widget.icon.toString() + " inCorrect")
+    widget.boardOnSuccess(false)
     }
+    });
 
     widget.changeCards();
-
   }
 }

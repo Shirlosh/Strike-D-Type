@@ -25,6 +25,7 @@ class Game {
     cardsOfCards = List.generate(0, (it) => []);
 
     _id = Uuid().v4().substring(0,7);
+    initGame();
   }
 
   String getGameID() {
