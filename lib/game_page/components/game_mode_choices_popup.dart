@@ -71,7 +71,7 @@ Future<void> gameModeDialog(context) async {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LobbyWidget(),
+                            builder: (context) => HomePageWidget()//two players lobby LobbyWidget(),
                           ),
                         );
                       },
@@ -84,7 +84,7 @@ Future<void> gameModeDialog(context) async {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image:
-                                    AssetImage('assets/images/two-players.png'),
+                                    AssetImage('assets/images/TwoPlayers.png'),scale: 0.2,
                                 fit: BoxFit.cover,
                               ),
                             ),
