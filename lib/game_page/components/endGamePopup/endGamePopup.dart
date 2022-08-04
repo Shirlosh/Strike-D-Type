@@ -8,7 +8,7 @@ Future<void> endGameDialog(context, score) async {
   showDialog<bool>(
     context: context,
     builder: (alertDialogContext) {
-      return _EndGamePopup(score);
+      //return _EndGamePopup(score);
     },
   );
 }

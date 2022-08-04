@@ -1,14 +1,13 @@
 import 'package:flutter/services.dart';
-
+import 'package:strike_d_type/game_page/components/endGamePopup/endGamePopup.dart';
+import 'package:strike_d_type/game_page/components/game_mode_choices_popup.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
+
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../lobby/lobby_widget.dart';
-import '../custom_code/actions/index.dart' as actions;
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -238,14 +237,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                                 child: FFButtonWidget(
-                                  onPressed: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => LobbyWidget(),
-                                      ),
-                                    );
-                                  },
+                                  onPressed:() async { gameModeDialog(context);},
                                   text: 'Create Arena',
                                   options: FFButtonOptions(
                                     width: 200,
