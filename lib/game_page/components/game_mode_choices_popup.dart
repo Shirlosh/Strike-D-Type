@@ -52,6 +52,8 @@ Future<void> gameModeDialog(context) async {
                         child: Positioned(
                           child: Ink(
                             decoration: BoxDecoration(
+                              /*border: Border.all(color: Colors.black, width: 1),
+                              borderRadius: BorderRadius.circular(12),*/
                               image: DecorationImage(
                                 image: AssetImage(
                                     'assets/images/SinglePlayer.png'),
@@ -71,8 +73,9 @@ Future<void> gameModeDialog(context) async {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePageWidget()//two players lobby LobbyWidget(),
-                          ),
+                              builder: (context) =>
+                                  HomePageWidget() //two players lobby LobbyWidget(),
+                              ),
                         );
                       },
                       splashColor: Colors.deepOrange.withOpacity(0.5),
@@ -82,9 +85,12 @@ Future<void> gameModeDialog(context) async {
                         child: Positioned(
                           child: Ink(
                             decoration: BoxDecoration(
+                              /*border: Border.all(color: Colors.black, width: 1),
+                              borderRadius: BorderRadius.circular(12),*/
                               image: DecorationImage(
                                 image:
-                                    AssetImage('assets/images/TwoPlayers.png'),scale: 0.2,
+                                    AssetImage('assets/images/TwoPlayers.png'),
+                                scale: 0.2,
                                 fit: BoxFit.cover,
                               ),
                             ),
