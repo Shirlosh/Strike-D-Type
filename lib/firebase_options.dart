@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '332825725581',
     projectId: 'strike-d-type',
     authDomain: 'strike-d-type.firebaseapp.com',
+    databaseURL: 'https://strike-d-type-default-rtdb.firebaseio.com',
     storageBucket: 'strike-d-type.appspot.com',
   );
 
@@ -60,6 +61,7 @@ class DefaultFirebaseOptions {
     appId: '1:332825725581:android:e4a11e2987ff45d316f0c4',
     messagingSenderId: '332825725581',
     projectId: 'strike-d-type',
+    databaseURL: 'https://strike-d-type-default-rtdb.firebaseio.com',
     storageBucket: 'strike-d-type.appspot.com',
   );
 
@@ -68,6 +70,7 @@ class DefaultFirebaseOptions {
     appId: '1:332825725581:ios:e2f26cab494a069216f0c4',
     messagingSenderId: '332825725581',
     projectId: 'strike-d-type',
+    databaseURL: 'https://strike-d-type-default-rtdb.firebaseio.com',
     storageBucket: 'strike-d-type.appspot.com',
     androidClientId: '332825725581-2r4k7t3deai1eh1jiq1rjur1i410tfq5.apps.googleusercontent.com',
     iosClientId: '332825725581-89l88lgiasv8efdrf936uvcdt0t3jv1k.apps.googleusercontent.com',

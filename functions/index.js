@@ -4,18 +4,19 @@ const {v4: uuidv4} = require('uuid');
 class Game {
     constructor() {    }
 
-    getGameID() {
-        return this.id;
-    }
+    getGameID() { return this.id; }
 
-    getSameSymbol() {
-        return this.sameSymbolIdx;
-    }
+    getSameSymbol() { return this.sameSymbolIdx; }
+
+    getScore(){ return this.score; }
+
+    getChosenCards() { return this.ChosenCards}
 
     initGame(numberOfSymbolsOnCard, shuffleSymbolsOnCard = false)
     {
         this.numberOfSymbolsOnCard = numberOfSymbolsOnCard
         this.id = uuidv4().substring(0, 7)
+        this.score = {'owner': 0, 'joins': 0};
 
         //The number of symbols on a card has to be a prime number + 1
         this.primeNumber = numberOfSymbolsOnCard - 1;
@@ -23,10 +24,11 @@ class Game {
         this.sameSymbolIdx = null
         this.shuffleSymbolsOnCard = shuffleSymbolsOnCard
 
-        //Total number of cards that can be generated following the Dobble rules.
+        //Total number of cards that can be generated following the rules.
         this.numberOfCards = Math.pow(this.primeNumber, 2) + this.primeNumber + 1;
         this.cardsOfCards = []
         this.createCards();
+        this.generateTwoCards();
     }
 
     initGameWithJson(json)
@@ -34,6 +36,8 @@ class Game {
         this.numberOfSymbolsOnCard = json['numberOfSymbolsOnCard']
         this.primeNumber = json['primeNumber']
         this.id = json['id']
+        this.score = json['score']
+        this.ChosenCards = json['ChosenCards']
         this.sameSymbolIdx = json['sameSymbolIdx']
         this.shuffleSymbolsOnCard = json['shuffleSymbolsOnCard']
         this.numberOfCards = json['numberOfCards']
@@ -72,7 +76,7 @@ class Game {
     }
 
 
-    getTwoCards() {
+    generateTwoCards() {
         let n1 = 1, n2 = 1
 
         // generate a random index based on the list length
@@ -91,6 +95,7 @@ class Game {
             throw new Error("There is bug in this game!!")
         }
         this.sameSymbolIdx = intersection[0];
+        this.ChosenCards = chosenCards;
         return chosenCards;
     }
 
@@ -102,33 +107,34 @@ const admin = require("firebase-admin");
 // path to local admin key file
 const serviceAccount = require("./strike-d-type-firebase-adminsdk-n2nzn-8f7d527fda.json");
 
-//admin.initializeApp();
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://strike-d-type-default-rtdb.firebaseio.com"
 });
-// Import Admin SDK
-//const {getDatabase} = require('firebase-admin/database');
-//const db = getDatabase();
+
 const db = admin.database();
-const gamesRef = db.ref('test').child('game');
+const gamesRef = db.ref('games');
 
-// https://firebase.google.com/docs/functions/write-firebase-functions
+
 // to upload file to firebase: firebase deploy --only functions
-// terminal output - all functions urls for example - (limited to ~2M requests)
-// https://us-central1-strike-d-type.cloudfunctions.net/helloWorld
-
-// when start run emulators: firebase emulators:start --only functions
+// when start run emulators: firebase emulators:start
 
 
 exports.isCorrectSymbol = functions.https.onCall(async (data, context) => {
-    let ID = data.ID
-    let symbol = data.Symbol
-    let gameRef = await gamesRef.child(ID).get()
+    let gameRef = await gamesRef.child(data.ID).get()
     let game = new Game()
+    let ret = false;
     game.initGameWithJson(JSON.parse(gameRef.val()))
-    functions.logger.log("log: ", game.getSameSymbol())
-    return game.getSameSymbol() === symbol;
+    if(game.getSameSymbol() === data.Symbol)
+    {
+        game.score['owner'] = game.score['owner'] + 1
+        functions.logger.log("inc score")
+        ret = true
+    }
+    game.generateTwoCards()
+    gamesRef.child(game.getGameID()).set(JSON.stringify(game))
+    return ret
 });
 
 exports.getCards = functions.https.onCall(async (data, context) => {
@@ -136,8 +142,7 @@ exports.getCards = functions.https.onCall(async (data, context) => {
     let gameRef = await gamesRef.child(ID).get()
     let game = new Game()
     game.initGameWithJson(JSON.parse(gameRef.val()))
-    let ret = JSON.stringify(game.getTwoCards())
-    gamesRef.child(game.getGameID()).set(JSON.stringify(game))
+    let ret = JSON.stringify(game.getChosenCards())
     return ret
 });
 

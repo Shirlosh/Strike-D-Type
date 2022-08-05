@@ -36,8 +36,7 @@ class HandleRequestsOnline extends HandleRequests {
 
 
   Future<bool> isCorrectSymbol(int symbol, String gameID) async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-        'isCorrectSymbol');
+    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('isCorrectSymbol');
     final results = await callable.call(<String, dynamic>{
       'ID': gameID,
       'Symbol': symbol

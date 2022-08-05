@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "332825725581",
+    "firebase_url": "https://strike-d-type-default-rtdb.firebaseio.com",
     "project_id": "strike-d-type",
     "storage_bucket": "strike-d-type.appspot.com"
   },

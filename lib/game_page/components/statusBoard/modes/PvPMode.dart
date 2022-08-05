@@ -1,5 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import '../../../../application/Globals.dart';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 
 
 class PvPMode extends StatefulWidget {
@@ -10,11 +14,27 @@ class PvPMode extends StatefulWidget {
 }
 
 class _PvPText extends State<PvPMode> {
-  int player1Score = 1;
-  int player2Score = 2;
+  int _playerScore = 0;
+  int _opponentScore = 0;
+
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
+      Map<String, dynamic> values = jsonDecode(event.snapshot.value);
+      if(values['id'] == GameID) {
+        setState(() {
+          _playerScore = values['score'][PlayerType];
+          _opponentScore = values['score'][OpponentType];
+        });
+      }
+    });
+  }
 
   void _onIconClicked(bool success) {
-    print('OK');
+    print('-onIconClicked');
+
   }
     @override
   Widget build(BuildContext context) {
@@ -23,7 +43,7 @@ class _PvPText extends State<PvPMode> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('$player1Score : $player2Score', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
+        Text('$_playerScore : $_opponentScore', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
           fontSize: 80,
           color: Colors.orange.shade50,

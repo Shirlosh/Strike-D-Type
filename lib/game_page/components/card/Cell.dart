@@ -35,19 +35,30 @@ class _CellState extends State<Cell> {
   }
 
 
-  iconClicked() {
-    GameMode.getRequest().isCorrectSymbol(widget.index, GameID).then((value) =>
-    {
-    if (value) {
-        //print(widget.icon.toString() + " is Correct!")
-    widget.boardOnSuccess(true)
-    }
+  void iconClicked() async {
+    bool value = await GameMode.getRequest().isCorrectSymbol(widget.index, GameID);
+    if (value)
+      {
+        print(widget.icon.toString() + " is Correct!");
+        widget.boardOnSuccess(true);
+      }
     else
-    {
-      //print(widget.icon.toString() + " inCorrect")
-    widget.boardOnSuccess(false)
-    }
-    });
+      {
+        print(widget.icon.toString() + " inCorrect");
+        widget.boardOnSuccess(false);
+      }
+    // GameMode.getRequest().isCorrectSymbol(widget.index, GameID).then((value) =>
+    // {
+    // if (value) {
+    //     //print(widget.icon.toString() + " is Correct!")
+    //   widget.boardOnSuccess(true);
+    // }
+    // else
+    // {
+    //   //print(widget.icon.toString() + " inCorrect")
+    // widget.boardOnSuccess(false)
+    // }
+    // });
 
     widget.changeCards();
   }
