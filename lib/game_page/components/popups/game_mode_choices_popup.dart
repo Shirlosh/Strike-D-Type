@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../home_page/home_page_widget.dart';
-import '../../../lobby/lobby_widget.dart';
-import '../../application/modes/PvPMode.dart';
-import '../../application/modes/TimerMode.dart';
+import '../../../../home_page/home_page_widget.dart';
+import '../../../../lobby/lobby_widget.dart';
+import '../../../application/modes/PvPMode.dart';
+import '../../../application/modes/TimerMode.dart';
 
 Future<void> gameModePopup(context) async {
   showDialog<bool>(

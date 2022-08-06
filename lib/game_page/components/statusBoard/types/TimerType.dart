@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'dart:async';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
-import '../../endGamePopup/endGamePopup.dart';
+import '../../popups/endGamePopup/EndGamePopup.dart';
 
 class TimerType extends StatefulWidget {
   final _TimerMode modeState = _TimerMode();
@@ -16,7 +16,7 @@ class TimerType extends StatefulWidget {
 class _TimerMode extends State<TimerType> {
 
   int _score = 0;
-  int _counter = 1000;
+  int _counter = 2;
 
   initState() { _startTimer();  }
 
@@ -32,7 +32,7 @@ class _TimerMode extends State<TimerType> {
         _counter--;
         if (_counter == 0) {
           timer.cancel();
-          tryShowDialog(context,_score);
+          EndGamePopup(context,_score);
         }
       });
     });

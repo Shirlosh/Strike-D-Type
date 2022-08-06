@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../flutter_flow/flutter_flow_theme.dart';
+import '../../../../flutter_flow/flutter_flow_theme.dart';
 
 class ScoreFlag extends StatelessWidget {
   ScoreFlag(this.score);

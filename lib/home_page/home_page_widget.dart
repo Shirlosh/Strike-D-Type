@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/modes/PvPMode.dart';
-import 'package:strike_d_type/game_page/components/endGamePopup/endGamePopup.dart';
-import 'package:strike_d_type/game_page/components/game_mode_choices_popup.dart';
+import 'package:strike_d_type/game_page/components/popups/endGamePopup/EndGamePopup.dart';
+import 'package:strike_d_type/game_page/components/popups/game_mode_choices_popup.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
