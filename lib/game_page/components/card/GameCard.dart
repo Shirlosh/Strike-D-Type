@@ -3,14 +3,13 @@ import 'Cell.dart';
 import 'dart:math';
 
 class GameCard extends StatefulWidget {
-  GameCard(this.cardSymbols, this.boardOnSuccess, this.changeCards) {
+  GameCard(this.cardSymbols, this.changeCards) {
     rows = (cardSymbols.length / cols).ceil();
   }
 
   final List<int> cardSymbols;
-  int rows;
+  var rows;
   final cols = 3;
-  final boardOnSuccess;
   final changeCards;
   Random random = new Random();
   List<int> randomNumbers = [];
@@ -69,10 +68,8 @@ class _GameCardState extends State<GameCard> {
                                     child: Container(
                                         //width: 10,
                                         //height: 10,
-                                        child: Cell(
-                                            widget.cardSymbols[index],
-                                            widget.boardOnSuccess,
-                                            widget.changeCards)))),
+                                        child: Cell(widget.cardSymbols[index],widget.changeCards)
+                                    ))),
                           ))
                 ]))));
   }
