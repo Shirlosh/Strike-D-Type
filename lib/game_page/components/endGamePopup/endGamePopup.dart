@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:strike_d_type/application/Globals.dart';
 import 'package:strike_d_type/game_page/components/endGamePopup/ScoreFlag.dart';
 import '../../../home_page/home_page_widget.dart';
 import '../../../lobby/lobby_widget.dart';
@@ -104,7 +105,7 @@ Future<void> tryShowDialog(context, score) async {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      LobbyWidget(),
+                                                      LobbyWidget(GameMode),
                                                 ),
                                               );
                                             },
@@ -189,7 +190,7 @@ class _EndGamePopup extends StatelessWidget {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => LobbyWidget(),
+                        builder: (context) => LobbyWidget(GameMode),
                       ),
                     );
                   },

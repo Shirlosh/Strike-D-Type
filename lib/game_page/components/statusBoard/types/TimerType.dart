@@ -4,7 +4,7 @@ import 'dart:async';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
 import '../../endGamePopup/endGamePopup.dart';
 
-class TimerMode extends StatefulWidget {
+class TimerType extends StatefulWidget {
   final _TimerMode modeState = _TimerMode();
   _TimerMode createState() => modeState;
 
@@ -13,7 +13,7 @@ class TimerMode extends StatefulWidget {
 
 }
 
-class _TimerMode extends State<TimerMode> {
+class _TimerMode extends State<TimerType> {
 
   int _score = 0;
   int _counter = 1000;

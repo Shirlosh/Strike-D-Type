@@ -1,24 +1,25 @@
 import 'package:strike_d_type/application/requests/HandleOnlineRequests.dart';
-import '../../game_page/components/statusBoard/modes/PvPMode.dart';
+
+import '../../game_page/components/statusBoard/types/PvPType.dart';
 import '../requests/HandleRequests.dart';
 import 'Mode.dart';
 
-class PvP extends Mode
+class PvPMode extends Mode
 {
   HandleRequestsOnline req;
-  PvPMode boardType;
+  PvPType boardType;
 
 
-  PvP()
+  PvPMode()
   {
     req = new HandleRequestsOnline();
-    boardType = new PvPMode();
+    boardType = new PvPType();
 
 
   }
 
   @override
-  String mode() { return 'online'; }
+  String mode() { return 'PvP'; }
 
   @override
   HandleRequests getRequest()  { return req;  }

@@ -1,22 +1,22 @@
 import 'package:strike_d_type/application/requests/HandleLocalRequests.dart';
-import '../../game_page/components/statusBoard/modes/TimerMode.dart';
+import '../../game_page/components/statusBoard/types/TimerType.dart';
 import '../requests/HandleRequests.dart';
 import 'package:strike_d_type/application/modes/Mode.dart';
 
-class Timer extends Mode
+class TimerMode extends Mode
 {
   HandleRequestsLocal req;
-  TimerMode boardType;
+  TimerType boardType;
 
-  Timer()
+  TimerMode()
   {
     req = HandleRequestsLocal();
-    boardType = TimerMode();
+    boardType = TimerType();
   }
 
 
   @override
-  String mode() { return 'local'; }
+  String mode() { return 'Timer'; }
 
   @override
   HandleRequests getRequest()  { return req;  }

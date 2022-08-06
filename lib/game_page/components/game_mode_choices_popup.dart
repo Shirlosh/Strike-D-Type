@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../home_page/home_page_widget.dart';
 import '../../../lobby/lobby_widget.dart';
+import '../../application/modes/PvPMode.dart';
+import '../../application/modes/TimerMode.dart';
 
 Future<void> gameModePopup(context) async {
   showDialog<bool>(
@@ -41,7 +43,7 @@ Future<void> gameModeDialog(context) async {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LobbyWidget(),
+                            builder: (context) => LobbyWidget(TimerMode()),
                           ),
                         );
                       },
@@ -74,7 +76,7 @@ Future<void> gameModeDialog(context) async {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  HomePageWidget() //two players lobby LobbyWidget(),
+                                  LobbyWidget(PvPMode()) //two players lobby LobbyWidget(),
                               ),
                         );
                       },

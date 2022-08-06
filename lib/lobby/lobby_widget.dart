@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/Globals.dart';
-import 'package:strike_d_type/application/modes/PvP.dart';
-import 'package:strike_d_type/application/modes/Timer.dart';
+import '../application/modes/Mode.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -10,9 +9,10 @@ import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class LobbyWidget extends StatefulWidget {
-  LobbyWidget({Key key}) : super(key: key)
+  LobbyWidget(Mode mode, {Key key}) : super(key: key)
   {
-    GameMode = Timer();
+    GameMode = mode;
+    //if mode == Timer  context => GamePage
   }
 
   @override

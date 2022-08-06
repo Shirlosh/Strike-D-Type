@@ -5,15 +5,14 @@ import '../../../../flutter_flow/flutter_flow_theme.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 
-// todo: change to PvP board
-class PvPMode extends StatefulWidget {
+class PvPType extends StatefulWidget {
   final _PvPText modeState = _PvPText();
   _PvPText createState() => _PvPText();
   onIconClicked(bool success) => modeState._onIconClicked(success);
 
 }
 
-class _PvPText extends State<PvPMode> {
+class _PvPText extends State<PvPType> {
   int _playerScore = 0;
   int _opponentScore = 0;
 
