@@ -7,9 +7,8 @@ class Cell extends StatefulWidget {
   IconData icon;
   Color color;
   final index;
-  final boardOnSuccess;
   final changeCards;
-  Cell(this.index, this.boardOnSuccess, this.changeCards)
+  Cell(this.index, this.changeCards)
   {
     icon = ClassicTheme.getIcon(index);
     color = ClassicTheme.getColor(index);
@@ -40,25 +39,13 @@ class _CellState extends State<Cell> {
     if (value)
       {
         print(widget.icon.toString() + " is Correct!");
-        widget.boardOnSuccess(true);
+        GameMode.getStatusBoardContent().onIconClicked(true);
       }
     else
       {
         print(widget.icon.toString() + " inCorrect");
-        widget.boardOnSuccess(false);
+        GameMode.getStatusBoardContent().onIconClicked(false);
       }
-    // GameMode.getRequest().isCorrectSymbol(widget.index, GameID).then((value) =>
-    // {
-    // if (value) {
-    //     //print(widget.icon.toString() + " is Correct!")
-    //   widget.boardOnSuccess(true);
-    // }
-    // else
-    // {
-    //   //print(widget.icon.toString() + " inCorrect")
-    // widget.boardOnSuccess(false)
-    // }
-    // });
 
     widget.changeCards();
   }

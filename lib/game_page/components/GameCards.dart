@@ -5,14 +5,12 @@ import 'package:strike_d_type/game_page/components/card/GameCard.dart';
 
 class GameCards extends StatefulWidget {
   final cardsAmount;
-  final boardOnSuccess;
 
   final _GameCardsState cardState = _GameCardsState();
   _GameCardsState createState() => cardState;
 
   changeCards() => cardState._changeCards();
-
-  GameCards(this.cardsAmount, this.boardOnSuccess);
+  GameCards(this.cardsAmount);
 
 }
 
@@ -44,7 +42,7 @@ class _GameCardsState extends State<GameCards> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         for (var i = 0; i < widget.cardsAmount; i++)
-            GameCard(cards[i], widget.boardOnSuccess, widget.changeCards)
+            GameCard(cards[i], widget.changeCards)
       ],
     );
   }

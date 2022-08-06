@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 class LobbyWidget extends StatefulWidget {
   LobbyWidget({Key key}) : super(key: key)
   {
-    GameMode = PvP();
+    GameMode = Timer();
   }
 
   @override

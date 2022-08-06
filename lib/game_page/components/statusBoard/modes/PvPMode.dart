@@ -5,7 +5,7 @@ import '../../../../flutter_flow/flutter_flow_theme.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 
-
+// todo: change to PvP board
 class PvPMode extends StatefulWidget {
   final _PvPText modeState = _PvPText();
   _PvPText createState() => _PvPText();
@@ -28,13 +28,13 @@ class _PvPText extends State<PvPMode> {
           _playerScore = values['score'][PlayerType];
           _opponentScore = values['score'][OpponentType];
         });
+        //ChangeCards(values[ChoosenCards]);
       }
     });
   }
 
   void _onIconClicked(bool success) {
-    print('-onIconClicked');
-
+    print('PvP _onIconClicked');
   }
     @override
   Widget build(BuildContext context) {

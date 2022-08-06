@@ -13,6 +13,8 @@ class PvP extends Mode
   {
     req = new HandleRequestsOnline();
     boardType = new PvPMode();
+
+
   }
 
   @override
@@ -25,5 +27,6 @@ class PvP extends Mode
   dynamic getStatusBoardContent() {
     return boardType;
   }
+
 
 }
