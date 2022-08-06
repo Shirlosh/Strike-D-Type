@@ -38,6 +38,9 @@
 # Web related
 lib/generated_plugin_registrant.dart
 
+# Firebase
+functions/strike-d-type-firebase-adminsdk-n2nzn-8f7d527fda.json
+
 # Symbolication related
 app.*.symbols
 
