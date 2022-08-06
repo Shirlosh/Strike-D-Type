@@ -36,14 +36,12 @@ Future<void> gameModeDialog(context) async {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   //Single Player
-                  Positioned(
-                    height: 1,
-                    child: InkWell(
+                  InkWell(
                       onTap: () async {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LobbyWidget(TimerMode()),
+                            builder: (context) => LobbyWidget(TimerMode(), true),
                           ),
                         );
                       },
@@ -51,8 +49,7 @@ Future<void> gameModeDialog(context) async {
                       child: SizedBox(
                         width: 100,
                         height: 100,
-                        child: Positioned(
-                          child: Ink(
+                        child:  Ink(
                             decoration: BoxDecoration(
                               /*border: Border.all(color: Colors.black, width: 1),
                               borderRadius: BorderRadius.circular(12),*/
@@ -62,21 +59,18 @@ Future<void> gameModeDialog(context) async {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                          ),
                         ),
                       ),
                     ),
-                  ),
 
                   //Two Players
-                  Positioned(
-                    child: InkWell(
+                   InkWell(
                       onTap: () async {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  LobbyWidget(PvPMode()) //two players lobby LobbyWidget(),
+                                  LobbyWidget(PvPMode(), true) //two players lobby LobbyWidget(),
                               ),
                         );
                       },
@@ -84,8 +78,7 @@ Future<void> gameModeDialog(context) async {
                       child: SizedBox(
                         width: 100,
                         height: 100,
-                        child: Positioned(
-                          child: Ink(
+                        child: Ink(
                             decoration: BoxDecoration(
                               /*border: Border.all(color: Colors.black, width: 1),
                               borderRadius: BorderRadius.circular(12),*/
@@ -98,9 +91,7 @@ Future<void> gameModeDialog(context) async {
                             ),
                           ),
                         ),
-                      ),
                     ),
-                  )
                 ]),
           ),
         );

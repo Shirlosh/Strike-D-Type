@@ -97,15 +97,13 @@ Future<void> EndGamePopup(context, score) async {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      LobbyWidget(GameMode),
+                                                      LobbyWidget(GameMode, true),
                                                 ),
                                               );
                                             },
                                             splashColor: Colors.deepOrange
                                                 .withOpacity(0.5),
-                                            child: Positioned(
-                                              height: screenHeight * 1,
-                                              child: Container(
+                                            child: Container(
                                                 width: 100,
                                                 height: 100,
                                                 margin: const EdgeInsets.fromLTRB(
@@ -124,7 +122,7 @@ Future<void> EndGamePopup(context, score) async {
                                                 ),
                                               ),
                                             ),
-                                          ),
+
                                         ]),
                                   ]))),
                     ],

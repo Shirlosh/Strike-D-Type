@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/modes/PvPMode.dart';
+import 'package:strike_d_type/game_page/components/popups/GameIDPopup.dart';
 import 'package:strike_d_type/game_page/components/popups/endGamePopup/EndGamePopup.dart';
 import 'package:strike_d_type/game_page/components/popups/game_mode_choices_popup.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
@@ -180,38 +181,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    var confirmDialogResponse =
-                                        await showDialog<bool>(
-                                              context: context,
-                                              builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text('Arena code'),
-                                                  //todo:need to do something with this input https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
-                                                  content: TextField(
-                                                    decoration: InputDecoration(
-                                                        hintText:
-                                                            "Text Field in Dialog"),
-                                                  ),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              false),
-                                                      child: Text('Cancel'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext,
-                                                              true),
-                                                      child: Text('Confirm'),
-                                                    ),
-                                                  ],
-                                                );
-                                              },
-                                            ) ??
-                                            false;
+                                    var confirmDialogResponse = GameIDPopup(context) ?? false;
                                   },
                                   text: 'Join Game',
                                   options: FFButtonOptions(
@@ -238,7 +208,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                                 child: FFButtonWidget(
-                                  onPressed:() async { gameModeDialog(context);},
+                                  onPressed:() async { var confirmDialogResponse = gameModeDialog(context) ?? false;},
                                   text: 'Create Arena',
                                   options: FFButtonOptions(
                                     width: 200,

@@ -9,12 +9,11 @@ import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class LobbyWidget extends StatefulWidget {
-  LobbyWidget(Mode mode, {Key key}) : super(key: key)
+  LobbyWidget(Mode mode,this.owner)
   {
     GameMode = mode;
-    //if mode == Timer  context => GamePage
   }
-
+  final owner;
   @override
   _LobbyWidgetState createState() => _LobbyWidgetState();
 }
@@ -22,14 +21,6 @@ class LobbyWidget extends StatefulWidget {
 class _LobbyWidgetState extends State<LobbyWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   String gameID = '';
-
-  _LobbyWidgetState()
-  {
-    GameMode.getRequest().createGame(6).then((value) =>  setState(() {
-      gameID=value;
-      GameID = value;
-      }));
-  }
 
   // This function is triggered when the copy icon is pressed
   Future<void> _copyToClipboard() async {
@@ -42,15 +33,42 @@ class _LobbyWidgetState extends State<LobbyWidget> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+    print(widget.owner);
+    if (widget.owner) {
+      PlayerType = 'owner';
+      OpponentType = 'joins';
+      GameMode.getRequest().createGame(6).then((value) =>
+          setState(() {
+            GameID = value;
+            this.gameID = value;
+          }));
+    }
+    else {
+      PlayerType = 'joins';
+      OpponentType = 'owner';
+      setState(() {
+        this.gameID = GameID;
+      });
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => {
+    if (GameMode.mode() == 'Timer')
+    {
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GamePageWidget(),
+        ))
+    }});
   }
+
 
 
   @override
   Widget build(BuildContext context) {
+    if (GameMode.mode() == 'Timer') return Container();
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFFFDC00),
