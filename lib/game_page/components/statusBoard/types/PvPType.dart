@@ -27,7 +27,8 @@ class _PvPText extends State<PvPType> {
           _playerScore = values['score'][PlayerType];
           _opponentScore = values['score'][OpponentType];
         });
-        //ChangeCards(values[ChoosenCards]);
+
+        //ChangeCards(values["ChosenCards"]);
       }
     });
   }

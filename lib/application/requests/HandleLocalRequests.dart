@@ -1,8 +1,5 @@
 import 'package:strike_d_type/backend/engine/game.dart';
-
 import 'HandleRequests.dart';
-
-
 
 class HandleRequestsLocal extends HandleRequests {
   Game game;
@@ -14,14 +11,13 @@ class HandleRequestsLocal extends HandleRequests {
   }
 
   @override
-  Future<dynamic> getCards(String gameID) {
+  Future<dynamic> getCards() {
     List<List<int>> cards = game.getTwoCards();
-    print(cards);
     return Future<dynamic>.value(cards);
   }
 
   @override
-  Future<bool> isCorrectSymbol(int symbol, String gameID) {
+  Future<bool> isCorrectSymbol(int symbol) {
     return Future<bool>.value(game.getSameSymbol() == symbol);
   }
 }

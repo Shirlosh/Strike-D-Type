@@ -11,7 +11,6 @@ Future<void> GameIDPopup(context) async {
     builder: (alertDialogContext) {
       return AlertDialog(
         title: Text('Arena code'),
-        //todo:need to do something with this input https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
         content: TextField(
         onChanged: (value) { GameID = value; },
           decoration: InputDecoration(

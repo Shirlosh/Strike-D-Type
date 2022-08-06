@@ -128,9 +128,12 @@ exports.isCorrectSymbol = functions.https.onCall(async (data, context) => {
     game.initGameWithJson(JSON.parse(gameRef.val()))
     if(game.getSameSymbol() === data.Symbol)
     {
-        game.score['owner'] = game.score['owner'] + 1
-        functions.logger.log("inc score")
+        game.score[data.type] = game.score[data.type] + 1
         ret = true
+    }
+    else
+    {
+        game.score[data.type] = game.score[data.type] - 1
     }
     game.generateTwoCards()
     gamesRef.child(game.getGameID()).set(JSON.stringify(game))

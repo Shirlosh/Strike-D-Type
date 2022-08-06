@@ -39,7 +39,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
     if (widget.owner) {
       PlayerType = 'owner';
       OpponentType = 'joins';
-      GameMode.getRequest().createGame(6).then((value) =>
+      GameMode.createGame(6).then((value) =>
           setState(() {
             GameID = value;
             this.gameID = value;

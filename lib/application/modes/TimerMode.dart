@@ -7,6 +7,7 @@ class TimerMode extends Mode
 {
   HandleRequestsLocal req;
   TimerType boardType;
+  dynamic changeCards;
 
   TimerMode()
   {
@@ -18,13 +19,35 @@ class TimerMode extends Mode
   @override
   String mode() { return 'Timer'; }
 
-  @override
-  HandleRequests getRequest()  { return req;  }
+  // @override
+  // HandleRequests getRequest()  { return req;  }
 
   @override
   dynamic getStatusBoardContent() {
     return boardType;
   }
 
+  @override
+  void setCardChanger(dynamic changeCards)
+  {
+    this.changeCards = changeCards;
+  }
 
+  @override
+  Future<String> createGame(symbolsAmount) {
+    return req.createGame(symbolsAmount);
+  }
+
+  @override
+  Future<dynamic> getCards() {
+    return req.getCards();
+  }
+
+  @override
+  Future<bool> isCorrectSymbol(int symbol) {
+    Future<bool> ans = req.isCorrectSymbol(symbol);
+    req.getCards().then((value) => this.changeCards(value));
+
+    return ans;
+  }
 }

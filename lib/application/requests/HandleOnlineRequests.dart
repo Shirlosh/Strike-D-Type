@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:strike_d_type/application/Globals.dart';
 import 'HandleRequests.dart';
 
 FirebaseFunctions functions = FirebaseFunctions.instance;
@@ -20,11 +21,11 @@ class HandleRequestsOnline extends HandleRequests {
     return results.data;
   }
 
-  Future<dynamic> getCards(String gameID) async {
+  Future<dynamic> getCards() async {
     HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
         'getCards');
     final results = await callable.call(<String, dynamic>{
-      'ID': gameID,
+      'ID': GameID,
     });
 
     List<dynamic> listlistString = (jsonDecode(results.data) as List<dynamic>);
@@ -35,11 +36,12 @@ class HandleRequestsOnline extends HandleRequests {
   }
 
 
-  Future<bool> isCorrectSymbol(int symbol, String gameID) async {
+  Future<bool> isCorrectSymbol(int symbol) async {
     HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('isCorrectSymbol');
     final results = await callable.call(<String, dynamic>{
-      'ID': gameID,
-      'Symbol': symbol
+      'ID': GameID,
+      'Symbol': symbol,
+      'type': PlayerType
     });
     return results.data;
   }

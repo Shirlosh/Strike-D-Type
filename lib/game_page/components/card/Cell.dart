@@ -35,18 +35,10 @@ class _CellState extends State<Cell> {
 
 
   void iconClicked() async {
-    bool value = await GameMode.getRequest().isCorrectSymbol(widget.index, GameID);
+    bool value = await GameMode.isCorrectSymbol(widget.index);
     if (value)
-      {
-        print(widget.icon.toString() + " is Correct!");
         GameMode.getStatusBoardContent().onIconClicked(true);
-      }
     else
-      {
-        print(widget.icon.toString() + " inCorrect");
         GameMode.getStatusBoardContent().onIconClicked(false);
-      }
-
-    widget.changeCards();
   }
 }
