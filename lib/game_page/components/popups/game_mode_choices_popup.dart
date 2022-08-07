@@ -37,61 +37,72 @@ Future<void> gameModeDialog(context) async {
                 children: [
                   //Single Player
                   InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LobbyWidget(TimerMode(), true),
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LobbyWidget(TimerMode(), true),
+                        ),
+                      );
+                    },
+                    splashColor: Colors.deepOrange.withOpacity(0.5),
+                    child: SizedBox(
+                      width: 112,
+                      height: 100,
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(18)),
+                          border: Border(
+                              right: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF)),
+                              left: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF)),
+                              top: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF)),
+                              bottom: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF))),
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/SinglePlayer.png'),
                           ),
-                        );
-                      },
-                      splashColor: Colors.deepOrange.withOpacity(0.5),
-                      child: SizedBox(
-                        width: 100,
-                        height: 100,
-                        child:  Ink(
-                            decoration: BoxDecoration(
-                              /*border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(12),*/
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/SinglePlayer.png'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
                         ),
                       ),
                     ),
+                  ),
 
                   //Two Players
-                   InkWell(
-                      onTap: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  LobbyWidget(PvPMode(), true) //two players lobby LobbyWidget(),
-                              ),
-                        );
-                      },
-                      splashColor: Colors.deepOrange.withOpacity(0.5),
-                      child: SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: Ink(
-                            decoration: BoxDecoration(
-                              /*border: Border.all(color: Colors.black, width: 1),
-                              borderRadius: BorderRadius.circular(12),*/
-                              image: DecorationImage(
-                                image:
-                                    AssetImage('assets/images/TwoPlayers.png'),
-                                scale: 0.2,
-                                fit: BoxFit.cover,
-                              ),
+                  InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LobbyWidget(PvPMode(),
+                                true) //two players lobby LobbyWidget(),
                             ),
+                      );
+                    },
+                    splashColor: Colors.deepOrange.withOpacity(0.5),
+                    child: SizedBox(
+                      width: 112,
+                      height: 100,
+                      child: Ink(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(18)),
+                          border: Border(
+                              right: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF)),
+                              left: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF)),
+                              top: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF)),
+                              bottom: BorderSide(
+                                  width: 3.0, color: Color(0x7CFFFFFF))),
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/TwoPlayers.png'),
                           ),
                         ),
+                      ),
                     ),
+                  ),
                 ]),
           ),
         );
