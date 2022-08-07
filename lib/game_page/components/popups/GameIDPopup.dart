@@ -16,7 +16,7 @@ Future<void> GameIDPopup(context) async {
         onChanged: (value) { GameID = value; },
           decoration: InputDecoration(
               hintText:
-              "ID"),
+              "GAME ID"),
         ),
         actions: [
           TextButton(

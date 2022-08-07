@@ -3,6 +3,7 @@ import 'package:strike_d_type/application/modes/PvPMode.dart';
 import 'package:strike_d_type/game_page/components/popups/GameIDPopup.dart';
 import 'package:strike_d_type/game_page/components/popups/endGamePopup/EndGamePopup.dart';
 import 'package:strike_d_type/game_page/components/popups/game_mode_choices_popup.dart';
+import 'package:strike_d_type/game_page/components/popups/username_popup.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -123,12 +124,12 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         borderWidth: 2,
                         buttonSize: 45,
                         icon: Icon(
-                          Icons.info_outlined,
+                          Icons.account_circle,
                           color: Color(0xFF5D5D5D),
                           size: 30,
                         ),
                         onPressed: () async {
-                          //await actions.changeSoundState();
+                          var username = UsernamePopup(context) ?? false;
                         },
                       ),
                       FlutterFlowIconButton(

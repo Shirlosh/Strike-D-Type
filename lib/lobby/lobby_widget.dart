@@ -9,11 +9,12 @@ import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class LobbyWidget extends StatefulWidget {
-  LobbyWidget(Mode mode,this.owner)
-  {
+  LobbyWidget(Mode mode, this.owner) {
     GameMode = mode;
   }
+
   final owner;
+
   @override
   _LobbyWidgetState createState() => _LobbyWidgetState();
 }
@@ -33,19 +34,18 @@ class _LobbyWidgetState extends State<LobbyWidget> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
     print(widget.owner);
     if (widget.owner) {
       PlayerType = 'owner';
       OpponentType = 'joins';
-      GameMode.getRequest().createGame(6).then((value) =>
-          setState(() {
+      GameMode.getRequest().createGame(6).then((value) => setState(() {
             GameID = value;
             this.gameID = value;
           }));
-    }
-    else {
+    } else {
       PlayerType = 'joins';
       OpponentType = 'owner';
       setState(() {
@@ -54,17 +54,16 @@ class _LobbyWidgetState extends State<LobbyWidget> {
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) => {
-    if (GameMode.mode() == 'Timer')
-    {
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => GamePageWidget(),
-        ))
-    }});
+          if (GameMode.mode() == 'Timer')
+            {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GamePageWidget(),
+                  ))
+            }
+        });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +145,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Waiting:',
+                      'Waiting for other players!',
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily: 'Poppins',
                             fontSize: 18,
@@ -190,24 +189,38 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      // mainAxisSize: MainAxisSize.max,
-                                      //crossAxisAlignment:
-                                      //  CrossAxisAlignment.start,
                                       child: Flexible(
-                                        //todo:need to do something with this input https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
-                                          child: TextField(
-                                              decoration: InputDecoration(
-                                        hintTextDirection: TextDirection.ltr,
-                                        hintText: "Username",
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .subtitle1
-                                            .override(
-                                              fontFamily: 'Lexend Deca',
-                                              color: Color(0xFF151B1E),
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ))),
+                                          //todo:need to do something with this input https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
+                                          child: Container(
+                                              alignment: Alignment.center,
+                                              child: Text.rich(
+                                                TextSpan(
+                                                  text: "Good Luck ",
+                                                  children: [
+                                                    TextSpan(
+                                                        text: userName +"!",
+                                                        style: TextStyle(
+                                                            fontStyle: FontStyle
+                                                                .italic,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Colors
+                                                                .blue.shade900))
+                                                  ],
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .subtitle1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF151B1E),
+                                                        fontSize: 20,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ))),
                                     ),
                                     Card(
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
