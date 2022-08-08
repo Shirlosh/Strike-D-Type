@@ -49,7 +49,6 @@ Future<void> gameModeDialog(context) async {
                         width: 4,
                       ),
                     ),
-                    // splashColor: widget.options.splashColor,
                     onPressed: () async {
                       await Navigator.push(
                         context,
@@ -58,7 +57,6 @@ Future<void> gameModeDialog(context) async {
                         ),
                       );
                     },
-                    splashColor: Colors.deepOrange.withOpacity(0.5),
                     child: SizedBox(
                       width: 112,
                       height: 100,

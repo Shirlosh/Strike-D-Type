@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/application/Globals.dart';
+import 'package:strike_d_type/application/modes/TimerMode.dart';
 import 'package:strike_d_type/game_page/components/popups/endGamePopup/ScoreFlag.dart';
+import 'package:strike_d_type/game_page/game_page_widget.dart';
 import '../../../../home_page/home_page_widget.dart';
 import '../../../../lobby/lobby_widget.dart';
+import 'package:strike_d_type/application/modes/Mode.dart';
 
 Future<void> EndGamePopup(context, score) async {
   double screenWidth = MediaQuery.of(context).size.width;
@@ -34,6 +37,7 @@ Future<void> EndGamePopup(context, score) async {
                           width: screenWidth,
                           height: screenHeight * 0.79,
                           alignment: Alignment.center,
+                          //  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: Container(
                               alignment: Alignment.bottomCenter,
                               child: Stack(
@@ -42,6 +46,8 @@ Future<void> EndGamePopup(context, score) async {
                                   alignment: Alignment.center,
                                   children: <Widget>[
                                     Padding(
+                                        //         240.0
+                                        //padding:EdgeInsets.all(1.0),),
                                         padding: EdgeInsets.fromLTRB(
                                             screenWidth * 0.2,
                                             screenHeight * 0.4,
@@ -54,6 +60,7 @@ Future<void> EndGamePopup(context, score) async {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.end,
                                         children: [
+                                          ///OK button
                                           InkWell(
                                             onTap: () async {
                                               await Navigator.push(
@@ -77,6 +84,8 @@ Future<void> EndGamePopup(context, score) async {
                                               child: Ink(
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
+                                                    //  scale: 1,//0.8,
+                                                    //   alignment: Alignment.center,
                                                     image: AssetImage(
                                                         'assets/images/OK.png'),
                                                     fit: BoxFit.none,
@@ -85,16 +94,17 @@ Future<void> EndGamePopup(context, score) async {
                                               ),
                                             ),
                                           ),
+
+                                          ///Retry button
                                           InkWell(
                                             onTap: () async {
                                               await Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      LobbyWidget(
-                                                          GameMode, true),
-                                                ),
-                                              );
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        LobbyWidget(
+                                                            TimerMode(), true),
+                                                  ));
                                             },
                                             splashColor: Colors.deepOrange
                                                 .withOpacity(0.5),
