@@ -12,6 +12,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 
 import 'package:flutter/material.dart';
 
+
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
 
@@ -129,7 +130,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                           size: 30,
                         ),
                         onPressed: () async {
-                          var username = UsernamePopup(context) ?? false;
+                          var userName = UsernamePopup(context) ?? false;
                         },
                       ),
                       FlutterFlowIconButton(

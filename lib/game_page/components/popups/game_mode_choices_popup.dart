@@ -35,9 +35,22 @@ Future<void> gameModeDialog(context) async {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  //Single Player
-                  InkWell(
-                    onTap: () async {
+                  ///Single Player
+                  RaisedButton(
+                    color: Color(0x00FFD100),
+                    colorBrightness:
+                        ThemeData.estimateBrightnessForColor(Color(0x00FFD100)),
+                    // disabledColor: widget.options.disabledColor,
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: BorderSide(
+                        color: Color(0x7CFFFFFF),
+                        width: 4,
+                      ),
+                    ),
+                    // splashColor: widget.options.splashColor,
+                    onPressed: () async {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -51,16 +64,6 @@ Future<void> gameModeDialog(context) async {
                       height: 100,
                       child: Ink(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(18)),
-                          border: Border(
-                              right: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF)),
-                              left: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF)),
-                              top: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF)),
-                              bottom: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF))),
                           image: DecorationImage(
                             image: AssetImage('assets/images/SinglePlayer.png'),
                           ),
@@ -69,33 +72,32 @@ Future<void> gameModeDialog(context) async {
                     ),
                   ),
 
-                  //Two Players
-                  InkWell(
-                    onTap: () async {
+                  ///Two Players
+                  RaisedButton(
+                    color: Color(0x00FFD100),
+                    colorBrightness:
+                        ThemeData.estimateBrightnessForColor(Color(0x00FFD100)),
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: BorderSide(
+                        color: Color(0x7CFFFFFF),
+                        width: 4,
+                      ),
+                    ),
+                    // splashColor: widget.options.splashColor,
+                    onPressed: () async {
                       await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LobbyWidget(PvPMode(),
-                                true) //two players lobby LobbyWidget(),
-                            ),
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  LobbyWidget(PvPMode(), true)));
                     },
-                    splashColor: Colors.deepOrange.withOpacity(0.5),
                     child: SizedBox(
                       width: 112,
                       height: 100,
                       child: Ink(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(18)),
-                          border: Border(
-                              right: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF)),
-                              left: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF)),
-                              top: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF)),
-                              bottom: BorderSide(
-                                  width: 3.0, color: Color(0x7CFFFFFF))),
                           image: DecorationImage(
                             image: AssetImage('assets/images/TwoPlayers.png'),
                           ),

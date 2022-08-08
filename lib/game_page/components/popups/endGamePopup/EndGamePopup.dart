@@ -5,7 +5,6 @@ import 'package:strike_d_type/game_page/components/popups/endGamePopup/ScoreFlag
 import '../../../../home_page/home_page_widget.dart';
 import '../../../../lobby/lobby_widget.dart';
 
-
 Future<void> EndGamePopup(context, score) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
@@ -35,7 +34,6 @@ Future<void> EndGamePopup(context, score) async {
                           width: screenWidth,
                           height: screenHeight * 0.79,
                           alignment: Alignment.center,
-                          //  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                           child: Container(
                               alignment: Alignment.bottomCenter,
                               child: Stack(
@@ -44,8 +42,6 @@ Future<void> EndGamePopup(context, score) async {
                                   alignment: Alignment.center,
                                   children: <Widget>[
                                     Padding(
-                                        //         240.0
-                                        //padding:EdgeInsets.all(1.0),),
                                         padding: EdgeInsets.fromLTRB(
                                             screenWidth * 0.2,
                                             screenHeight * 0.4,
@@ -81,8 +77,6 @@ Future<void> EndGamePopup(context, score) async {
                                               child: Ink(
                                                 decoration: BoxDecoration(
                                                   image: DecorationImage(
-                                                    //  scale: 1,//0.8,
-                                                    //   alignment: Alignment.center,
                                                     image: AssetImage(
                                                         'assets/images/OK.png'),
                                                     fit: BoxFit.none,
@@ -97,32 +91,32 @@ Future<void> EndGamePopup(context, score) async {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      LobbyWidget(GameMode, true),
+                                                      LobbyWidget(
+                                                          GameMode, true),
                                                 ),
                                               );
                                             },
                                             splashColor: Colors.deepOrange
                                                 .withOpacity(0.5),
                                             child: Container(
-                                                width: 100,
-                                                height: 100,
-                                                margin: const EdgeInsets.fromLTRB(
-                                                    1, 1, 30, 0),
-                                                padding:
-                                                const EdgeInsets.fromLTRB(
-                                                    1, 1, 40, 0),
-                                                child: Ink(
-                                                  decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                      image: AssetImage(
-                                                          'assets/images/Retry.png'),
-                                                      fit: BoxFit.none,
-                                                    ),
+                                              width: 100,
+                                              height: 100,
+                                              margin: const EdgeInsets.fromLTRB(
+                                                  1, 1, 30, 0),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      1, 1, 40, 0),
+                                              child: Ink(
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: AssetImage(
+                                                        'assets/images/Retry.png'),
+                                                    fit: BoxFit.none,
                                                   ),
                                                 ),
                                               ),
                                             ),
-
+                                          ),
                                         ]),
                                   ]))),
                     ],
