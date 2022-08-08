@@ -17,7 +17,7 @@ import '../InputField.dart';
 Future<void> GameIDPopup(context) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
-  InputField inputField = InputField( padding: EdgeInsets.fromLTRB(120,0,120,0),
+  InputField inputField = InputField( padding: EdgeInsets.fromLTRB(120,0,120,0), errorText: 'invalid arena code' ,
       onChange: (value) {GameID = value;} );
 
   showDialog(

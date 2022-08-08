@@ -4,7 +4,8 @@ class InputField extends StatefulWidget {
 
   final onChange;
   final padding;
-  InputField({this.onChange, this.padding});
+  final errorText;
+  InputField({this.onChange, this.padding, this.errorText});
   final _InputField fieldState = _InputField();
 
   @override
@@ -41,7 +42,7 @@ class _InputField extends State<InputField> {
         child: TextField(
             onChanged: widget.onChange,
             decoration: InputDecoration(
-              errorText: _validate ? null : 'invalid arena code' ,
+              errorText: _validate ? null : widget.errorText,
               border: InputBorder.none,
               filled: true,
             ))
