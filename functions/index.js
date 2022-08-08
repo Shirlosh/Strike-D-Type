@@ -10,6 +10,8 @@ class Game {
 
     getScore(){ return this.score; }
 
+    start(){ this.started = true; }
+
     getChosenCards() { return this.ChosenCards}
 
     initGame(numberOfSymbolsOnCard, shuffleSymbolsOnCard = false)
@@ -27,6 +29,7 @@ class Game {
         //Total number of cards that can be generated following the rules.
         this.numberOfCards = Math.pow(this.primeNumber, 2) + this.primeNumber + 1;
         this.cardsOfCards = []
+        this.started = false;
         this.createCards();
         this.generateTwoCards();
     }
@@ -35,6 +38,7 @@ class Game {
     {
         this.numberOfSymbolsOnCard = json['numberOfSymbolsOnCard']
         this.primeNumber = json['primeNumber']
+        this.started = json['started']
         this.id = json['id']
         this.score = json['score']
         this.ChosenCards = json['ChosenCards']

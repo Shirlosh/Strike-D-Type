@@ -16,7 +16,7 @@ class TimerType extends StatefulWidget {
 class _TimerMode extends State<TimerType> {
 
   int _score = 0;
-  int _counter = 2;
+  int _counter = 60;
 
   initState() { _startTimer();  }
 

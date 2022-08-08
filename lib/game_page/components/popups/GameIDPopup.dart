@@ -1,13 +1,10 @@
 import 'dart:convert';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
 import '../../../application/Globals.dart';
 import '../../../application/modes/PvPMode.dart';
 import '../../../flutter_flow/flutter_flow_theme.dart';
 import '../../../lobby/lobby_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:strike_d_type/application/Globals.dart';
 import '../../../../lobby/lobby_widget.dart';
 import '../Button.dart';
@@ -72,7 +69,10 @@ Future<void> GameIDPopup(context) async {
 Future<bool> _IDValidation() async
 {
   var snapshot = await FirebaseDatabase.instance.ref('games').child(GameID).get();
-  if (snapshot.exists) return true;
+  if (snapshot.exists) {
+    if (jsonDecode(snapshot.value)['started'] == false)
+      return true;
+  }
   return false;
 }
 
