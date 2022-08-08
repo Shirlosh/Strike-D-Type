@@ -46,4 +46,13 @@ class TimerMode extends Mode
 
     return ans;
   }
+
+  @override
+  Future<bool> startGame() { return Future<bool>.value(true);  }
+
+  @override
+  Future<void> leaveGame(){}
+
+  @override
+  Future<void> replayGame() {  }
 }

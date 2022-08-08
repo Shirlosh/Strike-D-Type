@@ -45,4 +45,36 @@ class HandleRequestsOnline extends HandleRequests {
     });
     return results.data;
   }
+
+  Future<void> replayGame() async {
+    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('replayGame');
+    final results = await callable.call(<String, dynamic>{
+      'ID': GameID,
+    });
+    return results.data;
+  }
+  Future<void> leaveGame() async {
+    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('leaveGame');
+    final results = await callable.call(<String, dynamic>{
+      'ID': GameID,
+      'type': PlayerType
+    });
+    return results.data;
+  }
+  Future<bool> joinGame() async {
+    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('joinGame');
+    final results = await callable.call(<String, dynamic>{
+      'ID': GameID,
+    });
+    return results.data;
+  }
+
+  Future<bool> startGame() async {
+    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('startGame');
+    final results = await callable.call(<String, dynamic>{
+      'ID': GameID,
+    });
+    return results.data;
+  }
+
 }

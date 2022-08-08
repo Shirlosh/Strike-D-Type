@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
 
 class ScoreFlag extends StatelessWidget {
-  ScoreFlag(this.score);
-
+  ScoreFlag({this.score, this.winner});
+  final winner;
   final score;
+  final greenFlag = "assets/images/GreenFlag.png";
+  final redFlag = "assets/images/RedFlag.png";
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class ScoreFlag extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                   image: Image.asset(
-                    "assets/images/GreenFlag.png",
+                   winner ? greenFlag : redFlag,
                   ).image,
                   fit: BoxFit.cover),
             ),

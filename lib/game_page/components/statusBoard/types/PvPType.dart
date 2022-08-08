@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:strike_d_type/game_page/components/popups/endGamePopup/EndGamePopup.dart';
 import '../../../../application/Globals.dart';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -26,6 +27,11 @@ class _PvPText extends State<PvPType> {
         setState(() {
           _playerScore = values['score'][PlayerType];
           _opponentScore = values['score'][OpponentType];
+
+          if (_playerScore + _opponentScore == 2)
+            {
+              EndGamePopup(context, _playerScore);
+            }
         });
       }
     });

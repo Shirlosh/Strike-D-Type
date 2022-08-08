@@ -20,4 +20,5 @@ class HandleRequestsLocal extends HandleRequests {
   Future<bool> isCorrectSymbol(int symbol) {
     return Future<bool>.value(game.getSameSymbol() == symbol);
   }
+
 }

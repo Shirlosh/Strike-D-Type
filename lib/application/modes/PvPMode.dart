@@ -15,6 +15,7 @@ class PvPMode extends Mode
   {
     req = new HandleRequestsOnline();
     boardType = new PvPType();
+    //listen to start
   }
 
   @override
@@ -44,7 +45,16 @@ class PvPMode extends Mode
 
   @override
   Future<String> createGame(symbolsAmount) {
-    return req.createGame(symbolsAmount);
+    Future<String> id;
+    if(PlayerType == 'owner')
+      id = req.createGame(symbolsAmount);
+    else {
+      id = Future<String>.value(GameID);
+      //id validation checks already if full
+      req.joinGame();
+    }
+
+    return id;
   }
 
   @override
@@ -57,5 +67,20 @@ class PvPMode extends Mode
     return req.isCorrectSymbol(symbol);
   }
 
+  Future<bool> startGame() async {
+    Future<bool> res = Future<bool>.value(false);
+    if(PlayerType == 'owner')
+      res = req.startGame();
+    return res;
+  }
 
+  @override
+  Future<void> leaveGame() async {
+    req.leaveGame();
+  }
+
+  @override
+  Future<void> replayGame() async {
+    req.replayGame();
+  }
 }

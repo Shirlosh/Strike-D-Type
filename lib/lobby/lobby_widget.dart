@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/Globals.dart';
 import '../application/modes/Mode.dart';
@@ -34,23 +37,14 @@ class _LobbyWidgetState extends State<LobbyWidget> {
   void initState() {
     super.initState();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    PlayerType = widget.owner ? 'owner' : 'joins';
+    OpponentType = widget.owner ? 'joins' : 'owner';
 
-    if (widget.owner) {
-      PlayerType = 'owner';
-      OpponentType = 'joins';
-      GameMode.createGame(6).then((value) =>
+    GameMode.createGame(6).then((value) =>
           setState(() {
             GameID = value;
             this.gameID = value;
           }));
-    }
-    else {
-      PlayerType = 'joins';
-      OpponentType = 'owner';
-      setState(() {
-        this.gameID = GameID;
-      });
-    }
 
     WidgetsBinding.instance.addPostFrameCallback((_) => {
     if (GameMode.mode() == 'Timer')
@@ -62,6 +56,27 @@ class _LobbyWidgetState extends State<LobbyWidget> {
           builder: (context) => GamePageWidget(),
         ))
     }});
+    bool once = true;
+    if(PlayerType == 'joins')
+    {
+      FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
+        Map<String, dynamic> data = jsonDecode(event.snapshot.value);
+        if(data['id'] == GameID  && (data['started'] == true) && once)
+          {
+          once = false;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GamePageWidget(),
+            ));
+          }
+      });
+      FirebaseDatabase.instance.ref('games').onChildRemoved.listen((event) {
+        Map<String, dynamic> data = jsonDecode(event.snapshot.value);
+        if(data['id'] == GameID)
+          Navigator.pop(context);
+      });
+    }
   }
 
 
@@ -106,6 +121,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
+                        GameMode.leaveGame();
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -259,12 +275,14 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  GameMode.startGame().then((value) async => {
+                                  if(value == true){
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => GamePageWidget(),
                                     ),
-                                  );
+                                  )}});
                                 },
                                 text: 'Start!',
                                 options: FFButtonOptions(
