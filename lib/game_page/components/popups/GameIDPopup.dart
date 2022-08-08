@@ -55,7 +55,7 @@ Future<void> GameIDPopup(context) async {
                                     Button(
                                         image: 'assets/images/OK.png',
                                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 55),
-                                        onTap: () =>{_onConfirm(context, alertDialogContext).then((value) => inputField.setValidate(value))}
+                                        onTap: () =>{_onConfirm(context).then((value) => inputField.setValidate(value))}
                                     )
                                         ]),
                                   ),
@@ -77,20 +77,16 @@ Future<bool> _IDValidation() async
 }
 
 
-Future<bool> _onConfirm(context, alertDialogContext) async
+Future<bool> _onConfirm(context) async
 {
   bool validate = await _IDValidation();
   if (validate)
     {
-      //notice entered
-      Navigator.pop(alertDialogContext, true);
+      Navigator.pop(context, true);
       Navigator.push(context, MaterialPageRoute(builder: (context) => LobbyWidget(PvPMode(), false)));
       return true;
     }
   else
-    {
       return false;
-      //print invalid
-    }
 
 }

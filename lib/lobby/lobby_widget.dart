@@ -55,6 +55,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) => {
     if (GameMode.mode() == 'Timer')
     {
+        Navigator.pop(context, true),
         Navigator.push(
         context,
         MaterialPageRoute(
