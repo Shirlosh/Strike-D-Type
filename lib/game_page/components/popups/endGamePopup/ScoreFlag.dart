@@ -12,9 +12,9 @@ class ScoreFlag extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Positioned(
-        top: screenHeight * 0.1,
+        top: screenHeight * 0.025,
         child: SizedBox(
-          width: screenWidth  * 0.2,
+          width: screenWidth  * 0.27,
           height: screenHeight *0.3,
           child: Container(
             decoration: BoxDecoration(
@@ -26,13 +26,13 @@ class ScoreFlag extends StatelessWidget {
             ),
             child: Container(
               alignment: Alignment.center,
-              child: Text('your score is $score',
+              child: Text('Your Score: $score',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Poppins',
-                        fontSize: screenWidth  * 0.017 ,
+                        fontSize: screenWidth  * 0.02 ,
                         lineHeight: 0.1,
-                        color: Colors.black38,
+                        color: Colors.orange.shade50,
                       )),
             ),
           ),

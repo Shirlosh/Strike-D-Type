@@ -48,7 +48,7 @@ class _GameCardsState extends State<GameCards> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             for (var i = 0; i < widget.cardsAmount; i++)
-                GameCard(cards[i], widget.changeCards)
+                GameCard(cards[i])
           ],
         ),
       ),

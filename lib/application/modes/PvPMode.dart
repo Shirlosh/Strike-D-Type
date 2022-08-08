@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:strike_d_type/application/requests/HandleOnlineRequests.dart';
 import '../../game_page/components/statusBoard/types/PvPType.dart';

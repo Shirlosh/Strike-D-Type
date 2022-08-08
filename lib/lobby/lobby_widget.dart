@@ -35,7 +35,6 @@ class _LobbyWidgetState extends State<LobbyWidget> {
     super.initState();
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-    print(widget.owner);
     if (widget.owner) {
       PlayerType = 'owner';
       OpponentType = 'joins';

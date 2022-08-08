@@ -7,8 +7,8 @@ class Cell extends StatefulWidget {
   IconData icon;
   Color color;
   final index;
-  final changeCards;
-  Cell(this.index, this.changeCards)
+
+  Cell(this.index)
   {
     icon = ClassicTheme.getIcon(index);
     color = ClassicTheme.getColor(index);

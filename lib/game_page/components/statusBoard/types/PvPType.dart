@@ -27,15 +27,11 @@ class _PvPText extends State<PvPType> {
           _playerScore = values['score'][PlayerType];
           _opponentScore = values['score'][OpponentType];
         });
-
-        //ChangeCards(values["ChosenCards"]);
       }
     });
   }
 
-  void _onIconClicked(bool success) {
-    print('PvP _onIconClicked');
-  }
+  void _onIconClicked(bool success) { }
     @override
   Widget build(BuildContext context) {
     return Column(

@@ -4,4 +4,4 @@ Mode GameMode;
 String GameID;
 String PlayerType = 'owner';
 String OpponentType = 'joins';
-String userName = '';
+String Username = '';
