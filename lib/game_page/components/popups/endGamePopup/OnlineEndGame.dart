@@ -8,8 +8,8 @@ import '../../../../home_page/home_page_widget.dart';
 import '../../../../lobby/lobby_widget.dart';
 import '../../Button.dart';
 
-
-Future<void> EndGamePopup(context, score) async {
+// todo: replay and home check,   flag color?
+Future<void> EndGamePopup(context, PlayerScore, OpponnentScore) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
 
@@ -24,7 +24,7 @@ Future<void> EndGamePopup(context, score) async {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image:
-                            Image.asset('assets/images/EndGamePopup.png').image,
+                        Image.asset('assets/images/EndGamePopup.png').image,
                         fit: BoxFit.contain)),
                 child: Container(
                   child: Stack(
@@ -32,7 +32,7 @@ Future<void> EndGamePopup(context, score) async {
                     clipBehavior: Clip.hardEdge,
                     alignment: Alignment.center,
                     children: <Widget>[
-                      ScoreFlag(score: score, winner: true,),
+                      ScoreFlag(score: PlayerScore, winner: PlayerScore > OpponnentScore),
                       Container(
                           width: screenWidth,
                           height: screenHeight * 0.7,
@@ -48,20 +48,22 @@ Future<void> EndGamePopup(context, score) async {
                                     Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Button(
-                                              image: 'assets/images/Home.png',
-                                              onTap: () async {
-                                                Navigator.pushAndRemoveUntil(
-                                                    context,
-                                                    MaterialPageRoute(builder: (context) =>  HomePageWidget()),
-                                                    ModalRoute.withName('/')
-                                                );},
+                                            image: 'assets/images/Home.png',
+                                            onTap: () async {
+                                              GameMode.leaveGame();
+                                              Navigator.pushAndRemoveUntil(
+                                                  context,
+                                                  MaterialPageRoute(builder: (context) =>  HomePageWidget()),
+                                                  ModalRoute.withName('/')
+                                              );},
 
-                                              margin: const EdgeInsets.fromLTRB(70, 1, 1, 100),
-                                              padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                                            margin: const EdgeInsets.fromLTRB(70, 1, 1, 100),
+                                            padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
                                           ),
                                           Button(
                                             image: 'assets/images/Retry.png',
                                             onTap: () async {
+                                              GameMode.replayGame();
                                               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LobbyWidget(GameMode.mode() == 'Timer' ? TimerMode(): PvPMode(), PlayerType == 'owner')), ModalRoute.withName('/'));
 
                                             },

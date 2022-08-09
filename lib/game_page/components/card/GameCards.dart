@@ -9,8 +9,10 @@ class GameCards extends StatefulWidget {
   final _GameCardsState cardState = _GameCardsState();
   _GameCardsState createState() => cardState;
 
-  changeCards() => cardState._changeCards();
-  GameCards(this.cardsAmount);
+  changeCards(cards) => cardState._changeCards(cards);
+  GameCards(this.cardsAmount) {
+    GameMode.setCardChanger(changeCards);
+  }
 
 }
 
@@ -22,15 +24,15 @@ class _GameCardsState extends State<GameCards> {
   @override
   void initState() {
     super.initState();
-    GameMode.getRequest().getCards(GameID).then((value) =>  setState(() {
+    GameMode.getCards().then((value) =>  setState(() {
       cards = value;
     }));
   }
 
-  void _changeCards()  {
-    GameMode.getRequest().getCards(GameID).then((value) =>  setState(() {
-      cards = value;
-    }));
+  void _changeCards(cards)  {
+    setState(() {
+      this.cards = cards;
+    });
   }
 
 
@@ -46,7 +48,7 @@ class _GameCardsState extends State<GameCards> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             for (var i = 0; i < widget.cardsAmount; i++)
-                GameCard(cards[i], widget.changeCards)
+                GameCard(cards[i])
           ],
         ),
       ),

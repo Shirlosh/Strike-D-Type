@@ -9,7 +9,8 @@ import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class LobbyWidget extends StatefulWidget {
-  LobbyWidget(Mode mode, this.owner) {
+  LobbyWidget(Mode mode,this.owner)
+  {
     GameMode = mode;
   }
 
@@ -34,36 +35,50 @@ class _LobbyWidgetState extends State<LobbyWidget> {
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    PlayerType = widget.owner ? 'owner' : 'joins';
+    OpponentType = widget.owner ? 'joins' : 'owner';
 
-    print(widget.owner);
-    if (widget.owner) {
-      PlayerType = 'owner';
-      OpponentType = 'joins';
-      GameMode.getRequest().createGame(6).then((value) => setState(() {
+    GameMode.createGame(6).then((value) =>
+          setState(() {
             GameID = value;
             this.gameID = value;
           }));
-    } else {
-      PlayerType = 'joins';
-      OpponentType = 'owner';
-      setState(() {
-        this.gameID = GameID;
-      });
-    }
 
     WidgetsBinding.instance.addPostFrameCallback((_) => {
-          if (GameMode.mode() == 'Timer')
-            {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => GamePageWidget(),
-                  ))
-            }
-        });
+    if (GameMode.mode() == 'Timer')
+    {
+        Navigator.pop(context, true),
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GamePageWidget(),
+        ))
+    }});
+    bool once = true;
+    if(PlayerType == 'joins')
+    {
+      FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
+        Map<String, dynamic> data = jsonDecode(event.snapshot.value);
+        if(data['id'] == GameID  && (data['started'] == true) && once)
+          {
+          once = false;
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GamePageWidget(),
+            ));
+          }
+      });
+      FirebaseDatabase.instance.ref('games').onChildRemoved.listen((event) {
+        Map<String, dynamic> data = jsonDecode(event.snapshot.value);
+        if(data['id'] == GameID)
+          Navigator.pop(context);
+      });
+    }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +120,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                         size: 30,
                       ),
                       onPressed: () async {
+                        GameMode.leaveGame();
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -272,12 +288,14 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                   EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                               child: FFButtonWidget(
                                 onPressed: () async {
+                                  GameMode.startGame().then((value) async => {
+                                  if(value == true){
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => GamePageWidget(),
                                     ),
-                                  );
+                                  )}});
                                 },
                                 text: 'Start!',
                                 options: FFButtonOptions(

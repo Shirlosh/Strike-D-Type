@@ -10,6 +10,12 @@ class Game {
 
     getScore(){ return this.score; }
 
+    setFull(val) {this.full = val}
+
+    isFull() { return this.full}
+
+    start(){ this.started = true; }
+
     getChosenCards() { return this.ChosenCards}
 
     initGame(numberOfSymbolsOnCard, shuffleSymbolsOnCard = false)
@@ -17,6 +23,7 @@ class Game {
         this.numberOfSymbolsOnCard = numberOfSymbolsOnCard
         this.id = uuidv4().substring(0, 7)
         this.score = {'owner': 0, 'joins': 0};
+        this.full = false;
 
         //The number of symbols on a card has to be a prime number + 1
         this.primeNumber = numberOfSymbolsOnCard - 1;
@@ -27,6 +34,7 @@ class Game {
         //Total number of cards that can be generated following the rules.
         this.numberOfCards = Math.pow(this.primeNumber, 2) + this.primeNumber + 1;
         this.cardsOfCards = []
+        this.started = false;
         this.createCards();
         this.generateTwoCards();
     }
@@ -35,6 +43,8 @@ class Game {
     {
         this.numberOfSymbolsOnCard = json['numberOfSymbolsOnCard']
         this.primeNumber = json['primeNumber']
+        this.started = json['started']
+        this.full = json['full']
         this.id = json['id']
         this.score = json['score']
         this.ChosenCards = json['ChosenCards']
@@ -128,12 +138,15 @@ exports.isCorrectSymbol = functions.https.onCall(async (data, context) => {
     game.initGameWithJson(JSON.parse(gameRef.val()))
     if(game.getSameSymbol() === data.Symbol)
     {
-        game.score['owner'] = game.score['owner'] + 1
-        functions.logger.log("inc score")
+        game.score[data.type] = game.score[data.type] + 1
         ret = true
     }
+    else
+    {
+        game.score[data.type] = game.score[data.type] - 1
+    }
     game.generateTwoCards()
-    gamesRef.child(game.getGameID()).set(JSON.stringify(game))
+    await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
     return ret
 });
 
@@ -151,8 +164,57 @@ exports.createGame = functions.https.onCall(async(data, context) => {
     let symbolsAmount = data.symbolsAmount
     let game = new Game()
     game.initGame(symbolsAmount, true)
-    gamesRef.child(game.getGameID()).set(JSON.stringify(game));
+    await gamesRef.child(game.getGameID()).set(JSON.stringify(game));
     return game.getGameID();
 });
+
+exports.startGame = functions.https.onCall(async (data, context) => {
+    let gameRef = await gamesRef.child(data.ID).get()
+    let game = new Game()
+    game.initGameWithJson(JSON.parse(gameRef.val()))
+    if(game.full === false)
+        return false;
+    game.started = true;
+    await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
+    return true
+});
+
+exports.replayGame = functions.https.onCall(async (data, context) => {
+    let gameRef = await gamesRef.child(data.ID).get()
+    let game = new Game()
+    game.initGameWithJson(JSON.parse(gameRef.val()))
+    game.started = false;
+    game.score['owner'] = 0;
+    game.score['joins'] = 0;
+    game.generateTwoCards()
+    await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
+    return true
+});
+
+exports.joinGame = functions.https.onCall(async (data, context) => {
+    let gameRef = await gamesRef.child(data.ID).get()
+    let game = new Game()
+    game.initGameWithJson(JSON.parse(gameRef.val()))
+    if (game.isFull === true)
+        return false
+    else
+        game.setFull(true);
+    await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
+    return true
+});
+
+exports.leaveGame = functions.https.onCall(async (data, context) => {
+    let gameRef = await gamesRef.child(data.ID).get()
+    let game = new Game()
+    game.initGameWithJson(JSON.parse(gameRef.val()))
+    if(data.type === 'owner')     await gamesRef.child(data.ID).remove();
+    else
+    {
+        game.setFull(false)
+        await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
+    }
+    return true
+});
+
 
 
