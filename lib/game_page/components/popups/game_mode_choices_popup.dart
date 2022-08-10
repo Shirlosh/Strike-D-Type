@@ -23,6 +23,11 @@ Future<void> gameModeDialog(context) async {
           insetPadding: EdgeInsets.all(1),
           child: Ink(
             decoration: BoxDecoration(
+              border: Border.all(
+                color: Color(0x7CFFFFFF),
+                width: 5,
+              ),
+              borderRadius: BorderRadius.circular(12),
               gradient: LinearGradient(
                 colors: [Color(0xFFB877FF), Color(0xFFFBAB66)],
                 stops: [0, 1],
@@ -46,7 +51,7 @@ Future<void> gameModeDialog(context) async {
                       borderRadius: BorderRadius.circular(8),
                       side: BorderSide(
                         color: Color(0x7CFFFFFF),
-                        width: 4,
+                        width: 2,
                       ),
                     ),
                     onPressed: () async {
@@ -58,8 +63,8 @@ Future<void> gameModeDialog(context) async {
                       );
                     },
                     child: SizedBox(
-                      width: 112,
-                      height: 100,
+                      width: 124,
+                      height: 120,
                       child: Ink(
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -80,7 +85,7 @@ Future<void> gameModeDialog(context) async {
                       borderRadius: BorderRadius.circular(8),
                       side: BorderSide(
                         color: Color(0x7CFFFFFF),
-                        width: 4,
+                        width: 2,
                       ),
                     ),
                     // splashColor: widget.options.splashColor,
@@ -92,8 +97,8 @@ Future<void> gameModeDialog(context) async {
                                   LobbyWidget(PvPMode(), true)));
                     },
                     child: SizedBox(
-                      width: 112,
-                      height: 100,
+                      width: 124,
+                      height: 120,
                       child: Ink(
                         decoration: BoxDecoration(
                           image: DecorationImage(

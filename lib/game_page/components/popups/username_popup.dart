@@ -12,7 +12,7 @@ Future<void> UsernamePopup(context) async {
           //todo:need to do something with this input https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
           content: TextField(
             onChanged: (value) {
-              userName = value;
+              Username = value;
             },
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),

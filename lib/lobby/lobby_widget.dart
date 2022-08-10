@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/Globals.dart';
 import '../application/modes/Mode.dart';
@@ -214,7 +217,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                                   text: "Good Luck ",
                                                   children: [
                                                     TextSpan(
-                                                        text: userName +"!",
+                                                        text: Username +"!",
                                                         style: TextStyle(
                                                             fontStyle: FontStyle
                                                                 .italic,
