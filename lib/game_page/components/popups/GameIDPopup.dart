@@ -9,14 +9,14 @@ import 'package:strike_d_type/application/Globals.dart';
 import '../../../../lobby/lobby_widget.dart';
 import '../Button.dart';
 import '../InputField.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 
 Future<void> GameIDPopup(context) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
-  print(screenHeight);
-  print(screenWidth);
-  InputField inputField = InputField( padding: EdgeInsets.fromLTRB(screenHeight*0.13,0,screenHeight*0.13,0), errorText: 'invalid arena code' ,
+
+  InputField inputField = InputField( padding: EdgeInsets.fromLTRB(kIsWeb?150:70, 0, kIsWeb?150:70, 0), errorText: 'invalid arena code' ,
       onChange: (value) {GameID = value;} );
 
   showDialog(
@@ -29,9 +29,8 @@ Future<void> GameIDPopup(context) async {
                 width: screenWidth * 0.3,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image:
-                        Image.asset('assets/images/GameIDPopup.png').image,
-                        fit: BoxFit.contain)),
+                        image: Image.asset('assets/images/GameIDPopup.png').image,
+                        fit: BoxFit.fill)),
                 child: Container(
                   child: Stack(
                     fit: StackFit.loose,
@@ -40,7 +39,7 @@ Future<void> GameIDPopup(context) async {
                     children: <Widget>[
                       Container(
                           width: screenWidth,
-                          height: screenHeight* 0.5,
+                          height: screenHeight* 0.9,
                           alignment: Alignment.center,
                           child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -55,9 +54,9 @@ Future<void> GameIDPopup(context) async {
                                     ))),
                                     inputField,
                                     Button(
-                                        scale: 2.3, //1500*0.0001 ,//1000/screenWidth,
+                                        scale: kIsWeb ? 1.7 : 2.7,
                                         image: 'assets/images/OK.png',
-                                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 65),
+                                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
                                         onTap: () =>{_onConfirm(context).then((value) => inputField.setValidate(value))}
                                     )
                                         ]),

@@ -7,12 +7,13 @@ import '../../../../application/modes/PvPMode.dart';
 import '../../../../home_page/home_page_widget.dart';
 import '../../../../lobby/lobby_widget.dart';
 import '../../Button.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 
 // todo: replay and home check,   flag color?
 Future<void> EndGamePopup(context, PlayerScore, OpponnentScore) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
-
   showDialog(
       context: context,
       builder: (alertDialogContext) {

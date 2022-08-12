@@ -7,6 +7,8 @@ import '../../../../application/modes/PvPMode.dart';
 import '../../../../home_page/home_page_widget.dart';
 import '../../../../lobby/lobby_widget.dart';
 import '../../Button.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 
 
 Future<void> EndGamePopup(context, score) async {
@@ -48,7 +50,7 @@ Future<void> EndGamePopup(context, score) async {
                                     Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Button(
-                                            scale: 2.5,
+                                            scale: kIsWeb ? 3 : 1.5,
                                               image: 'assets/images/Home.png',
                                               onTap: () async {
                                                 Navigator.pushAndRemoveUntil(
