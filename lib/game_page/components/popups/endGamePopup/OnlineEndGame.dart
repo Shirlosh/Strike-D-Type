@@ -61,6 +61,7 @@ Future<void> EndGamePopup(context, PlayerScore, OpponnentScore) async {
                                             padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
                                           ),
                                           Button(
+                                            scale: 2.5,
                                             image: 'assets/images/Retry.png',
                                             onTap: () async {
                                               GameMode.replayGame();

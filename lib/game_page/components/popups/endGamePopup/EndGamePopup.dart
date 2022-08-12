@@ -19,8 +19,8 @@ Future<void> EndGamePopup(context, score) async {
         return Dialog(
             backgroundColor: Colors.transparent,
             child: Ink(
-                height: screenHeight*0.7,
-                width: screenWidth,
+                //height: screenHeight*0.7,
+                //width: screenWidth,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image:
@@ -32,9 +32,9 @@ Future<void> EndGamePopup(context, score) async {
                     clipBehavior: Clip.hardEdge,
                     alignment: Alignment.center,
                     children: <Widget>[
-                      ScoreFlag(score: score, winner: true,),
+                      ScoreFlag(score: score, winner: true),
                       Container(
-                          width: screenWidth,
+                          width: screenWidth * 0.5,
                           height: screenHeight * 0.7,
                           alignment: Alignment.center,
                           child: Container(
@@ -44,10 +44,11 @@ Future<void> EndGamePopup(context, score) async {
                                   clipBehavior: Clip.none,
                                   alignment: Alignment.bottomCenter,
                                   children: <Widget>[
-                                    Padding(padding: EdgeInsets.fromLTRB(screenWidth * 0.2, screenHeight * 0.4, screenWidth, screenHeight * 0.9)),
+                                    Padding(padding: EdgeInsets.fromLTRB(screenWidth * 0.2, screenHeight, screenWidth, screenHeight * 0.9)),
                                     Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Button(
+                                            scale: 2.5,
                                               image: 'assets/images/Home.png',
                                               onTap: () async {
                                                 Navigator.pushAndRemoveUntil(
@@ -60,13 +61,14 @@ Future<void> EndGamePopup(context, score) async {
                                               padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
                                           ),
                                           Button(
+                                            scale: 2.5,
                                             image: 'assets/images/Retry.png',
                                             onTap: () async {
                                               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LobbyWidget(GameMode.mode() == 'Timer' ? TimerMode(): PvPMode(), PlayerType == 'owner')), ModalRoute.withName('/'));
 
                                             },
                                             margin: const EdgeInsets.fromLTRB(1, 1, 30, 100),
-                                            padding: const EdgeInsets.fromLTRB(1, 1, 40, 0),
+                                            padding: const EdgeInsets.fromLTRB(1, 1, 70, 0),
                                           )
                                         ]),
                                   ]))),

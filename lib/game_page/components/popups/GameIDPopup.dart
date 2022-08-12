@@ -14,7 +14,9 @@ import '../InputField.dart';
 Future<void> GameIDPopup(context) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
-  InputField inputField = InputField( padding: EdgeInsets.fromLTRB(120,0,120,0), errorText: 'invalid arena code' ,
+  print(screenHeight);
+  print(screenWidth);
+  InputField inputField = InputField( padding: EdgeInsets.fromLTRB(screenHeight*0.13,0,screenHeight*0.13,0), errorText: 'invalid arena code' ,
       onChange: (value) {GameID = value;} );
 
   showDialog(
@@ -23,8 +25,8 @@ Future<void> GameIDPopup(context) async {
         return Dialog(
             backgroundColor: Colors.transparent,
             child: Ink(
-                height: MediaQuery.of(context).size.height * 0.8,
-                width: MediaQuery.of(context).size.width * 0.3,
+                height: screenHeight * 0.4,
+                width: screenWidth * 0.3,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image:
@@ -38,7 +40,7 @@ Future<void> GameIDPopup(context) async {
                     children: <Widget>[
                       Container(
                           width: screenWidth,
-                          height: screenHeight * 0.90,
+                          height: screenHeight* 0.5,
                           alignment: Alignment.center,
                           child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -48,13 +50,14 @@ Future<void> GameIDPopup(context) async {
                                     Padding(padding: EdgeInsets.fromLTRB(0,70,0,0), child:
                                     Text("Arena Code", style: FlutterFlowTheme.of(context).bodyText1.override(
                                       fontFamily: 'Poppins',
-                                      fontSize: screenWidth  * 0.02 ,
+                                      fontSize: screenHeight  * 0.03 ,
                                       color: Colors.black45,
                                     ))),
                                     inputField,
                                     Button(
+                                        scale: 2.3, //1500*0.0001 ,//1000/screenWidth,
                                         image: 'assets/images/OK.png',
-                                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 55),
+                                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 65),
                                         onTap: () =>{_onConfirm(context).then((value) => inputField.setValidate(value))}
                                     )
                                         ]),
