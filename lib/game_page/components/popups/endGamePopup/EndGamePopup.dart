@@ -4,6 +4,7 @@ import 'package:strike_d_type/application/Globals.dart';
 import 'package:strike_d_type/application/modes/TimerMode.dart';
 import 'package:strike_d_type/game_page/components/popups/endGamePopup/ScoreFlag.dart';
 import '../../../../application/modes/PvPMode.dart';
+import '../../../../flutter_flow/flutter_flow_theme.dart';
 import '../../../../home_page/home_page_widget.dart';
 import '../../../../lobby/lobby_widget.dart';
 import '../../Button.dart';
@@ -11,18 +12,16 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 
 
-Future<void> EndGamePopup(context, score) async {
+Future<void> EndGamePopup(context, {score, winner= true}) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
-
+  String text = GameMode.mode() == 'Timer'? 'Your Score: $score' : (winner? 'You Win': 'You Lose') ;
   showDialog(
       context: context,
       builder: (alertDialogContext) {
         return Dialog(
             backgroundColor: Colors.transparent,
             child: Ink(
-                //height: screenHeight*0.7,
-                //width: screenWidth,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image:
@@ -34,7 +33,14 @@ Future<void> EndGamePopup(context, score) async {
                     clipBehavior: Clip.hardEdge,
                     alignment: Alignment.center,
                     children: <Widget>[
-                      ScoreFlag(score: score, winner: true),
+                      ScoreFlag(text: text, winner: winner),
+                      Text(GameMode.mode() == 'PvP' ? 'Your Score is: $score':'',
+                        textAlign: TextAlign.center,
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily: 'Poppins',
+                          fontSize: screenWidth  * 0.015 ,
+                          lineHeight: 0.1,
+                          color: Colors.black54,)),
                       Container(
                           width: screenWidth * 0.5,
                           height: screenHeight * 0.7,

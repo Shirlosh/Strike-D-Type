@@ -30,7 +30,7 @@ class _PvPText extends State<PvPType> {
 
           if (_playerScore + _opponentScore == 2)
             {
-              EndGamePopup(context, _playerScore);
+              EndGamePopup(context, score: _playerScore, winner: _playerScore >= _opponentScore);
             }
         });
       }
