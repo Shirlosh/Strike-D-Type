@@ -46,11 +46,10 @@ Future<void> EndGamePopup(context, score) async {
                                   clipBehavior: Clip.none,
                                   alignment: Alignment.bottomCenter,
                                   children: <Widget>[
-                                    Padding(padding: EdgeInsets.fromLTRB(screenWidth * 0.2, screenHeight, screenWidth, screenHeight * 0.9)),
+                                    Padding(padding: EdgeInsets.symmetric(vertical: screenWidth, horizontal: 500)),
                                     Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Button(
-                                            scale: kIsWeb ? 3 : 1.5,
                                               image: 'assets/images/Home.png',
                                               onTap: () async {
                                                 Navigator.pushAndRemoveUntil(
@@ -59,18 +58,17 @@ Future<void> EndGamePopup(context, score) async {
                                                     ModalRoute.withName('/')
                                                 );},
 
-                                              margin: const EdgeInsets.fromLTRB(70, 1, 1, 100),
-                                              padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
+                                              margin: const EdgeInsets.fromLTRB(kIsWeb? 100:70, 0, 0, kIsWeb? 100:30),
+                                              //padding: const EdgeInsets.fromLTRB(1, 1, 1, 1),
                                           ),
                                           Button(
-                                            scale: 2.5,
                                             image: 'assets/images/Retry.png',
                                             onTap: () async {
                                               Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LobbyWidget(GameMode.mode() == 'Timer' ? TimerMode(): PvPMode(), PlayerType == 'owner')), ModalRoute.withName('/'));
 
                                             },
-                                            margin: const EdgeInsets.fromLTRB(1, 1, 30, 100),
-                                            padding: const EdgeInsets.fromLTRB(1, 1, 70, 0),
+                                            margin: const EdgeInsets.fromLTRB(0, 0, 30, kIsWeb? 100:30),
+                                            padding: const EdgeInsets.fromLTRB(0, 0, kIsWeb? 130:70, 0),
                                           )
                                         ]),
                                   ]))),

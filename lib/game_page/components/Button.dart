@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class Button extends StatelessWidget {
 
@@ -7,7 +8,7 @@ class Button extends StatelessWidget {
   final margin;
   final padding;
   final scale;
-  Button({this.image, this.onTap, this.margin,this.padding, this.scale});
+  Button({this.image, this.onTap, this.margin,this.padding, this.scale = kIsWeb ? 1.7 : 2.7});
 
 
   @override
