@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/application/Globals.dart';
 import 'package:strike_d_type/application/modes/TimerMode.dart';
@@ -56,8 +55,12 @@ Future<void> EndGamePopup(context, {score, winner= true}) async {
                                     Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Button(
+                                            //todo: retry : retry - ok
+                                            //todo: home : x - ok
+                                            //todo: retry : home - ok
                                               image: 'assets/images/Home.png',
                                               onTap: () async {
+                                                GameMode.leaveGame();
                                                 Navigator.pushAndRemoveUntil(
                                                     context,
                                                     MaterialPageRoute(builder: (context) =>  HomePageWidget()),
@@ -70,8 +73,8 @@ Future<void> EndGamePopup(context, {score, winner= true}) async {
                                           Button(
                                             image: 'assets/images/Retry.png',
                                             onTap: () async {
-                                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LobbyWidget(GameMode.mode() == 'Timer' ? TimerMode(): PvPMode(), PlayerType == 'owner')), ModalRoute.withName('/'));
-
+                                              GameMode.replayGame();
+                                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LobbyWidget(GameMode.mode() == 'Timer' ? TimerMode(): PvPMode(), PlayerType == 'owner', replay: true)), ModalRoute.withName('/'));
                                             },
                                             margin: const EdgeInsets.fromLTRB(0, 0, 30, kIsWeb? 100:30),
                                             padding: const EdgeInsets.fromLTRB(0, 0, kIsWeb? 130:70, 0),

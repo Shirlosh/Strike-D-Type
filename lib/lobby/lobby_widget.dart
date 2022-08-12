@@ -12,10 +12,11 @@ import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class LobbyWidget extends StatefulWidget {
-  LobbyWidget(Mode mode,this.owner)
+  LobbyWidget(Mode mode,this.owner, {this.replay = false})
   {
     GameMode = mode;
   }
+  final replay;
   final owner;
   @override
   _LobbyWidgetState createState() => _LobbyWidgetState();
@@ -39,13 +40,19 @@ class _LobbyWidgetState extends State<LobbyWidget> {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     PlayerType = widget.owner ? 'owner' : 'joins';
     OpponentType = widget.owner ? 'joins' : 'owner';
-
-    GameMode.createGame(6).then((value) =>
+    if (widget.replay == false) {
+      GameMode.createGame(6).then((value) =>
           setState(() {
             GameID = value;
             this.gameID = value;
           }));
-
+    }
+    else
+      {
+        setState(() {
+          this.gameID = GameID;
+        });
+      }
     WidgetsBinding.instance.addPostFrameCallback((_) => {
     if (GameMode.mode() == 'Timer')
     {
@@ -63,7 +70,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
         Map<String, dynamic> data = jsonDecode(event.snapshot.value);
         if(data['id'] == GameID  && (data['started'] == true) && once)
           {
-          once = false;
+            once = false;
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -74,7 +81,11 @@ class _LobbyWidgetState extends State<LobbyWidget> {
       FirebaseDatabase.instance.ref('games').onChildRemoved.listen((event) {
         Map<String, dynamic> data = jsonDecode(event.snapshot.value);
         if(data['id'] == GameID)
-          Navigator.pop(context);
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) =>  HomePageWidget()),
+              ModalRoute.withName('/')
+          );
       });
     }
   }

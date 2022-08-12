@@ -15,7 +15,6 @@ class PvPMode extends Mode
   {
     req = new HandleRequestsOnline();
     boardType = new PvPType();
-    //listen to start
   }
 
   @override
