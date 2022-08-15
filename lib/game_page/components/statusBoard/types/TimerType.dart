@@ -32,7 +32,7 @@ class _TimerMode extends State<TimerType> {
         _counter--;
         if (_counter == 0) {
           timer.cancel();
-          EndGamePopup(context,_score);
+          EndGamePopup(context,score: _score);
         }
       });
     });

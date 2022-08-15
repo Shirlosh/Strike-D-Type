@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../flutter_flow/flutter_flow_theme.dart';
 
 class ScoreFlag extends StatelessWidget {
-  ScoreFlag({this.score, this.winner});
+  ScoreFlag({this.text, this.winner = true});
   final winner;
-  final score;
+  final text;
   final greenFlag = "assets/images/GreenFlag.png";
   final redFlag = "assets/images/RedFlag.png";
 
@@ -28,7 +28,7 @@ class ScoreFlag extends StatelessWidget {
             ),
             child: Container(
               alignment: Alignment.center,
-              child: Text('Your Score: $score',
+              child: Text(text,
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Poppins',

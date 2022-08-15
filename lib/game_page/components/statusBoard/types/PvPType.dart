@@ -30,7 +30,7 @@ class _PvPText extends State<PvPType> {
 
           if (_playerScore + _opponentScore == 2)
             {
-              EndGamePopup(context, _playerScore);
+              EndGamePopup(context, score: _playerScore, winner: _playerScore >= _opponentScore);
             }
         });
       }
@@ -40,21 +40,27 @@ class _PvPText extends State<PvPType> {
   void _onIconClicked(bool success) { }
     @override
   Widget build(BuildContext context) {
-    return Column(
+      double screenWidth = MediaQuery.of(context).size.width;
+      double screenHeight = MediaQuery.of(context).size.height;
+      return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text('$_playerScore : $_opponentScore', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
+        Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+        child:Text('$_playerScore : $_opponentScore', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
-          fontSize: 80,
+          fontSize: screenHeight  * 0.15,
           color: Colors.orange.shade50,
-        ),),
-        Text('You   :   Opponent', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
+          lineHeight: 1,
+        ),)),
+        Padding(padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+          child: Text('You   :   Opponent', textAlign: TextAlign.center,style: FlutterFlowTheme.of(context).bodyText1.override(
           fontFamily: 'Poppins',
-          fontSize: 16,
+          lineHeight: 0.4,
+          fontSize: screenHeight * 0.03,
           color: Colors.orange.shade50,
-        ),),
+        )),),
       ],
     );
   }
