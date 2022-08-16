@@ -162,6 +162,7 @@ exports.getCards = functions.https.onCall(async (data, context) => {
 
 exports.createGame = functions.https.onCall(async(data, context) => {
     let symbolsAmount = data.symbolsAmount
+    //todo: insert user to userslist
     let game = new Game()
     game.initGame(symbolsAmount, true)
     await gamesRef.child(game.getGameID()).set(JSON.stringify(game));

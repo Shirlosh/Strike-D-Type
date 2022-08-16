@@ -82,4 +82,17 @@ class PvPMode extends Mode
   Future<void> replayGame() async {
     req.replayGame();
   }
+
+  //todo:update userlist
+  void listenOnUsers()
+  {
+    FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
+      Map<String, dynamic> values = jsonDecode(event.snapshot.value);
+      if(values['id'] == GameID) {
+        List<dynamic> cards = values['ChosenCards'];
+        this.changeCards(cards);
+      }
+    });
+  }
+
 }

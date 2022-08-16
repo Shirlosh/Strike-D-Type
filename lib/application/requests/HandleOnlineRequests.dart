@@ -17,6 +17,7 @@ class HandleRequestsOnline extends HandleRequests {
         'createGame');
     final results = await callable.call(<String, dynamic>{
       'symbolsAmount': symbolsAmount,
+      'username' : Username
     });
     return results.data;
   }
@@ -57,7 +58,8 @@ class HandleRequestsOnline extends HandleRequests {
     HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('leaveGame');
     final results = await callable.call(<String, dynamic>{
       'ID': GameID,
-      'type': PlayerType
+      'type': PlayerType,
+      'username': Username
     });
     return results.data;
   }
@@ -65,6 +67,7 @@ class HandleRequestsOnline extends HandleRequests {
     HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('joinGame');
     final results = await callable.call(<String, dynamic>{
       'ID': GameID,
+      'username': Username
     });
     return results.data;
   }
