@@ -24,6 +24,7 @@ class Game {
         this.id = uuidv4().substring(0, 7)
         this.score = {'owner': 0, 'joins': 0};
         this.full = false;
+        this.userslist = {}
 
         //The number of symbols on a card has to be a prime number + 1
         this.primeNumber = numberOfSymbolsOnCard - 1;
@@ -52,7 +53,7 @@ class Game {
         this.shuffleSymbolsOnCard = json['shuffleSymbolsOnCard']
         this.numberOfCards = json['numberOfCards']
         this.cardsOfCards = json['cardsOfCards']
-
+        this.userslist = json['userslist']
     }
 
     createCards() {
@@ -108,7 +109,6 @@ class Game {
         this.ChosenCards = chosenCards;
         return chosenCards;
     }
-
 }
 
 const functions = require("firebase-functions");
@@ -162,10 +162,10 @@ exports.getCards = functions.https.onCall(async (data, context) => {
 
 exports.createGame = functions.https.onCall(async(data, context) => {
     let symbolsAmount = data.symbolsAmount
-    //todo: insert user to userslist
     let game = new Game()
     game.initGame(symbolsAmount, true)
-    await gamesRef.child(game.getGameID()).set(JSON.stringify(game));
+    game.userslist[data.username] = ''
+    await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
     return game.getGameID();
 });
 
@@ -185,8 +185,19 @@ exports.replayGame = functions.https.onCall(async (data, context) => {
     let game = new Game()
     game.initGameWithJson(JSON.parse(gameRef.val()))
     game.started = false;
+    if(game.isFull())
+    {
+        game.full = false
+        game.userslist = {}
+    }
+    else
+    {
+        game.full = true
+    }
+    game.userslist[data.username] = ''
     game.score['owner'] = 0;
     game.score['joins'] = 0;
+
     game.generateTwoCards()
     await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
     return true
@@ -198,8 +209,10 @@ exports.joinGame = functions.https.onCall(async (data, context) => {
     game.initGameWithJson(JSON.parse(gameRef.val()))
     if (game.isFull === true)
         return false
-    else
+    else {
         game.setFull(true);
+        game.userslist[data.username] = ''
+    }
     await gamesRef.child(game.getGameID()).set(JSON.stringify(game))
     return true
 });
@@ -208,6 +221,7 @@ exports.leaveGame = functions.https.onCall(async (data, context) => {
     let gameRef = await gamesRef.child(data.ID).get()
     let game = new Game()
     game.initGameWithJson(JSON.parse(gameRef.val()))
+    delete game.userslist[data.username]
     if(data.type === 'owner')     await gamesRef.child(data.ID).remove();
     else
     {

@@ -51,6 +51,7 @@ class HandleRequestsOnline extends HandleRequests {
     HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('replayGame');
     final results = await callable.call(<String, dynamic>{
       'ID': GameID,
+      'username' : Username
     });
     return results.data;
   }
