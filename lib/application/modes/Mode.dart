@@ -11,4 +11,9 @@ abstract class Mode
   Future<bool> startGame();
   Future<void> leaveGame();
   Future<void> replayGame();
+
+  void listenOnParticipates(dynamic participatesList);
+
+  //Future<dynamic> getParticipatesList();
+
 }

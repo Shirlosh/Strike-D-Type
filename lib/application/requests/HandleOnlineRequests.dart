@@ -6,25 +6,23 @@ import 'HandleRequests.dart';
 FirebaseFunctions functions = FirebaseFunctions.instance;
 
 class HandleRequestsOnline extends HandleRequests {
-  HandleRequestsOnline()
-  {
+  HandleRequestsOnline() {
     //functions.useFunctionsEmulator('localhost', 5001);
   }
 
   Future<String> createGame(symbolsAmount) async {
-
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-        'createGame');
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('createGame');
     final results = await callable.call(<String, dynamic>{
       'symbolsAmount': symbolsAmount,
-      'username' : Username
+      'username': Username
     });
     return results.data;
   }
 
   Future<dynamic> getCards() async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable(
-        'getCards');
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('getCards');
     final results = await callable.call(<String, dynamic>{
       'ID': GameID,
     });
@@ -36,26 +34,26 @@ class HandleRequestsOnline extends HandleRequests {
     return cards;
   }
 
-
   Future<bool> isCorrectSymbol(int symbol) async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('isCorrectSymbol');
-    final results = await callable.call(<String, dynamic>{
-      'ID': GameID,
-      'Symbol': symbol,
-      'type': PlayerType
-    });
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('isCorrectSymbol');
+    final results = await callable.call(
+        <String, dynamic>{'ID': GameID, 'Symbol': symbol, 'type': PlayerType});
     return results.data;
   }
 
   Future<void> replayGame() async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('replayGame');
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('replayGame');
     final results = await callable.call(<String, dynamic>{
       'ID': GameID,
     });
     return results.data;
   }
+
   Future<void> leaveGame() async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('leaveGame');
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('leaveGame');
     final results = await callable.call(<String, dynamic>{
       'ID': GameID,
       'type': PlayerType,
@@ -63,21 +61,32 @@ class HandleRequestsOnline extends HandleRequests {
     });
     return results.data;
   }
+
   Future<bool> joinGame() async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('joinGame');
-    final results = await callable.call(<String, dynamic>{
-      'ID': GameID,
-      'username': Username
-    });
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('joinGame');
+    final results = await callable
+        .call(<String, dynamic>{'ID': GameID, 'username': Username});
     return results.data;
   }
 
   Future<bool> startGame() async {
-    HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('startGame');
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('startGame');
     final results = await callable.call(<String, dynamic>{
       'ID': GameID,
     });
     return results.data;
   }
 
+/*
+  //todo: ask shirley what it needs to be in here in the "httpsCallable"
+  Future getParticipates() async {
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('getParticipates');
+    final results = await callable.call(<String, dynamic>{
+      'ID': GameID,
+    });
+    print("HandleOnlineReq : getUsers");
+  }*/
 }

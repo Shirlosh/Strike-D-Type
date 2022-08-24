@@ -12,13 +12,16 @@ import '../Button.dart';
 import '../InputField.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-
 Future<void> GameIDPopup(context) async {
   double screenWidth = MediaQuery.of(context).size.width;
   double screenHeight = MediaQuery.of(context).size.height;
 
-  InputField inputField = InputField( padding: EdgeInsets.fromLTRB(kIsWeb?150:70, 0, kIsWeb?150:70, 0), errorText: 'invalid arena code' ,
-      onChange: (value) {GameID = value;} );
+  InputField inputField = InputField(
+      padding: EdgeInsets.fromLTRB(kIsWeb ? 150 : 70, 0, kIsWeb ? 150 : 70, 0),
+      errorText: 'invalid arena code',
+      onChange: (value) {
+        GameID = value;
+      });
 
   showDialog(
       context: context,
@@ -30,7 +33,8 @@ Future<void> GameIDPopup(context) async {
                 width: screenWidth * 0.3,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: Image.asset('assets/images/GameIDPopup.png').image,
+                        image:
+                            Image.asset('assets/images/GameIDPopup.png').image,
                         fit: BoxFit.fill)),
                 child: Container(
                   child: Stack(
@@ -39,57 +43,58 @@ Future<void> GameIDPopup(context) async {
                     alignment: Alignment.center,
                     children: <Widget>[
                       Container(
-                          width: screenWidth,
-                          height: screenHeight* 0.9,
-                          alignment: Alignment.center,
-                          child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Padding(padding: EdgeInsets.fromLTRB(0,70,0,0), child:
-                                    Text("Arena Code", style: FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: screenHeight  * 0.03 ,
-                                      color: Colors.black45,
-                                    ))),
-                                    inputField,
-                                    Button(
-                                        scale: kIsWeb ? 1.7 : 2.7,
-                                        image: 'assets/images/OK.png',
-                                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-                                        onTap: () =>{_onConfirm(context).then((value) => inputField.setValidate(value))}
-                                    )
-                                        ]),
-                                  ),
+                        width: screenWidth,
+                        height: screenHeight * 0.9,
+                        alignment: Alignment.center,
+                        child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 70, 0, 0),
+                                  child: Text("Arena Code",
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            fontSize: screenHeight * 0.03,
+                                            color: Colors.black45,
+                                          ))),
+                              inputField,
+                              Button(
+                                  scale: kIsWeb ? 1.7 : 2.7,
+                                  image: 'assets/images/OK.png',
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 50),
+                                  onTap: () => {
+                                        _onConfirm(context).then((value) =>
+                                            inputField.setValidate(value))
+                                      })
+                            ]),
+                      ),
                     ],
                   ),
                 )));
       });
 }
 
-
-Future<bool> _IDValidation() async
-{
-  var snapshot = await FirebaseDatabase.instance.ref('games').child(GameID).get();
+Future<bool> _IDValidation() async {
+  var snapshot =
+      await FirebaseDatabase.instance.ref('games').child(GameID).get();
   if (snapshot.exists) {
-    if (jsonDecode(snapshot.value)['started'] == false)
-      return true;
+    if (jsonDecode(snapshot.value)['started'] == false) return true;
   }
   return false;
 }
 
-
-Future<bool> _onConfirm(context) async
-{
+Future<bool> _onConfirm(context) async {
   bool validate = await _IDValidation();
-  if (validate)
-    {
-      Navigator.pop(context, true);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LobbyWidget(PvPMode(), false)));
-      return true;
-    }
-  else
-      return false;
-
+  if (validate) {
+    Navigator.pop(context, true);
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => LobbyWidget(PvPMode(), false)));
+    return true;
+  } else
+    return false;
 }
