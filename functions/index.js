@@ -185,16 +185,16 @@ exports.replayGame = functions.https.onCall(async (data, context) => {
     let game = new Game()
     game.initGameWithJson(JSON.parse(gameRef.val()))
     game.started = false;
-    if(game.isFull())
-    {
-        game.full = false
-        game.userslist = {}
-    }
-    else
-    {
-        game.full = true
-    }
-    game.userslist[data.username] = ''
+    // if(game.isFull())
+    // {
+    //     game.full = false
+    //     game.userslist = {}
+    // }
+    // else
+    // {
+    //     game.full = true
+    // }
+    // game.userslist[data.username] = ''
     game.score['owner'] = 0;
     game.score['joins'] = 0;
 

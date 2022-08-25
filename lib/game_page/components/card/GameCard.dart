@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'Cell.dart';
 import 'dart:math';
@@ -54,7 +55,7 @@ class _GameCardState extends State<GameCard> {
                           transform: Matrix4.rotationZ(
                               widget.random.nextInt(1000) / 100),
                           child: Transform.scale(
-                            scale: widget.random.nextDouble() + widget.random.nextInt(3) + 0.45,
+                            scale: widget.random.nextDouble() + widget.random.nextInt(kIsWeb? 3 : 2) + (kIsWeb ? 0.8 : 0.5),
                             child: ClipRect(
                                 clipBehavior: Clip.antiAlias,
                                 child: ConstrainedBox(

@@ -55,9 +55,6 @@ Future<void> EndGamePopup(context, {score, winner= true}) async {
                                     Row(mainAxisSize: MainAxisSize.max, mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.end,
                                         children: [
                                           Button(
-                                            //todo: retry : retry - ok
-                                            //todo: home : x - ok
-                                            //todo: retry : home - ok
                                               image: 'assets/images/Home.png',
                                               onTap: () async {
                                                 GameMode.leaveGame();

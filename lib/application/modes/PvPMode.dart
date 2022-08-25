@@ -95,10 +95,8 @@ class PvPMode extends Mode {
         List<String> list = [];
         final Map map = Map.from(values['userslist']);
         for (var name in map.keys)
-          {
             list.add(name);
-          }
-        if(list.length > 1)
+
         this.setParticipatesState(list);
       }
     });

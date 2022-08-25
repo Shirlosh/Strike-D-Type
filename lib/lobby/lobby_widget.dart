@@ -36,19 +36,24 @@ class _LobbyWidgetState extends State<LobbyWidget> {
     ));
   }
 
+  // @override
+  // dispose(){
+  //   SystemChrome.setPreferredOrientations([
+  //     DeviceOrientation.landscapeLeft,
+  //     DeviceOrientation.landscapeRight,
+  //   ]);
+  //   super.dispose();
+  // }
 
   @override
   void initState() {
     super.initState();
-
-
-
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    if(GameMode.mode() != 'Timer')
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     PlayerType = widget.owner ? 'owner' : 'joins';
     OpponentType = widget.owner ? 'joins' : 'owner';
-    if (widget.replay == false) {
-      //check for local
+    if (widget.replay == false || GameMode.mode() == 'Timer') {
       GameMode.createGame(6).then((value) => setState(() {
             GameID = value;
             this.gameID = value;
@@ -66,7 +71,7 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => GamePageWidget(),
-                  ))
+                  )),
             }
         });
     bool once = true;

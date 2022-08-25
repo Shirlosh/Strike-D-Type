@@ -1,10 +1,14 @@
 import 'package:flutter/services.dart';
+import 'package:strike_d_type/application/Globals.dart';
 import 'package:strike_d_type/game_page/components/Board.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import 'package:flutter/material.dart';
 
 class GamePageWidget extends StatefulWidget {
-  const GamePageWidget();
+  GamePageWidget()
+  {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
+  }
 
   @override
   _GamePageWidgetState createState() => _GamePageWidgetState();
@@ -56,26 +60,22 @@ class _GamePageWidgetState extends State<GamePageWidget>
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight,]);
+    SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
     startPageLoadAnimations(
       animationsMap.values
           .where((anim) => anim.trigger == AnimationTrigger.onPageLoad),
       this,
     );
   }
-
   @override
   dispose(){
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    if(GameMode.mode() != 'Timer')
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFF1E2429),

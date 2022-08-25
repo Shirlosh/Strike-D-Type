@@ -28,7 +28,7 @@ class _PvPText extends State<PvPType> {
           _playerScore = values['score'][PlayerType];
           _opponentScore = values['score'][OpponentType];
 
-          if (_playerScore.abs() + _opponentScore.abs() == 31)
+          if (_playerScore.abs() + _opponentScore.abs() == 21)
             {
               EndGamePopup(context, score: _playerScore, winner: _playerScore >= _opponentScore);
             }

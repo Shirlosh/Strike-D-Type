@@ -91,6 +91,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: scaffoldKey,

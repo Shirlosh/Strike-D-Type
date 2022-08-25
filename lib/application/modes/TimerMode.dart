@@ -58,11 +58,6 @@ class TimerMode extends Mode {
 
   @override
   void listenOnParticipates(usersList) {
-    // TODO: implement listenOnParticipates ask shirley what it need to be in here
   }
 
- /* @override
-  Future getParticipatesList() {
-    return req.getParticipates();
-  }*/
 }

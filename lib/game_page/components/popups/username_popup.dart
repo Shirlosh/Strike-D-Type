@@ -17,7 +17,6 @@ Future<void> UsernamePopup(context) async {
   double screenHeight = MediaQuery.of(context).size.height;
 
   InputField inputField = InputField(
-      //TODO:how to activate the invalid username
       padding: EdgeInsets.fromLTRB(kIsWeb ? 150 : 70, 0, kIsWeb ? 150 : 70, 0),
       errorText: 'invalid username',
       placeHolder: Username,
@@ -57,7 +56,7 @@ Future<void> UsernamePopup(context) async {
                             children: <Widget>[
                               Padding(
                                   padding: EdgeInsets.fromLTRB(0, 70, 0, 0),
-                                  child: Text("Enter your username",
+                                  child: Text("Nickname",
                                       style: FlutterFlowTheme.of(context)
                                           .bodyText1
                                           .override(
