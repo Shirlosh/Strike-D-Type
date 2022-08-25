@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/Globals.dart';
-import 'package:strike_d_type/lobby/Participants.dart';
 import 'package:strike_d_type/lobby/usersList/usersList.dart';
 import '../application/modes/Mode.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';

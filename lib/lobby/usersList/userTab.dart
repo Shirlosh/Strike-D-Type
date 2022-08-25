@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../flutter_flow/flutter_flow_theme.dart';
-import '../Participants.dart';
 
 class UserTab extends StatelessWidget {
 
