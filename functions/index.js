@@ -207,10 +207,10 @@ exports.joinGame = functions.https.onCall(async (data, context) => {
     let gameRef = await gamesRef.child(data.ID).get()
     let game = new Game()
     game.initGameWithJson(JSON.parse(gameRef.val()))
-    if (game.isFull === true)
+    if (game.full === true)
         return false
     else {
-        game.setFull(true);
+        game.full = true
         game.userslist[data.username] = ''
     }
     await gamesRef.child(game.getGameID()).set(JSON.stringify(game))

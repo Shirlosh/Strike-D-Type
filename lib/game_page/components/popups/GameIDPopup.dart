@@ -80,10 +80,11 @@ Future<void> GameIDPopup(context) async {
 }
 
 Future<bool> _IDValidation() async {
-  var snapshot =
-      await FirebaseDatabase.instance.ref('games').child(GameID).get();
-  if (snapshot.exists) {
-    if (jsonDecode(snapshot.value)['started'] == false) return true;
+  var snapshot = await FirebaseDatabase.instance.ref('games').child(GameID).get();
+  if (snapshot.exists)
+  {
+    Map<String, dynamic> values = jsonDecode(snapshot.value);
+    if (values['started'] == false && values['full'] == false) return true;
   }
   return false;
 }
