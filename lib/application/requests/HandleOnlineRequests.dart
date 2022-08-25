@@ -80,14 +80,4 @@ class HandleRequestsOnline extends HandleRequests {
     return results.data;
   }
 
-/*
-  //todo: ask shirley what it needs to be in here in the "httpsCallable"
-  Future getParticipates() async {
-    HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('getParticipates');
-    final results = await callable.call(<String, dynamic>{
-      'ID': GameID,
-    });
-    print("HandleOnlineReq : getUsers");
-  }*/
 }

@@ -63,13 +63,6 @@ class PvPMode extends Mode {
   Future<dynamic> getCards() {
     return req.getCards();
   }
-/*
- @override
-  Future getParticipatesList() {
-    print("getParticipates()");
-    return req.getParticipates();
-  }*/
-
 
   @override
   Future<bool> isCorrectSymbol(int symbol) {
@@ -95,16 +88,18 @@ class PvPMode extends Mode {
   @override
   void listenOnParticipates(dynamic setParticipatesState) {
     this.setParticipatesState = setParticipatesState;
-    FirebaseDatabase.instance
-        .ref('games')
-        .onChildChanged
-        .listen((event) {
+
+    FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
       Map<String, dynamic> values = jsonDecode(event.snapshot.value);
       if (values['id'] == GameID) {
-        Map<String,String> participateslist = values['userslist']  as Map<String, String>;
-
-        this.setParticipatesState((participateslist.keys).toList());
-
+        List<String> list = [];
+        final Map map = Map.from(values['userslist']);
+        for (var name in map.keys)
+          {
+            list.add(name);
+          }
+        if(list.length > 1)
+        this.setParticipatesState(list);
       }
     });
   }
