@@ -5,21 +5,21 @@ import '../../game_page/components/statusBoard/types/PvPType.dart';
 import '../Globals.dart';
 import 'Mode.dart';
 
-class PvPMode extends Mode
-{
+class PvPMode extends Mode {
   HandleRequestsOnline req;
   PvPType boardType;
   dynamic changeCards;
+  dynamic setParticipatesState;
 
-  PvPMode()
-  {
+  PvPMode() {
     req = new HandleRequestsOnline();
     boardType = new PvPType();
   }
 
   @override
-  String mode() { return 'PvP'; }
-
+  String mode() {
+    return 'PvP';
+  }
 
   @override
   dynamic getStatusBoardContent() {
@@ -27,12 +27,15 @@ class PvPMode extends Mode
   }
 
   @override
-  void setCardChanger(dynamic changeCards)
-  {
+  void setCardChanger(dynamic changeCards) {
     this.changeCards = changeCards;
-    FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
+
+    FirebaseDatabase.instance
+        .ref('games')
+        .onChildChanged
+        .listen((event) {
       Map<String, dynamic> values = jsonDecode(event.snapshot.value);
-      if(values['id'] == GameID) {
+      if (values['id'] == GameID) {
         List<dynamic> listlistString = values['ChosenCards'];
         List<List<int>> cards = List.generate(0, (it) => []);
         cards.add(List<int>.from(listlistString[0].map((x) => x)));
@@ -45,7 +48,7 @@ class PvPMode extends Mode
   @override
   Future<String> createGame(symbolsAmount) {
     Future<String> id;
-    if(PlayerType == 'owner')
+    if (PlayerType == 'owner')
       id = req.createGame(symbolsAmount);
     else {
       id = Future<String>.value(GameID);
@@ -60,6 +63,13 @@ class PvPMode extends Mode
   Future<dynamic> getCards() {
     return req.getCards();
   }
+/*
+ @override
+  Future getParticipatesList() {
+    print("getParticipates()");
+    return req.getParticipates();
+  }*/
+
 
   @override
   Future<bool> isCorrectSymbol(int symbol) {
@@ -68,8 +78,7 @@ class PvPMode extends Mode
 
   Future<bool> startGame() async {
     Future<bool> res = Future<bool>.value(false);
-    if(PlayerType == 'owner')
-      res = req.startGame();
+    if (PlayerType == 'owner') res = req.startGame();
     return res;
   }
 
@@ -83,16 +92,20 @@ class PvPMode extends Mode
     req.replayGame();
   }
 
-  //todo:update userlist
-  void listenOnUsers()
-  {
-    FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
+  @override
+  void listenOnParticipates(dynamic setParticipatesState) {
+    this.setParticipatesState = setParticipatesState;
+    FirebaseDatabase.instance
+        .ref('games')
+        .onChildChanged
+        .listen((event) {
       Map<String, dynamic> values = jsonDecode(event.snapshot.value);
-      if(values['id'] == GameID) {
-        List<dynamic> cards = values['ChosenCards'];
-        this.changeCards(cards);
+      if (values['id'] == GameID) {
+        Map<String,String> participateslist = values['userslist']  as Map<String, String>;
+
+        this.setParticipatesState((participateslist.keys).toList());
+
       }
     });
   }
-
 }

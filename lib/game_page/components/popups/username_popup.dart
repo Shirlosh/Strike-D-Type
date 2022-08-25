@@ -17,10 +17,14 @@ Future<void> UsernamePopup(context) async {
   double screenHeight = MediaQuery.of(context).size.height;
 
   InputField inputField = InputField(
+      //TODO:how to activate the invalid username
       padding: EdgeInsets.fromLTRB(kIsWeb ? 150 : 70, 0, kIsWeb ? 150 : 70, 0),
       errorText: 'invalid username',
+      placeHolder: Username,
       onChange: (value) {
-        Username = value;
+        if (value != '') {
+          Username = value;
+        } else {}
       });
 
   showDialog(
@@ -68,14 +72,9 @@ Future<void> UsernamePopup(context) async {
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 0, 0, 50),
                                   onTap: () => {
-                                        print(GameID),
+                                        _UsernameValidation().then((value) =>
+                                            inputField.setValidate(value)),
                                         Navigator.pop(alertDialogContext, true),
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    LobbyWidget(
-                                                        PvPMode(), false)))
                                       })
                             ]),
                       ),
@@ -83,4 +82,11 @@ Future<void> UsernamePopup(context) async {
                   ),
                 )));
       });
+}
+
+Future<bool> _UsernameValidation() async {
+  if (Username != '') {
+    return true;
+  }
+  return false;
 }

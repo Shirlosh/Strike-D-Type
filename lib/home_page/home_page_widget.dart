@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:strike_d_type/application/Globals.dart';
 import 'package:strike_d_type/application/modes/PvPMode.dart';
 import 'package:strike_d_type/game_page/components/popups/GameIDPopup.dart';
 import 'package:strike_d_type/game_page/components/popups/endGamePopup/EndGamePopup.dart';
@@ -11,7 +12,6 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 
 import 'package:flutter/material.dart';
-
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({Key key}) : super(key: key);
@@ -184,7 +184,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                     EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    var confirmDialogResponse = GameIDPopup(context) ?? false;
+                                    if (Username != '') {
+                                      var confirmDialogResponse =
+                                          GameIDPopup(context) ?? false;
+                                    } else {
+                                      var userName =
+                                          UsernamePopup(context) ?? false;
+                                    }
                                   },
                                   text: 'Join Game',
                                   options: FFButtonOptions(
@@ -211,7 +217,15 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                                 child: FFButtonWidget(
-                                  onPressed:() async { var confirmDialogResponse = gameModeDialog(context) ?? false;},
+                                  onPressed: () async {
+                                    if (Username != '') {
+                                      var confirmDialogResponse =
+                                          gameModeDialog(context) ?? false;
+                                    } else {
+                                      var userName =
+                                          UsernamePopup(context) ?? false;
+                                    }
+                                  },
                                   text: 'Create Arena',
                                   options: FFButtonOptions(
                                     width: 200,

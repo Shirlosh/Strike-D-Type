@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/services.dart';
 import 'package:strike_d_type/application/Globals.dart';
+import 'package:strike_d_type/lobby/Participants.dart';
 import '../application/modes/Mode.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -12,14 +13,16 @@ import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class LobbyWidget extends StatefulWidget {
-  LobbyWidget(Mode mode,this.owner, {this.replay = false})
-  {
+  LobbyWidget(Mode mode, this.owner, {this.replay = false}) {
     GameMode = mode;
   }
+
   final replay;
   final owner;
+
   @override
   _LobbyWidgetState createState() => _LobbyWidgetState();
+
 }
 
 class _LobbyWidgetState extends State<LobbyWidget> {
@@ -34,63 +37,62 @@ class _LobbyWidgetState extends State<LobbyWidget> {
     ));
   }
 
+
   @override
   void initState() {
     super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+
+
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     PlayerType = widget.owner ? 'owner' : 'joins';
     OpponentType = widget.owner ? 'joins' : 'owner';
-    if (widget.replay == false) { //check for local
-      GameMode.createGame(6).then((value) =>
-          setState(() {
+    if (widget.replay == false) {
+      //check for local
+      GameMode.createGame(6).then((value) => setState(() {
             GameID = value;
             this.gameID = value;
           }));
+    } else {
+      setState(() {
+        this.gameID = GameID;
+      });
     }
-    else
-      {
-        setState(() {
-          this.gameID = GameID;
-        });
-      }
     WidgetsBinding.instance.addPostFrameCallback((_) => {
-    if (GameMode.mode() == 'Timer')
-    {
-        Navigator.pop(context, true),
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => GamePageWidget(),
-        ))
-    }});
+          if (GameMode.mode() == 'Timer')
+            {
+              Navigator.pop(context, true),
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GamePageWidget(),
+                  ))
+            }
+        });
     bool once = true;
-    if(PlayerType == 'joins')
-    {
+    if (PlayerType == 'joins') {
       FirebaseDatabase.instance.ref('games').onChildChanged.listen((event) {
         Map<String, dynamic> data = jsonDecode(event.snapshot.value);
-        if(data['id'] == GameID  && (data['started'] == true) && once)
-          {
-            once = false;
+        if (data['id'] == GameID && (data['started'] == true) && once) {
+          once = false;
           Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => GamePageWidget(),
-            ));
-          }
+              context,
+              MaterialPageRoute(
+                builder: (context) => GamePageWidget(),
+              ));
+        }
       });
       FirebaseDatabase.instance.ref('games').onChildRemoved.listen((event) {
         Map<String, dynamic> data = jsonDecode(event.snapshot.value);
-        if(data['id'] == GameID)
+        if (data['id'] == GameID)
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (context) =>  HomePageWidget()),
-              ModalRoute.withName('/')
-          );
+              MaterialPageRoute(builder: (context) => HomePageWidget()),
+              ModalRoute.withName('/'));
       });
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -221,34 +223,8 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                                           //todo:need to do something with this input https://www.appsdeveloperblog.com/alert-dialog-with-a-text-field-in-flutter/
                                           child: Container(
                                               alignment: Alignment.center,
-                                              child: Text.rich(
-                                                TextSpan(
-                                                  text: "Good Luck ",
-                                                  children: [
-                                                    TextSpan(
-                                                        text: Username +"!",
-                                                        style: TextStyle(
-                                                            fontStyle: FontStyle
-                                                                .italic,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors
-                                                                .blue.shade900))
-                                                  ],
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .subtitle1
-                                                      .override(
-                                                        fontFamily:
-                                                            'Lexend Deca',
-                                                        color:
-                                                            Color(0xFF151B1E),
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                ),
-                                              ))),
+                                              child: Participates(),
+                                          )),
                                     ),
                                     Card(
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -301,13 +277,17 @@ class _LobbyWidgetState extends State<LobbyWidget> {
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   GameMode.startGame().then((value) async => {
-                                  if(value == true){
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => GamePageWidget(),
-                                    ),
-                                  )}});
+                                        if (value == true)
+                                          {
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    GamePageWidget(),
+                                              ),
+                                            )
+                                          }
+                                      });
                                 },
                                 text: 'Start!',
                                 options: FFButtonOptions(

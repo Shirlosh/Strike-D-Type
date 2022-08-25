@@ -2,21 +2,20 @@ import 'package:strike_d_type/application/requests/HandleLocalRequests.dart';
 import '../../game_page/components/statusBoard/types/TimerType.dart';
 import 'package:strike_d_type/application/modes/Mode.dart';
 
-class TimerMode extends Mode
-{
+class TimerMode extends Mode {
   HandleRequestsLocal req;
   TimerType boardType;
   dynamic changeCards;
 
-  TimerMode()
-  {
+  TimerMode() {
     req = HandleRequestsLocal();
     boardType = TimerType();
   }
 
-
   @override
-  String mode() { return 'Timer'; }
+  String mode() {
+    return 'Timer';
+  }
 
   @override
   dynamic getStatusBoardContent() {
@@ -24,8 +23,7 @@ class TimerMode extends Mode
   }
 
   @override
-  void setCardChanger(dynamic changeCards)
-  {
+  void setCardChanger(dynamic changeCards) {
     this.changeCards = changeCards;
   }
 
@@ -48,11 +46,23 @@ class TimerMode extends Mode
   }
 
   @override
-  Future<bool> startGame() { return Future<bool>.value(true);  }
+  Future<bool> startGame() {
+    return Future<bool>.value(true);
+  }
 
   @override
-  Future<void> leaveGame(){}
+  Future<void> leaveGame() {}
 
   @override
-  Future<void> replayGame() {  }
+  Future<void> replayGame() {}
+
+  @override
+  void listenOnParticipates(usersList) {
+    // TODO: implement listenOnParticipates ask shirley what it need to be in here
+  }
+
+ /* @override
+  Future getParticipatesList() {
+    return req.getParticipates();
+  }*/
 }
