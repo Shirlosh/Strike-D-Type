@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:strike_d_type/application/Globals.dart';
 import 'package:strike_d_type/game_page/components/card/themes/classic.dart';
@@ -35,6 +36,7 @@ class _CellState extends State<Cell> {
 
 
   void iconClicked() async {
+    AudioPlayer().play(AssetSource('audios/PopSound.mp3'));
     bool value = await GameMode.isCorrectSymbol(widget.index);
     if (value)
         GameMode.getStatusBoardContent().onIconClicked(true);

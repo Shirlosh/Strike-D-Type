@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../flutter_flow/flutter_flow_theme.dart';
@@ -8,9 +9,12 @@ class ScoreFlag extends StatelessWidget {
   final text;
   final greenFlag = "assets/images/GreenFlag.png";
   final redFlag = "assets/images/RedFlag.png";
+  final loseSound = "audios/LoseSound.mp3";
+  final victorySound = "audios/VictorySound.mp3";
 
   @override
   Widget build(BuildContext context) {
+    AudioPlayer().play(AssetSource(this.winner ? victorySound : loseSound));
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Positioned(
