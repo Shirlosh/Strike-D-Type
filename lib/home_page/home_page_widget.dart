@@ -184,15 +184,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                                 child: FFButtonWidget(
-                                  onPressed: () async {
-                                    if (Username != '') {
-                                      var confirmDialogResponse =
-                                          GameIDPopup(context) ?? false;
-                                    } else {
-                                      var userName =
-                                          UsernamePopup(context) ?? false;
-                                    }
-                                  },
+                                  onPressed: () async { var confirmDialogResponse = GameIDPopup(context) ?? false; },
                                   text: 'Join Game',
                                   options: FFButtonOptions(
                                     width: 200,
@@ -218,15 +210,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
                                 child: FFButtonWidget(
-                                  onPressed: () async {
-                                    if (Username != '') {
-                                      var confirmDialogResponse =
-                                          gameModeDialog(context) ?? false;
-                                    } else {
-                                      var userName =
-                                          UsernamePopup(context) ?? false;
-                                    }
-                                  },
+                                  onPressed: () async { var confirmDialogResponse = gameModeDialog(context) ?? false; },
                                   text: 'Create Arena',
                                   options: FFButtonOptions(
                                     width: 200,
