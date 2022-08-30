@@ -1,11 +1,20 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 
 class UserTab extends StatelessWidget {
 
   final username;
-  UserTab(this.username);
+  String icon;
+  final icons = 16;
 
+  UserTab(this.username)
+  {
+    Random random = new Random();
+    int randomNumber = random.nextInt(icons) + 1;
+    icon = 'assets/images/users/monster' + randomNumber.toString() + ".png";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,9 +95,9 @@ class UserTab extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
-                                child: Image.asset(
-                                  'assets/images/Strike-D-TYPE.png',
-                                ),
+                                child: Container(
+                                    color: Colors.primaries[Random().nextInt(Colors.primaries.length)], child: Image.asset(icon)
+                                )
                               ),
                             ),
                           ),

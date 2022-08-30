@@ -75,6 +75,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/
+    - assets/images/users/
     - assets/videos/
     - assets/audios/
     - assets/lottie_animations/
